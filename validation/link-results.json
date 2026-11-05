@@ -1,0 +1,337 @@
+{
+  "checked_at": "2026-11-05T06:22:36.592826+00:00",
+  "discovered_count": 64,
+  "parser_fix": "Closing parentheses terminate URLs; prior attempt preserved but included malformed extracted references.",
+  "results": [
+    {
+      "url": "https://alistaircockburn.com/Bio",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://cucumber.io/docs/bdd/example-mapping/",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://cucumber.io/docs/gherkin/reference/",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://developers.google.com/optimization/cp/cp_solver",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://developers.google.com/optimization/install/python",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.pytest.org/en/stable/getting-started.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/howto/sorting.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/collections.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/collections.html#collections.deque",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/dataclasses.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/datetime.html",
+      "checked_at": "2026-11-05T06:22:36.591946+00:00",
+      "status": "local_dns_unavailable",
+      "detail": "[Errno -3] Temporary failure in name resolution",
+      "limitation": "No HTTP request completed; this does not establish whether the URL exists."
+    },
+    {
+      "url": "https://docs.python.org/3/library/decimal.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/functions.html#max",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/functions.html#sorted",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/graphlib.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/itertools.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/sqlite3.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/statistics.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/stdtypes.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.python.org/3/license.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://domainstorytelling.org/",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/HypothesisWorks/hypothesis",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/Q00/Symposium",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/Q00/Symposium/blob/main/LICENSE",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/Q00/ouroboros",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/Q00/ouroboros/blob/main/LICENSE",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/awslabs/aidlc-workflows",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/awslabs/aidlc-workflows/blob/main/LICENSE",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/cvxpy/cvxpy",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/garrytan/gstack",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/garrytan/gstack/blob/main/LICENSE",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/google/or-tools",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/microsoft/playwright",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/networkx/networkx",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/pytest-dev/pytest",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/python/cpython",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/scipy/scipy",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://github.com/shapely/shapely",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://json-schema.org/draft/2020-12/schema",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.shortest_path.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://playwright.dev/docs/intro",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/HypothesisWorks/hypothesis/master/LICENSE.txt",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/cvxpy/cvxpy/master/LICENSE",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/or-tools/stable/LICENSE",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/playwright/main/LICENSE",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/networkx/networkx/main/LICENSE.txt",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/main/LICENSE",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/scipy/scipy/main/LICENSE.txt",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/shapely/shapely/main/LICENSE.txt",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://scipy.org/install/",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://scrumguides.org/scrum-guide.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://shapely.readthedocs.io/en/stable/manual.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://www.cvxpy.org/tutorial/dcp/index.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://www.gary-klein.com/premortem",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://www.intercom.com/blog/using-job-stories-design-features-ui-ux/",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://www.sqlite.org/copyright.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://www.sqlite.org/fts5.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://www.sqlite.org/index.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://www.statsmodels.org/stable/generated/statsmodels.stats.weightstats.ttost_ind.html",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    },
+    {
+      "url": "https://www.strategyzer.com/library/how-to-test-your-idea-start-with-the-most-critical-hypotheses",
+      "status": "not_run",
+      "reason": "Bulk retry skipped after prior environment DNS failures. Existence not inferred."
+    }
+  ],
+  "single_probe": {
+    "url": "https://docs.python.org/3/library/datetime.html",
+    "checked_at": "2026-11-05T06:22:36.591946+00:00",
+    "status": "local_dns_unavailable",
+    "detail": "[Errno -3] Temporary failure in name resolution",
+    "limitation": "No HTTP request completed; this does not establish whether the URL exists."
+  },
+  "scope": "One actual corrected-URL probe; remaining links discovery only, no blanket reachability verification. Prior bulk attempt is separate. DNS failures do not mean links are missing. Official sources were also inspected through available browser/search/connector tools separately."
+}

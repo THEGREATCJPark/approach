@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-11-05",
+  "transport": "web open fallback for local DNS limitation",
+  "checks": [
+    {
+      "url": "https://docs.python.org/3/howto/sorting.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/collections.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/dataclasses.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/datetime.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/functions.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/graphlib.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/itertools.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/sqlite3.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/statistics.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://docs.python.org/3/library/stdtypes.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://json-schema.org/draft/2020-12/schema",
+      "status": "unverified_content_type",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    },
+    {
+      "url": "https://www.statsmodels.org/stable/generated/statsmodels.stats.weightstats.ttost_ind.html",
+      "status": "docs_verified",
+      "scope": "Document content retrieved; not runtime execution; anchor resolution not separately tested."
+    }
+  ]
+}

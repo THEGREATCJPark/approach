@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-11-05",
+  "sources": [
+    {
+      "url": "https://developers.openai.com/codex/guides/agents-md/",
+      "final_url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+      "status": "docs_verified",
+      "method": "web open",
+      "used_for": "Actual file reading and short entry guidance; no remote URL auto-application claim."
+    },
+    {
+      "url": "https://openai.com/index/harness-engineering/",
+      "status": "docs_verified",
+      "method": "web open",
+      "used_for": "Small entry map and repository knowledge navigation; performance claims not transferred."
+    }
+  ]
+}

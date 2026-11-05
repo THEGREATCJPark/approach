@@ -1,0 +1,140 @@
+[
+  {
+    "kind": "normal",
+    "input": {
+      "cap": 2,
+      "requests": [
+        [
+          "x",
+          "p"
+        ],
+        [
+          "y",
+          "q"
+        ],
+        [
+          "z",
+          "r"
+        ]
+      ]
+    },
+    "expected": [
+      [
+        "p",
+        "q"
+      ],
+      [
+        "r"
+      ]
+    ],
+    "basis": "첫 두 명 수락"
+  },
+  {
+    "kind": "boundary",
+    "input": {
+      "cap": 0,
+      "requests": [
+        [
+          "x",
+          "p"
+        ]
+      ]
+    },
+    "expected": [
+      [],
+      [
+        "p"
+      ]
+    ],
+    "basis": "정원0 대기"
+  },
+  {
+    "kind": "missing",
+    "input": {
+      "cap": 2,
+      "requests": [
+        [
+          "x",
+          null
+        ]
+      ]
+    },
+    "expected": "invalid",
+    "basis": "사람 키 없음"
+  },
+  {
+    "kind": "conflict",
+    "input": {
+      "cap": 2,
+      "requests": [
+        [
+          "x",
+          "p"
+        ],
+        [
+          "x",
+          "q"
+        ]
+      ]
+    },
+    "expected": "conflict",
+    "basis": "같은 요청키 다른 payload"
+  },
+  {
+    "kind": "duplicate",
+    "input": {
+      "cap": 2,
+      "requests": [
+        [
+          "x",
+          "p"
+        ],
+        [
+          "x",
+          "p"
+        ],
+        [
+          "y",
+          "p"
+        ],
+        [
+          "z",
+          "q"
+        ]
+      ]
+    },
+    "expected": [
+      [
+        "p",
+        "q"
+      ],
+      []
+    ],
+    "basis": "한 사람 한 좌석"
+  },
+  {
+    "kind": "new_sample",
+    "input": {
+      "cap": 1,
+      "requests": [
+        [
+          "z",
+          "r"
+        ],
+        [
+          "x",
+          "p"
+        ]
+      ]
+    },
+    "expected": [
+      [
+        "r"
+      ],
+      [
+        "p"
+      ]
+    ],
+    "basis": "수신순 바뀌면 수락자 변경"
+  }
+]

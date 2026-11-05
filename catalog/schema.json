@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "approach cases catalog",
+  "description": "Validator supports type, required, properties, items, enum, minLength, minItems. No other validation keywords are used. Deep fixture/test constraints are additionally checked in Python.",
+  "$comment": "Metadata schema only; not semantic accuracy or privacy validation.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "title",
+      "family",
+      "keywords_ko",
+      "keywords_en",
+      "problem_structure",
+      "deliverable_types",
+      "provenance",
+      "applicable_when",
+      "do_not_use_when",
+      "data_required",
+      "method_ids",
+      "tool_ids",
+      "related_cases",
+      "depth",
+      "path"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "family": {
+        "type": "string",
+        "minLength": 1
+      },
+      "provenance": {
+        "type": "string",
+        "minLength": 1,
+        "enum": [
+          "synthetic",
+          "public_reference"
+        ]
+      },
+      "depth": {
+        "type": "string",
+        "minLength": 1,
+        "enum": [
+          "deep",
+          "advanced",
+          "standard",
+          "심화"
+        ]
+      },
+      "path": {
+        "type": "string",
+        "minLength": 1
+      },
+      "keywords_ko": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "keywords_en": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "deliverable_types": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "method_ids": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "tool_ids": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "related_cases": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "problem_structure": {
+        "type": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "applicable_when": {
+        "type": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "do_not_use_when": {
+        "type": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "data_required": {
+        "type": [
+          "string",
+          "array",
+          "object"
+        ]
+      },
+      "tests": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

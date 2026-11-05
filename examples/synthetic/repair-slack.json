@@ -1,0 +1,84 @@
+[
+  {
+    "kind": "normal",
+    "input": {
+      "due": 90,
+      "work": 60,
+      "safety": false
+    },
+    "expected": 30,
+    "basis": "90−60=30분"
+  },
+  {
+    "kind": "boundary",
+    "input": {
+      "due": 60,
+      "work": 60,
+      "safety": false
+    },
+    "expected": 0,
+    "basis": "여유 0"
+  },
+  {
+    "kind": "missing",
+    "input": {
+      "due": 90,
+      "work": null,
+      "safety": false
+    },
+    "expected": "estimate_required",
+    "basis": "추정 불명"
+  },
+  {
+    "kind": "conflict",
+    "input": {
+      "due": 20,
+      "work": 40,
+      "safety": false
+    },
+    "expected": -20,
+    "basis": "20분 지연 위험"
+  },
+  {
+    "kind": "safety_override",
+    "input": {
+      "due": 90,
+      "work": 60,
+      "safety": true
+    },
+    "expected": "escalate",
+    "basis": "안전 규칙 우선"
+  },
+  {
+    "kind": "new_sample",
+    "input": {
+      "due": 100,
+      "work": 95,
+      "safety": false
+    },
+    "expected": 5,
+    "basis": "마감은 늦어도 여유 5로 먼저 착수 후보"
+  },
+  {
+    "kind": "reorder",
+    "input": {
+      "tickets": [
+        [
+          "b",
+          100,
+          95
+        ],
+        [
+          "a",
+          90,
+          60
+        ]
+      ]
+    },
+    "expected": [
+      "b",
+      "a"
+    ],
+    "basis": "여유 5분인 b, 30분인 a 순; 입력순 의존 금지"
+  }
+]

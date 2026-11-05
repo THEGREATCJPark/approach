@@ -1,0 +1,142 @@
+[
+  {
+    "kind": "normal",
+    "input": {
+      "budget": 4,
+      "candidates": [
+        [
+          "a",
+          2,
+          [
+            "u",
+            "v"
+          ]
+        ],
+        [
+          "b",
+          2,
+          [
+            "v",
+            "w"
+          ]
+        ],
+        [
+          "c",
+          3,
+          [
+            "x"
+          ]
+        ]
+      ]
+    },
+    "expected": [
+      "a",
+      "b"
+    ],
+    "basis": "비용4,합집합3; c 단독1"
+  },
+  {
+    "kind": "boundary",
+    "input": {
+      "budget": 0,
+      "candidates": [
+        [
+          "a",
+          2,
+          [
+            "u"
+          ]
+        ]
+      ]
+    },
+    "expected": [],
+    "basis": "빈 집합 비용0"
+  },
+  {
+    "kind": "missing",
+    "input": {
+      "budget": 4,
+      "candidates": [
+        [
+          "a",
+          2,
+          null
+        ]
+      ]
+    },
+    "expected": "unknown",
+    "basis": "커버 표 미확인"
+  },
+  {
+    "kind": "conflict",
+    "input": {
+      "budget": -1,
+      "candidates": [
+        [
+          "a",
+          2,
+          [
+            "u"
+          ]
+        ]
+      ]
+    },
+    "expected": "invalid",
+    "basis": "음수 예산"
+  },
+  {
+    "kind": "duplicate",
+    "input": {
+      "budget": 4,
+      "candidates": [
+        [
+          "a",
+          2,
+          [
+            "u",
+            "u"
+          ]
+        ],
+        [
+          "b",
+          2,
+          [
+            "u"
+          ]
+        ]
+      ]
+    },
+    "expected": [
+      "a"
+    ],
+    "basis": "중복 원소는1, 최소비용 동률 ID a"
+  },
+  {
+    "kind": "new_sample",
+    "input": {
+      "budget": 3,
+      "candidates": [
+        [
+          "a",
+          3,
+          [
+            "u",
+            "v"
+          ]
+        ],
+        [
+          "b",
+          2,
+          [
+            "u",
+            "v"
+          ]
+        ]
+      ]
+    },
+    "expected": [
+      "b"
+    ],
+    "basis": "커버 같으면 비용2 선택"
+  }
+]

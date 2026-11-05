@@ -1,0 +1,886 @@
+{
+  "environment": "3.12.14",
+  "scope": "60 acceptance-row oracle calculations; not app/user/concurrency validation",
+  "cases": 10,
+  "checks": 60,
+  "results": [
+    {
+      "case": "ranking-availability",
+      "check": "정상",
+      "actual": [
+        [
+          "A",
+          "D"
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "expected": [
+        [
+          "A",
+          "D"
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "ranking-availability",
+      "check": "경계",
+      "actual": [],
+      "expected": [],
+      "status": "pass"
+    },
+    {
+      "case": "ranking-availability",
+      "check": "정보 부족",
+      "actual": [
+        "E"
+      ],
+      "expected": [
+        "E"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "ranking-availability",
+      "check": "충돌",
+      "actual": [],
+      "expected": [],
+      "status": "pass"
+    },
+    {
+      "case": "ranking-availability",
+      "check": "순서변경",
+      "actual": [
+        "A",
+        "D"
+      ],
+      "expected": [
+        "A",
+        "D"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "ranking-availability",
+      "check": "새 샘플",
+      "actual": [
+        "A",
+        "F"
+      ],
+      "expected": [
+        "A",
+        "F"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "ranking-diversity",
+      "check": "정상",
+      "actual": {
+        "ids": [
+          "A",
+          "B",
+          "D"
+        ],
+        "score": 23,
+        "unfilled": 0
+      },
+      "expected": {
+        "ids": [
+          "A",
+          "B",
+          "D"
+        ],
+        "score": 23,
+        "unfilled": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "ranking-diversity",
+      "check": "경계",
+      "actual": {
+        "ids": [
+          "A",
+          "D",
+          "E"
+        ],
+        "score": 20,
+        "unfilled": 0
+      },
+      "expected": {
+        "ids": [
+          "A",
+          "D",
+          "E"
+        ],
+        "score": 20,
+        "unfilled": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "ranking-diversity",
+      "check": "정보 부족",
+      "actual": {
+        "ids": [
+          "A",
+          "B",
+          "E"
+        ],
+        "score": 22,
+        "unfilled": 0
+      },
+      "expected": {
+        "ids": [
+          "A",
+          "B",
+          "E"
+        ],
+        "score": 22,
+        "unfilled": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "ranking-diversity",
+      "check": "충돌",
+      "actual": {
+        "ids": [
+          "A",
+          "D",
+          "E"
+        ],
+        "score": 20,
+        "unfilled": 1
+      },
+      "expected": {
+        "ids": [
+          "A",
+          "D",
+          "E"
+        ],
+        "score": 20,
+        "unfilled": 1
+      },
+      "status": "pass"
+    },
+    {
+      "case": "ranking-diversity",
+      "check": "중복",
+      "actual": "duplicate_id",
+      "expected": "duplicate_id",
+      "status": "pass"
+    },
+    {
+      "case": "ranking-diversity",
+      "check": "새 샘플",
+      "actual": {
+        "ids": [
+          "A",
+          "B",
+          "F"
+        ],
+        "score": 27,
+        "unfilled": 0
+      },
+      "expected": {
+        "ids": [
+          "A",
+          "B",
+          "F"
+        ],
+        "score": 27,
+        "unfilled": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "mobility-tour",
+      "check": "정상",
+      "actual": 16,
+      "expected": 16,
+      "status": "pass"
+    },
+    {
+      "case": "mobility-tour",
+      "check": "경계",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "case": "mobility-tour",
+      "check": "정보 부족",
+      "actual": "unknown",
+      "expected": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "mobility-tour",
+      "check": "불가능",
+      "actual": "infeasible",
+      "expected": "infeasible",
+      "status": "pass"
+    },
+    {
+      "case": "mobility-tour",
+      "check": "순서변경",
+      "actual": 16,
+      "expected": 16,
+      "status": "pass"
+    },
+    {
+      "case": "mobility-tour",
+      "check": "새 샘플",
+      "actual": 10,
+      "expected": 10,
+      "status": "pass"
+    },
+    {
+      "case": "mobility-departure",
+      "check": "정상",
+      "actual": [
+        540,
+        550
+      ],
+      "expected": [
+        540,
+        550
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "mobility-departure",
+      "check": "경계",
+      "actual": [
+        560,
+        575,
+        590
+      ],
+      "expected": [
+        560,
+        575,
+        590
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "mobility-departure",
+      "check": "정보 부족",
+      "actual": "unknown",
+      "expected": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "mobility-departure",
+      "check": "충돌",
+      "actual": "infeasible",
+      "expected": "infeasible",
+      "status": "pass"
+    },
+    {
+      "case": "mobility-departure",
+      "check": "순서변경",
+      "actual": [
+        540,
+        550
+      ],
+      "expected": [
+        540,
+        550
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "mobility-departure",
+      "check": "새 샘플",
+      "actual": [
+        600,
+        610
+      ],
+      "expected": [
+        600,
+        610
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-collision",
+      "check": "정상",
+      "actual": [
+        1,
+        2,
+        2,
+        "duplicate"
+      ],
+      "expected": [
+        1,
+        2,
+        2,
+        "duplicate"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-collision",
+      "check": "경계",
+      "actual": [
+        0,
+        0,
+        3,
+        "boundary"
+      ],
+      "expected": [
+        0,
+        0,
+        3,
+        "boundary"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-collision",
+      "check": "정보 부족",
+      "actual": [
+        1,
+        1,
+        3,
+        "invalid"
+      ],
+      "expected": [
+        1,
+        1,
+        3,
+        "invalid"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-collision",
+      "check": "충돌",
+      "actual": [
+        1,
+        1,
+        3,
+        "wall"
+      ],
+      "expected": [
+        1,
+        1,
+        3,
+        "wall"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-collision",
+      "check": "중복",
+      "actual": [
+        1,
+        2,
+        2,
+        "duplicate"
+      ],
+      "expected": [
+        1,
+        2,
+        2,
+        "duplicate"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-collision",
+      "check": "새 샘플",
+      "actual": [
+        1,
+        0,
+        2,
+        "moved"
+      ],
+      "expected": [
+        1,
+        0,
+        2,
+        "moved"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-reset",
+      "check": "정상",
+      "actual": [
+        {
+          "A": 0,
+          "B": 0
+        },
+        "draw"
+      ],
+      "expected": [
+        {
+          "A": 0,
+          "B": 0
+        },
+        "draw"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-reset",
+      "check": "경계",
+      "actual": [
+        {
+          "A": 0,
+          "B": 2
+        },
+        "B"
+      ],
+      "expected": [
+        {
+          "A": 0,
+          "B": 2
+        },
+        "B"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-reset",
+      "check": "정보 부족",
+      "actual": [
+        {
+          "A": 2,
+          "B": 2
+        },
+        "invalid"
+      ],
+      "expected": [
+        {
+          "A": 2,
+          "B": 2
+        },
+        "invalid"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-reset",
+      "check": "충돌",
+      "actual": [
+        {
+          "A": 2,
+          "B": 2
+        },
+        "invalid"
+      ],
+      "expected": [
+        {
+          "A": 2,
+          "B": 2
+        },
+        "invalid"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-reset",
+      "check": "순서변경",
+      "actual": [
+        {
+          "A": 0,
+          "B": 0
+        },
+        "draw"
+      ],
+      "expected": [
+        {
+          "A": 0,
+          "B": 0
+        },
+        "draw"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "interactive-reset",
+      "check": "새 샘플",
+      "actual": [
+        {
+          "A": 2,
+          "B": 2
+        },
+        "ready"
+      ],
+      "expected": [
+        {
+          "A": 2,
+          "B": 2
+        },
+        "ready"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-reservation",
+      "check": "정상",
+      "actual": [
+        7,
+        5,
+        2,
+        [
+          "accepted"
+        ]
+      ],
+      "expected": [
+        7,
+        5,
+        2,
+        [
+          "accepted"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-reservation",
+      "check": "경계",
+      "actual": [
+        7,
+        7,
+        0,
+        [
+          "accepted"
+        ]
+      ],
+      "expected": [
+        7,
+        7,
+        0,
+        [
+          "accepted"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-reservation",
+      "check": "정보 부족",
+      "actual": [
+        7,
+        2,
+        5,
+        [
+          "needs_review"
+        ]
+      ],
+      "expected": [
+        7,
+        2,
+        5,
+        [
+          "needs_review"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-reservation",
+      "check": "충돌",
+      "actual": [
+        7,
+        5,
+        2,
+        [
+          "rejected"
+        ]
+      ],
+      "expected": [
+        7,
+        5,
+        2,
+        [
+          "rejected"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-reservation",
+      "check": "재시도",
+      "actual": [
+        7,
+        5,
+        2,
+        [
+          "accepted",
+          "accepted"
+        ]
+      ],
+      "expected": [
+        7,
+        5,
+        2,
+        [
+          "accepted",
+          "accepted"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-reservation",
+      "check": "새 샘플",
+      "actual": [
+        4,
+        2,
+        2,
+        [
+          "accepted"
+        ]
+      ],
+      "expected": [
+        4,
+        2,
+        2,
+        [
+          "accepted"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-rounding",
+      "check": "정상",
+      "actual": [
+        "6",
+        6,
+        7
+      ],
+      "expected": [
+        "6",
+        6,
+        7
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-rounding",
+      "check": "경계",
+      "actual": [
+        "3/2",
+        2,
+        2
+      ],
+      "expected": [
+        "3/2",
+        2,
+        2
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "transaction-rounding",
+      "check": "정보 부족",
+      "actual": "unknown",
+      "expected": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "transaction-rounding",
+      "check": "충돌",
+      "actual": "invalid_negative",
+      "expected": "invalid_negative",
+      "status": "pass"
+    },
+    {
+      "case": "transaction-rounding",
+      "check": "중복",
+      "actual": "duplicate_id",
+      "expected": "duplicate_id",
+      "status": "pass"
+    },
+    {
+      "case": "transaction-rounding",
+      "check": "새 샘플",
+      "actual": [
+        "186/125",
+        1,
+        1
+      ],
+      "expected": [
+        "186/125",
+        1,
+        1
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "dependency-reachability",
+      "check": "정상",
+      "actual": [
+        "K",
+        "S"
+      ],
+      "expected": [
+        "K",
+        "S"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "dependency-reachability",
+      "check": "경계",
+      "actual": "node_missing",
+      "expected": "node_missing",
+      "status": "pass"
+    },
+    {
+      "case": "dependency-reachability",
+      "check": "정보 부족",
+      "actual": [
+        "Z"
+      ],
+      "expected": [
+        "Z"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "dependency-reachability",
+      "check": "충돌",
+      "actual": [
+        [
+          "K",
+          "S"
+        ],
+        true
+      ],
+      "expected": [
+        [
+          "K",
+          "S"
+        ],
+        true
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "dependency-reachability",
+      "check": "중복",
+      "actual": [
+        "K",
+        "S"
+      ],
+      "expected": [
+        "K",
+        "S"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "dependency-reachability",
+      "check": "새 샘플",
+      "actual": [
+        "K",
+        "S",
+        "T"
+      ],
+      "expected": [
+        "K",
+        "S",
+        "T"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "dependency-critical-path",
+      "check": "정상",
+      "actual": [
+        8,
+        [
+          8,
+          [
+            "A",
+            "B",
+            "D"
+          ]
+        ]
+      ],
+      "expected": [
+        8,
+        [
+          8,
+          [
+            "A",
+            "B",
+            "D"
+          ]
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "dependency-critical-path",
+      "check": "경계",
+      "actual": 8,
+      "expected": 8,
+      "status": "pass"
+    },
+    {
+      "case": "dependency-critical-path",
+      "check": "정보 부족",
+      "actual": "unknown",
+      "expected": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "dependency-critical-path",
+      "check": "충돌",
+      "actual": "cycle",
+      "expected": "cycle",
+      "status": "pass"
+    },
+    {
+      "case": "dependency-critical-path",
+      "check": "순서변경",
+      "actual": 8,
+      "expected": 8,
+      "status": "pass"
+    },
+    {
+      "case": "dependency-critical-path",
+      "check": "새 샘플",
+      "actual": [
+        9,
+        [
+          9,
+          [
+            "A",
+            "C",
+            "D"
+          ]
+        ]
+      ],
+      "expected": [
+        9,
+        [
+          9,
+          [
+            "A",
+            "C",
+            "D"
+          ]
+        ]
+      ],
+      "status": "pass"
+    }
+  ]
+}

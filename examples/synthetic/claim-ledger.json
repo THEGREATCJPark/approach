@@ -1,0 +1,84 @@
+[
+  {
+    "kind": "normal",
+    "input": {
+      "claim": 8,
+      "evidence": 8,
+      "same_meaning": true
+    },
+    "expected": "supported",
+    "basis": "동일 범위 8=8"
+  },
+  {
+    "kind": "boundary",
+    "input": {
+      "claim": 0,
+      "evidence": 0,
+      "same_meaning": true
+    },
+    "expected": "supported",
+    "basis": "관측 0은 근거"
+  },
+  {
+    "kind": "missing",
+    "input": {
+      "claim": 8,
+      "evidence": null,
+      "same_meaning": true
+    },
+    "expected": "unverified",
+    "basis": "근거 부재"
+  },
+  {
+    "kind": "conflict",
+    "input": {
+      "claim": 8,
+      "evidence": 6,
+      "same_meaning": true
+    },
+    "expected": "contradicted",
+    "basis": "8≠6"
+  },
+  {
+    "kind": "object_key_order",
+    "input": {
+      "evidence": 8,
+      "same_meaning": true,
+      "claim": 8
+    },
+    "expected": "supported",
+    "basis": "필드순 무관"
+  },
+  {
+    "kind": "new_expression",
+    "input": {
+      "claim": 8,
+      "evidence": 8,
+      "same_meaning": false
+    },
+    "expected": "semantic_review",
+    "basis": "부정·기간 차이 등 의미 다르면 숫자 일치로 승인 금지"
+  },
+  {
+    "kind": "reorder",
+    "input": {
+      "claims": [
+        [
+          "b",
+          8,
+          6
+        ],
+        [
+          "a",
+          8,
+          8
+        ]
+      ]
+    },
+    "expected": {
+      "a": "supported",
+      "b": "contradicted"
+    },
+    "basis": "주장 행순을 바꾸어도 claim ID별 근거 판정 유지"
+  }
+]

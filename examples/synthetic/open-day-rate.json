@@ -1,0 +1,84 @@
+[
+  {
+    "kind": "normal",
+    "input": {
+      "visits": 480,
+      "days": 12,
+      "complete": true
+    },
+    "expected": 40,
+    "basis": "480÷12=40명/일"
+  },
+  {
+    "kind": "boundary",
+    "input": {
+      "visits": 0,
+      "days": 5,
+      "complete": true
+    },
+    "expected": 0,
+    "basis": "측정된 0÷5=0"
+  },
+  {
+    "kind": "missing",
+    "input": {
+      "visits": 480,
+      "days": null,
+      "complete": true
+    },
+    "expected": "unknown",
+    "basis": "분모 미수집"
+  },
+  {
+    "kind": "conflict",
+    "input": {
+      "visits": 2,
+      "days": 0,
+      "complete": true
+    },
+    "expected": "invalid",
+    "basis": "개관 0일에 방문 2명은 계약 충돌"
+  },
+  {
+    "kind": "period_comparison",
+    "input": {
+      "visits": 600,
+      "days": 20,
+      "complete": true
+    },
+    "expected": 30,
+    "basis": "합계 600>480이나 30<40"
+  },
+  {
+    "kind": "new_sample",
+    "input": {
+      "visits": 225,
+      "days": 9,
+      "complete": false
+    },
+    "expected": "unknown",
+    "basis": "미완료를 25로 확정하지 않음"
+  },
+  {
+    "kind": "reorder",
+    "input": {
+      "groups": [
+        [
+          "b",
+          600,
+          20
+        ],
+        [
+          "a",
+          480,
+          12
+        ]
+      ]
+    },
+    "expected": {
+      "a": 40,
+      "b": 30
+    },
+    "basis": "행순서를 뒤집어도 키별 개관일당 값은 a=40,b=30"
+  }
+]

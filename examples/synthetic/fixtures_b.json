@@ -1,0 +1,990 @@
+{
+  "prerequisite-ready": {
+    "fixture": [
+      {
+        "id": "intro",
+        "requires": []
+      },
+      {
+        "id": "measure",
+        "requires": [
+          "intro"
+        ]
+      },
+      {
+        "id": "cut",
+        "requires": [
+          "measure"
+        ]
+      },
+      {
+        "id": "join",
+        "requires": [
+          "intro"
+        ]
+      },
+      {
+        "id": "finish",
+        "requires": [
+          "cut",
+          "join"
+        ]
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {
+          "done": [
+            "intro"
+          ]
+        },
+        "expected": [
+          "join",
+          "measure"
+        ],
+        "basis": "두 개의 직접 선수가 모두 intro이다."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "done": [
+            "intro",
+            "measure",
+            "cut",
+            "join",
+            "finish"
+          ]
+        },
+        "expected": [],
+        "basis": "전부 완료이면 추천할 미완료가 없다."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "done": null
+        },
+        "expected": "unknown",
+        "basis": "미기록은 미이수와 다르다."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "done": [],
+          "cycle": true
+        },
+        "expected": "invalid_cycle",
+        "basis": "intro가 finish를 선수로 요구하면 순환이다."
+      },
+      {
+        "kind": "순서변경",
+        "input": {
+          "done": [
+            "intro"
+          ],
+          "reverse": true
+        },
+        "expected": [
+          "join",
+          "measure"
+        ],
+        "basis": "행 순서는 의존 관계를 바꾸지 않는다."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "done": [
+            "intro",
+            "measure",
+            "join"
+          ]
+        },
+        "expected": [
+          "cut"
+        ],
+        "basis": "finish는 아직 cut이 필요하다."
+      }
+    ]
+  },
+  "concept-diagnostic": {
+    "fixture": [
+      {
+        "response_id": "r1",
+        "concept": "units",
+        "score": 1
+      },
+      {
+        "response_id": "r2",
+        "concept": "units",
+        "score": 0
+      },
+      {
+        "response_id": "r3",
+        "concept": "safety",
+        "score": 1
+      },
+      {
+        "response_id": "r4",
+        "concept": "safety",
+        "score": 1
+      },
+      {
+        "response_id": "r5",
+        "concept": "tools",
+        "score": null
+      },
+      {
+        "response_id": "r6",
+        "concept": "tools",
+        "score": 1
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "safety": "ready",
+          "tools": "unknown",
+          "units": "practice"
+        },
+        "basis": "units 1/2, safety 2/2, tools 1개 응답."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "only": [
+            1,
+            1,
+            1,
+            0
+          ]
+        },
+        "expected": {
+          "x": "ready"
+        },
+        "basis": "3/4=0.75 경계 포함."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "only": [
+            null,
+            1
+          ]
+        },
+        "expected": {
+          "x": "unknown"
+        },
+        "basis": "관측 1개로 최소 2개 미달."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "conflict": true
+        },
+        "expected": "invalid",
+        "basis": "r1에 다른 점수가 같이 있으면 출처 확인."
+      },
+      {
+        "kind": "재전송",
+        "input": {
+          "duplicate": true
+        },
+        "expected": {
+          "safety": "ready",
+          "tools": "unknown",
+          "units": "practice"
+        },
+        "basis": "같은 id 같은 내용은 한 번만 센다."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "only": [
+            0,
+            0,
+            1
+          ]
+        },
+        "expected": {
+          "x": "practice"
+        },
+        "basis": "1/3은 0.75 미만."
+      }
+    ]
+  },
+  "missing-versus-alarm": {
+    "fixture": [
+      {
+        "slot": 0,
+        "temp_c": 4
+      },
+      {
+        "slot": 1,
+        "temp_c": 5
+      },
+      {
+        "slot": 2,
+        "temp_c": null
+      },
+      {
+        "slot": 3,
+        "temp_c": 8
+      },
+      {
+        "slot": 4,
+        "temp_c": 9
+      },
+      {
+        "slot": 5,
+        "temp_c": 6
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "normal": 4,
+          "alarm": 1,
+          "unknown": 1
+        },
+        "basis": "4,5,8,6 정상;9 경보;null 미확인."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "values": [
+            8
+          ]
+        },
+        "expected": {
+          "normal": 1,
+          "alarm": 0,
+          "unknown": 0
+        },
+        "basis": "8 초과 규칙이므로 8은 정상."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "values": [
+            null
+          ]
+        },
+        "expected": {
+          "normal": 0,
+          "alarm": 0,
+          "unknown": 1
+        },
+        "basis": "누락을 0으로 채우지 않는다."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "conflict": true
+        },
+        "expected": "invalid",
+        "basis": "같은 slot에 4와 7은 출처 충돌."
+      },
+      {
+        "kind": "순서변경",
+        "input": {
+          "reverse": true
+        },
+        "expected": {
+          "normal": 4,
+          "alarm": 1,
+          "unknown": 1
+        },
+        "basis": "시간 키로 대응하면 순서와 무관."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "values": [
+            8.1,
+            7.9,
+            null
+          ]
+        },
+        "expected": {
+          "normal": 1,
+          "alarm": 1,
+          "unknown": 1
+        },
+        "basis": "소수 상한 반례."
+      }
+    ]
+  },
+  "stratified-rate": {
+    "fixture": [
+      {
+        "period": "before",
+        "type": "simple",
+        "total": 20,
+        "rework": 2
+      },
+      {
+        "period": "before",
+        "type": "hard",
+        "total": 80,
+        "rework": 24
+      },
+      {
+        "period": "after",
+        "type": "simple",
+        "total": 80,
+        "rework": 12
+      },
+      {
+        "period": "after",
+        "type": "hard",
+        "total": 20,
+        "rework": 7
+      },
+      {
+        "period": "weight",
+        "type": "simple",
+        "weight": 0.2
+      },
+      {
+        "period": "weight",
+        "type": "hard",
+        "weight": 0.8
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "raw_before": 0.26,
+          "raw_after": 0.19,
+          "standard_after": 0.31
+        },
+        "basis": "2+24=26;12+7=19;0.2×0.15+0.8×0.35=0.31."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "zero": true
+        },
+        "expected": "unknown",
+        "basis": "0건 층은 비율을 만들 수 없다."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "missing": true
+        },
+        "expected": "unknown",
+        "basis": "한 층의 집계 누락이면 표준화 비교 보류."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "invalid": true
+        },
+        "expected": "invalid",
+        "basis": "재작업 21건/총20건은 불가능."
+      },
+      {
+        "kind": "순서변경",
+        "input": {
+          "reverse": true
+        },
+        "expected": {
+          "raw_before": 0.26,
+          "raw_after": 0.19,
+          "standard_after": 0.31
+        },
+        "basis": "집계 행 순서와 무관."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "same_mix": true
+        },
+        "expected": {
+          "raw_before": 0.26,
+          "raw_after": 0.31,
+          "standard_after": 0.31
+        },
+        "basis": "after simple 3/20, hard28/80이면 구성 고정."
+      }
+    ]
+  },
+  "rotation-budget": {
+    "fixture": [
+      {
+        "kind": "activity",
+        "id": "A",
+        "cost": 4
+      },
+      {
+        "kind": "activity",
+        "id": "B",
+        "cost": 6
+      },
+      {
+        "kind": "activity",
+        "id": "C",
+        "cost": 7
+      },
+      {
+        "kind": "fixed",
+        "day": 1,
+        "id": "B"
+      },
+      {
+        "kind": "rule",
+        "days": 3,
+        "budget": 15,
+        "no_adjacent_repeat": true
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "plan": [
+            "A",
+            "B",
+            "A"
+          ],
+          "cost": 14
+        },
+        "basis": "4+6+4=14."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "budget": 14
+        },
+        "expected": {
+          "plan": [
+            "A",
+            "B",
+            "A"
+          ],
+          "cost": 14
+        },
+        "basis": "예산 상한 포함."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "missing_cost": true
+        },
+        "expected": "unknown",
+        "basis": "A 비용 미확정이므로 최저비용 확정 불가."
+      },
+      {
+        "kind": "불가능",
+        "input": {
+          "budget": 13
+        },
+        "expected": "infeasible",
+        "basis": "고정 B 양옆 가장 싼 A도14."
+      },
+      {
+        "kind": "순서변경",
+        "input": {
+          "reverse": true
+        },
+        "expected": {
+          "plan": [
+            "A",
+            "B",
+            "A"
+          ],
+          "cost": 14
+        },
+        "basis": "입력 활동 순서는 동률 규칙을 바꾸지 않는다."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "fixed": "C",
+          "budget": 15
+        },
+        "expected": {
+          "plan": [
+            "A",
+            "C",
+            "A"
+          ],
+          "cost": 15
+        },
+        "basis": "4+7+4=15."
+      }
+    ]
+  },
+  "pack-order": {
+    "fixture": {
+      "item": "fiber",
+      "demand": 23,
+      "safety": 4,
+      "on_hand": 8,
+      "reserved": 2,
+      "timely_inbound": 5,
+      "late_inbound": 12,
+      "pack": 6
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "net": 16,
+          "packs": 3,
+          "order": 18,
+          "surplus": 2
+        },
+        "basis": "23+4−(8−2)−5=16,ceil(16/6)=3."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "demand": 7
+        },
+        "expected": {
+          "net": 0,
+          "packs": 0,
+          "order": 0,
+          "surplus": 0
+        },
+        "basis": "7+4−6−5=0."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "demand": null
+        },
+        "expected": "unknown",
+        "basis": "미확정 수요는0이 아님."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "reserved": 9
+        },
+        "expected": "invalid",
+        "basis": "예약9가 보유8을 초과하는 예제 입력은 확인 필요."
+      },
+      {
+        "kind": "재시도",
+        "input": {
+          "repeat": true
+        },
+        "expected": {
+          "net": 16,
+          "packs": 3,
+          "order": 18,
+          "surplus": 2
+        },
+        "basis": "계산 재실행은 주문 생성이 아니다."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "pack": 5
+        },
+        "expected": {
+          "net": 16,
+          "packs": 4,
+          "order": 20,
+          "surplus": 4
+        },
+        "basis": "포장 변경으로20개 주문."
+      }
+    ]
+  },
+  "evidence-approval": {
+    "fixture": [
+      {
+        "request_id": "q1",
+        "amount": 80,
+        "evidence": true,
+        "policy_version": "v1"
+      },
+      {
+        "request_id": "q2",
+        "amount": 100,
+        "evidence": true,
+        "policy_version": "v1"
+      },
+      {
+        "request_id": "q3",
+        "amount": 101,
+        "evidence": true,
+        "policy_version": "v1"
+      },
+      {
+        "request_id": "q4",
+        "amount": 50,
+        "evidence": false,
+        "policy_version": "v1"
+      },
+      {
+        "request_id": "q5",
+        "amount": 50,
+        "evidence": null,
+        "policy_version": "v1"
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {
+          "amount": 80,
+          "evidence": true
+        },
+        "expected": "staff",
+        "basis": "100 이하."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "amount": 100,
+          "evidence": true
+        },
+        "expected": "staff",
+        "basis": "100 포함."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "amount": 50,
+          "evidence": null
+        },
+        "expected": "unknown",
+        "basis": "증빙 확인 대기."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "amount": -1,
+          "evidence": true
+        },
+        "expected": "invalid",
+        "basis": "음수 신청은 예제 정책 범위 밖."
+      },
+      {
+        "kind": "재시도",
+        "input": {
+          "amount": 101,
+          "evidence": true,
+          "repeat": true
+        },
+        "expected": "manager",
+        "basis": "재계산으로 승인 완료를 만들지 않는다."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "amount": 50,
+          "evidence": false
+        },
+        "expected": "need_evidence",
+        "basis": "증빙 없음은 보완 요청."
+      }
+    ]
+  },
+  "resubmission-state": {
+    "fixture": [
+      {
+        "event_id": "e1",
+        "action": "submit"
+      },
+      {
+        "event_id": "e2",
+        "action": "reject"
+      },
+      {
+        "event_id": "e3",
+        "action": "edit"
+      },
+      {
+        "event_id": "e4",
+        "action": "submit"
+      },
+      {
+        "event_id": "e5",
+        "action": "approve"
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "state": "approved",
+          "applied": 5
+        },
+        "basis": "5개 허용 전이."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "events": []
+        },
+        "expected": {
+          "state": "draft",
+          "applied": 0
+        },
+        "basis": "빈 명령은 상태 유지."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "events": [
+            {
+              "event_id": "x",
+              "action": null
+            }
+          ]
+        },
+        "expected": "unknown",
+        "basis": "명령 누락."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "events": [
+            {
+              "event_id": "x",
+              "action": "approve"
+            }
+          ]
+        },
+        "expected": "invalid_transition",
+        "basis": "draft에서 직접 approve 불가."
+      },
+      {
+        "kind": "재전송",
+        "input": {
+          "duplicate": true
+        },
+        "expected": {
+          "state": "approved",
+          "applied": 5
+        },
+        "basis": "e1 같은 내용은 중복 적용하지 않는다."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "events": [
+            {
+              "event_id": "x",
+              "action": "submit"
+            },
+            {
+              "event_id": "x",
+              "action": "reject"
+            }
+          ]
+        },
+        "expected": "conflict",
+        "basis": "동일 id 다른 payload 거부."
+      }
+    ]
+  },
+  "mandatory-gates": {
+    "fixture": [
+      {
+        "id": "m1",
+        "strength": true,
+        "archival": true,
+        "cost": 12
+      },
+      {
+        "id": "m2",
+        "strength": false,
+        "archival": true,
+        "cost": 4
+      },
+      {
+        "id": "m3",
+        "strength": true,
+        "archival": null,
+        "cost": 6
+      },
+      {
+        "id": "m4",
+        "strength": true,
+        "archival": true,
+        "cost": 15
+      },
+      {
+        "id": "m5",
+        "strength": null,
+        "archival": null,
+        "cost": 3
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "selected": "m1",
+          "pass": 2,
+          "fail": 1,
+          "unknown": 2
+        },
+        "basis": "합격m1/m4 중12<15."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "tie": true
+        },
+        "expected": {
+          "selected": "m1",
+          "pass": 2,
+          "fail": 1,
+          "unknown": 2
+        },
+        "basis": "동률은 id 사전순; 품질 우위라는 뜻 아님."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "all_unknown": true
+        },
+        "expected": {
+          "selected": null,
+          "pass": 0,
+          "fail": 0,
+          "unknown": 5
+        },
+        "basis": "검증 후보 없음."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "bad_cost": true
+        },
+        "expected": "invalid",
+        "basis": "음수 비용 입력 거부."
+      },
+      {
+        "kind": "순서변경",
+        "input": {
+          "reverse": true
+        },
+        "expected": {
+          "selected": "m1",
+          "pass": 2,
+          "fail": 1,
+          "unknown": 2
+        },
+        "basis": "입력순서는 선택을 바꾸지 않는다."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "approve_m3": true
+        },
+        "expected": {
+          "selected": "m3",
+          "pass": 3,
+          "fail": 1,
+          "unknown": 1
+        },
+        "basis": "m3 시험 통과 확인 후6이 최소."
+      }
+    ]
+  },
+  "equivalence-interval": {
+    "fixture": [
+      {
+        "batch": "b1",
+        "lower": -0.2,
+        "upper": 0.3
+      },
+      {
+        "batch": "b2",
+        "lower": -0.5,
+        "upper": 0.3
+      },
+      {
+        "batch": "b3",
+        "lower": -0.8,
+        "upper": 0.9
+      },
+      {
+        "batch": "b4",
+        "lower": 0.6,
+        "upper": 0.9
+      },
+      {
+        "batch": "b5",
+        "lower": null,
+        "upper": null
+      }
+    ],
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {
+          "lower": -0.2,
+          "upper": 0.3
+        },
+        "expected": "within_margin",
+        "basis": "두 끝이−0.5와0.5 내부."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "lower": -0.5,
+          "upper": 0.3
+        },
+        "expected": "not_demonstrated",
+        "basis": "엄격 내부 포함 정책이므로 경계 접촉 불충분."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "lower": null,
+          "upper": null
+        },
+        "expected": "unknown",
+        "basis": "구간 없음."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "lower": 0.4,
+          "upper": -0.2
+        },
+        "expected": "invalid",
+        "basis": "하한>상한."
+      },
+      {
+        "kind": "재시도",
+        "input": {
+          "lower": -0.2,
+          "upper": 0.3,
+          "repeat": true
+        },
+        "expected": "within_margin",
+        "basis": "같은 구간 재평가는 기준 변화 없음."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "lower": -0.8,
+          "upper": 0.9
+        },
+        "expected": "not_demonstrated",
+        "basis": "0을 포함해도 margin을 넘으므로 동등성 입증 아님."
+      }
+    ]
+  }
+}

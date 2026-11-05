@@ -1,0 +1,30 @@
+{
+  "status": "pass",
+  "counts": {
+    "cases": 30,
+    "methods": 10,
+    "tools": 10
+  },
+  "deep_cases": 30,
+  "families": {
+    "ANALYTICS": 2,
+    "COACH": 2,
+    "DEPENDENCY": 2,
+    "EVENT": 2,
+    "GEOMETRY": 2,
+    "INTERACTIVE": 2,
+    "LEARNING": 2,
+    "MOBILITY": 2,
+    "OPERATIONS": 2,
+    "PLANNING": 2,
+    "POLICY": 2,
+    "QUALITY": 2,
+    "RANKING": 2,
+    "SUPPORT": 2,
+    "TRANSACTION": 2
+  },
+  "local_links_checked": 458,
+  "errors": [],
+  "warnings": [],
+  "scope": "Structural validation only; numerical examples, source verification and manual publication review are separate."
+}

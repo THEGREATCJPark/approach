@@ -1,0 +1,701 @@
+{
+  "checked_at": "2026-11-05T06:20:51.754732+00:00",
+  "environment": "3.12.14",
+  "design": "author_designed_before_catalog_available; not a blind external benchmark",
+  "evaluation": "separate script author executed stored test prompts; not an independent user study",
+  "total": 21,
+  "passed": 21,
+  "failed": 0,
+  "results": [
+    {
+      "type": "request",
+      "request": "기간이 다른 매출을 일평균으로 비교하는 분석 보고만 필요해",
+      "expected_families": [
+        "ANALYTICS"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "ANALYTICS",
+            "role": "primary",
+            "reason": "의사결정 단서: 매출, 분석 보고",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "비교 대상의 기간·모집단·단위가 일치하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "문의 내용을 분류하고 담당자에게 이관할 근거를 찾아줘",
+      "expected_families": [
+        "SUPPORT"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "SUPPORT",
+            "role": "primary",
+            "reason": "의사결정 단서: 문의, 이관",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "처리 순서를 정하나요, 근거를 찾나요, 담당 부서를 정하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "사전 설명 연습으로 내 구현 선택의 증거를 점검하고 싶어",
+      "expected_families": [
+        "COACH"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "COACH",
+            "role": "primary",
+            "reason": "의사결정 단서: 설명 연습",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "시험 전 창작 연습인가요? 본인의 선택을 입증할 실제 준비 기록은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "정원 12명 행사 신청을 접수하고 중복 체크인을 막아줘",
+      "expected_families": [
+        "EVENT"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "EVENT",
+            "role": "primary",
+            "reason": "의사결정 단서: 체크인, 정원",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "정원이 찼을 때 거절·대기·승인 예외 중 어떤 정책이 적용되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "도면의 장애물 뒤 가림과 겹치는 커버리지 면적을 구해줘",
+      "expected_families": [
+        "GEOMETRY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "GEOMETRY",
+            "role": "primary",
+            "reason": "의사결정 단서: 커버리지, 가림, 면적, 도면",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "단순 면적 중첩인가요, 장애물 뒤 시야까지 판정해야 하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "선수 지식에 맞춰 오개념 진단 퀴즈를 만들고 싶어",
+      "expected_families": [
+        "LEARNING"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "LEARNING",
+            "role": "primary",
+            "reason": "의사결정 단서: 선수 지식, 오개념, 퀴즈",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "설명을 읽는 것이 목표인가요, 새 문제를 직접 수행하는 것이 목표인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "센서 시계열의 작은 변화와 결측을 구분하고 싶어",
+      "expected_families": [
+        "OPERATIONS"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "OPERATIONS",
+            "role": "primary",
+            "reason": "의사결정 단서: 센서",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "경보 기준은 규격 위반인가요, 안정된 공정의 변화인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "식단을 7일 편성하되 예산과 영양 조건을 모두 맞춰줘",
+      "expected_families": [
+        "PLANNING"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "PLANNING",
+            "role": "primary",
+            "reason": "의사결정 단서: 편성",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "기간 전체 필수조건과 선호조건 중 무엇을 절대로 완화하면 안 되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "증빙 누락과 승인 권한별 비용 처리 절차를 안내해줘",
+      "expected_families": [
+        "POLICY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "POLICY",
+            "role": "primary",
+            "reason": "의사결정 단서: 승인 권한, 증빙, 비용 처리",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "이 건에 적용되는 정책 버전·효력 시점·승인권자는 누구인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "새 공급원과 기존 공급원의 동등성을 허용범위로 검토해줘",
+      "expected_families": [
+        "QUALITY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "QUALITY",
+            "role": "primary",
+            "reason": "의사결정 단서: 동등성, 허용범위",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "차이가 없다는 검정인가요, 사전 합의한 허용범위 내 동등성을 입증하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "식단 후보 중 제공 가능한 것만 골라 개인 선호 순위를 추천해줘",
+      "expected_families": [
+        "RANKING"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "RANKING",
+            "role": "primary",
+            "reason": "의사결정 단서: 추천, 제공 가능",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "선택 불가능한 후보를 제외할 필수조건은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "여러 수리 지점의 방문 순서를 시간창 안에서 정해줘",
+      "expected_families": [
+        "MOBILITY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "MOBILITY",
+            "role": "primary",
+            "reason": "의사결정 단서: 방문 순서, 시간창",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "방문 순서를 바꿀 수 있나요, 고정 경로의 출발시각만 조정하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "게임 충돌과 승패 상태를 구현하고 재시작을 초기화해줘",
+      "expected_families": [
+        "INTERACTIVE"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "INTERACTIVE",
+            "role": "primary",
+            "reason": "의사결정 단서: 게임, 충돌, 재시작, 승패",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "단일 사용자 상태 전이면 충분한가요, 실제 동시 접속이 필수인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "재고의 가용량과 잠금량을 나누고 재시도 중복 실행을 막아줘",
+      "expected_families": [
+        "TRANSACTION"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "TRANSACTION",
+            "role": "primary",
+            "reason": "의사결정 단서: 가용량, 잠금량, 재시도 중복",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "심사 통과와 실제 수량 변경은 어느 단계에서 확정되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "부품 공급 의존 관계의 영향 경로와 병목을 찾고 싶어",
+      "expected_families": [
+        "DEPENDENCY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "DEPENDENCY",
+            "role": "primary",
+            "reason": "의사결정 단서: 의존, 영향 경로, 병목",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "관계 존재만 추적하나요, 수량 영향까지 추정할 근거가 있나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          },
+          {
+            "family": "MOBILITY",
+            "role": "secondary",
+            "reason": "의사결정 단서: 경로",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "방문 순서를 바꿀 수 있나요, 고정 경로의 출발시각만 조정하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "도와줘",
+      "expected_families": [],
+      "actual": {
+        "status": "unclassified",
+        "reason": "결정 구조를 판별할 근거가 부족합니다.",
+        "question": "결과를 보고 누가 어떤 결정을 해야 하나요? 대표 입력과 기대 출력 한 건을 확인하세요.",
+        "candidates": [],
+        "excluded_clauses": []
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "접수 정원 확인과 결제 재시도 중복 방지를 함께 다뤄줘",
+      "expected_families": [
+        "EVENT",
+        "TRANSACTION"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "EVENT",
+            "role": "primary",
+            "reason": "의사결정 단서: 정원",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "정원이 찼을 때 거절·대기·승인 예외 중 어떤 정책이 적용되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          },
+          {
+            "family": "TRANSACTION",
+            "role": "secondary",
+            "reason": "의사결정 단서: 재시도 중복",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "심사 통과와 실제 수량 변경은 어느 단계에서 확정되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "브라우저 자동화 금지 상태에서 센서 시계열 이상 분석만 하자",
+      "expected_families": [
+        "OPERATIONS"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "OPERATIONS",
+            "role": "primary",
+            "reason": "의사결정 단서: 센서",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "경보 기준은 규격 위반인가요, 안정된 공정의 변화인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          },
+          {
+            "family": "ANALYTICS",
+            "role": "secondary",
+            "reason": "의사결정 단서: 분석만",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "비교 대상의 기간·모집단·단위가 일치하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "revision",
+      "input": {
+        "initial": "식단 추천 순위가 필요해",
+        "expected_initial": "RANKING",
+        "clarification": "개인 추천이 아니라 기간 전체 식단 계획에 예산 제약을 적용해",
+        "expected_revised": "PLANNING"
+      },
+      "actual_initial": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "RANKING",
+            "role": "primary",
+            "reason": "의사결정 단서: 추천",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "선택 불가능한 후보를 제외할 필수조건은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "actual_revised": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "PLANNING",
+            "role": "primary",
+            "reason": "의사결정 단서: 식단 계획",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "기간 전체 필수조건과 선호조건 중 무엇을 절대로 완화하면 안 되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [
+          "개인 추천이 아니라"
+        ],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "revision",
+      "input": {
+        "initial": "센서 이상 추이를 보고 싶어",
+        "expected_initial": "OPERATIONS",
+        "clarification": "추이보다 공급원 변경 동등성 승인에 필요한 허용범위 검토야",
+        "expected_revised": "QUALITY"
+      },
+      "actual_initial": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "OPERATIONS",
+            "role": "primary",
+            "reason": "의사결정 단서: 센서, 추이",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "경보 기준은 규격 위반인가요, 안정된 공정의 변화인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "actual_revised": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "QUALITY",
+            "role": "primary",
+            "reason": "의사결정 단서: 동등성, 공급원 변경, 허용범위",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "차이가 없다는 검정인가요, 사전 합의한 허용범위 내 동등성을 입증하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          },
+          {
+            "family": "OPERATIONS",
+            "role": "secondary",
+            "reason": "의사결정 단서: 추이",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "경보 기준은 규격 위반인가요, 안정된 공정의 변화인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "revision",
+      "input": {
+        "initial": "비용 처리 정책과 승인 절차 안내가 필요해",
+        "expected_initial": "POLICY",
+        "clarification": "절차 안내는 충분하고 재고 잠금과 재시도 멱등성이 문제야",
+        "expected_revised": "TRANSACTION"
+      },
+      "actual_initial": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "POLICY",
+            "role": "primary",
+            "reason": "의사결정 단서: 비용 처리, 승인 절차",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "이 건에 적용되는 정책 버전·효력 시점·승인권자는 누구인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "actual_revised": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "TRANSACTION",
+            "role": "primary",
+            "reason": "의사결정 단서: 재고 잠금, 멱등",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "심사 통과와 실제 수량 변경은 어느 단계에서 확정되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    }
+  ]
+}

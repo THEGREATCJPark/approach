@@ -1,0 +1,116 @@
+[
+  {
+    "kind": "normal",
+    "input": {
+      "rects": [
+        [
+          0,
+          0,
+          3,
+          2
+        ],
+        [
+          2,
+          0,
+          4,
+          2
+        ]
+      ]
+    },
+    "expected": 8,
+    "basis": "6+4−2=8m²"
+  },
+  {
+    "kind": "boundary",
+    "input": {
+      "rects": [
+        [
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          2,
+          0,
+          4,
+          2
+        ]
+      ]
+    },
+    "expected": 8,
+    "basis": "경계 접촉 면적0:4+4"
+  },
+  {
+    "kind": "missing",
+    "input": {
+      "rects": [
+        [
+          0,
+          null,
+          2,
+          2
+        ]
+      ]
+    },
+    "expected": "unknown",
+    "basis": "좌표 누락"
+  },
+  {
+    "kind": "conflict",
+    "input": {
+      "rects": [
+        [
+          3,
+          0,
+          1,
+          2
+        ]
+      ]
+    },
+    "expected": "invalid",
+    "basis": "xmin>xmax"
+  },
+  {
+    "kind": "duplicate",
+    "input": {
+      "rects": [
+        [
+          0,
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          0,
+          3,
+          2
+        ]
+      ]
+    },
+    "expected": 6,
+    "basis": "중복 영역 추가 면적0"
+  },
+  {
+    "kind": "new_sample",
+    "input": {
+      "rects": [
+        [
+          0,
+          0,
+          4,
+          4
+        ],
+        [
+          1,
+          1,
+          2,
+          2
+        ]
+      ]
+    },
+    "expected": 16,
+    "basis": "완전 포함이면16"
+  }
+]

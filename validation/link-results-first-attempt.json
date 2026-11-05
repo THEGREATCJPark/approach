@@ -1,0 +1,413 @@
+{
+  "scope": "HTTP reachability only; author source content checks separate",
+  "results": [
+    {
+      "url": "https://alistaircockburn.com/Bio",
+      "checked_at": "2026-11-05T06:21:23.450754+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://cucumber.io/docs/bdd/example-mapping/",
+      "checked_at": "2026-11-05T06:21:23.451043+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://cucumber.io/docs/gherkin/reference/",
+      "checked_at": "2026-11-05T06:21:23.451609+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://developers.google.com/optimization/cp/cp_solver",
+      "checked_at": "2026-11-05T06:21:23.453269+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://developers.google.com/optimization/install/python)를",
+      "checked_at": "2026-11-05T06:21:23.454244+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.pytest.org/en/stable/getting-started.html",
+      "checked_at": "2026-11-05T06:21:23.454372+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/howto/sorting.html",
+      "checked_at": "2026-11-05T06:21:23.454431+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/collections.html",
+      "checked_at": "2026-11-05T06:21:23.454503+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/collections.html#collections.deque",
+      "checked_at": "2026-11-05T06:21:23.454654+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/collections.html)는",
+      "checked_at": "2026-11-05T06:21:23.454718+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/dataclasses.html",
+      "checked_at": "2026-11-05T06:21:23.455349+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/datetime.html)는",
+      "checked_at": "2026-11-05T06:21:23.455425+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/decimal.html",
+      "checked_at": "2026-11-05T06:21:23.455496+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/decimal.html)는",
+      "checked_at": "2026-11-05T06:21:23.455558+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/functions.html#max",
+      "checked_at": "2026-11-05T06:21:23.455828+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/functions.html#sorted)는",
+      "checked_at": "2026-11-05T06:21:23.456947+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/graphlib.html",
+      "checked_at": "2026-11-05T06:21:23.457013+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/itertools.html",
+      "checked_at": "2026-11-05T06:21:23.457095+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/itertools.html)는",
+      "checked_at": "2026-11-05T06:21:23.457144+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/sqlite3.html",
+      "checked_at": "2026-11-05T06:21:23.457217+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/sqlite3.html)는",
+      "checked_at": "2026-11-05T06:21:23.457458+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/statistics.html",
+      "checked_at": "2026-11-05T06:21:23.457559+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/stdtypes.html",
+      "checked_at": "2026-11-05T06:21:23.458173+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)는",
+      "checked_at": "2026-11-05T06:21:23.458235+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.python.org/3/license.html",
+      "checked_at": "2026-11-05T06:21:23.458367+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html",
+      "checked_at": "2026-11-05T06:21:23.458502+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://domainstorytelling.org/",
+      "checked_at": "2026-11-05T06:21:23.458576+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/HypothesisWorks/hypothesis",
+      "checked_at": "2026-11-05T06:21:23.458636+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/Q00/Symposium",
+      "checked_at": "2026-11-05T06:21:23.458674+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/Q00/Symposium/blob/main/LICENSE",
+      "checked_at": "2026-11-05T06:21:23.458723+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/Q00/ouroboros",
+      "checked_at": "2026-11-05T06:21:23.458843+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/Q00/ouroboros/blob/main/LICENSE",
+      "checked_at": "2026-11-05T06:21:23.458926+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/awslabs/aidlc-workflows",
+      "checked_at": "2026-11-05T06:21:23.458986+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/awslabs/aidlc-workflows/blob/main/LICENSE",
+      "checked_at": "2026-11-05T06:21:23.459059+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/cvxpy/cvxpy",
+      "checked_at": "2026-11-05T06:21:23.459157+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/garrytan/gstack",
+      "checked_at": "2026-11-05T06:21:23.459218+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/garrytan/gstack/blob/main/LICENSE",
+      "checked_at": "2026-11-05T06:21:23.459274+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/google/or-tools",
+      "checked_at": "2026-11-05T06:21:23.459378+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/microsoft/playwright",
+      "checked_at": "2026-11-05T06:21:23.459462+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/networkx/networkx",
+      "checked_at": "2026-11-05T06:21:23.459541+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/pytest-dev/pytest",
+      "checked_at": "2026-11-05T06:21:23.459783+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/python/cpython",
+      "checked_at": "2026-11-05T06:21:23.459847+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/scipy/scipy",
+      "checked_at": "2026-11-05T06:21:23.459908+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://github.com/shapely/shapely",
+      "checked_at": "2026-11-05T06:21:23.459963+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
+      "checked_at": "2026-11-05T06:21:23.460042+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://json-schema.org/draft/2020-12/schema",
+      "checked_at": "2026-11-05T06:21:23.460090+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.shortest_path.html",
+      "checked_at": "2026-11-05T06:21:23.460151+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://playwright.dev/docs/intro",
+      "checked_at": "2026-11-05T06:21:23.460216+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/HypothesisWorks/hypothesis/master/LICENSE.txt",
+      "checked_at": "2026-11-05T06:21:23.460270+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/cvxpy/cvxpy/master/LICENSE",
+      "checked_at": "2026-11-05T06:21:23.460357+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/google/or-tools/stable/LICENSE",
+      "checked_at": "2026-11-05T06:21:23.460400+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/playwright/main/LICENSE",
+      "checked_at": "2026-11-05T06:21:23.460433+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/networkx/networkx/main/LICENSE.txt",
+      "checked_at": "2026-11-05T06:21:23.460534+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/main/LICENSE",
+      "checked_at": "2026-11-05T06:21:23.460804+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/scipy/scipy/main/LICENSE.txt",
+      "checked_at": "2026-11-05T06:21:23.460862+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/shapely/shapely/main/LICENSE.txt",
+      "checked_at": "2026-11-05T06:21:23.460930+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html",
+      "checked_at": "2026-11-05T06:21:23.461003+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://scipy.org/install/)를",
+      "checked_at": "2026-11-05T06:21:23.461138+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://scrumguides.org/scrum-guide.html",
+      "checked_at": "2026-11-05T06:21:23.461196+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://shapely.readthedocs.io/en/stable/manual.html",
+      "checked_at": "2026-11-05T06:21:23.461259+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.cvxpy.org/tutorial/dcp/index.html",
+      "checked_at": "2026-11-05T06:21:23.461336+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.gary-klein.com/premortem",
+      "checked_at": "2026-11-05T06:21:23.461404+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.intercom.com/blog/using-job-stories-design-features-ui-ux/",
+      "checked_at": "2026-11-05T06:21:23.461463+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.sqlite.org/copyright.html",
+      "checked_at": "2026-11-05T06:21:23.461526+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.sqlite.org/fts5.html",
+      "checked_at": "2026-11-05T06:21:23.461645+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.sqlite.org/index.html",
+      "checked_at": "2026-11-05T06:21:23.461739+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.statsmodels.org/stable/generated/statsmodels.stats.weightstats.ttost_ind.html",
+      "checked_at": "2026-11-05T06:21:23.461794+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "url": "https://www.strategyzer.com/library/how-to-test-your-idea-start-with-the-most-critical-hypotheses",
+      "checked_at": "2026-11-05T06:21:23.461857+00:00",
+      "status": "network_error",
+      "detail": "[Errno -3] Temporary failure in name resolution"
+    }
+  ]
+}

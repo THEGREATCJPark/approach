@@ -1,0 +1,239 @@
+{
+  "checked_at": "2026-11-05T06:20:51.726281+00:00",
+  "environment": "3.12.14",
+  "design": "3 fresh reviewer-authored prompts; after-fix outcomes are tuned regression, not held-out accuracy",
+  "changes": [
+    "Excluded explicit negative clauses ending 필요 없어/필요 없음/아님; retained suffix in X 아니라 Y; exclusions visible in output.",
+    "No synonym added for lending duplicate prompt; unclassified remains safe known recall gap."
+  ],
+  "limitations": "No full linguistic negation understanding. A long mixed clause can be over-excluded; inspect excluded_clauses.",
+  "requests": [
+    {
+      "request": "공유 공구함에서 같은 대여 요청이 두 번 들어와도 남은 수량이 한 번만 줄어야 해. 빌려줄지 판단하는 절차는 이미 정해져 있어.",
+      "expected_primary": "TRANSACTION",
+      "before": {
+        "status": "unclassified",
+        "reason": "결정 구조를 판별할 근거가 부족합니다.",
+        "question": "결과를 보고 누가 어떤 결정을 해야 하나요? 대표 입력과 기대 출력 한 건을 확인하세요.",
+        "candidates": []
+      },
+      "after": {
+        "status": "unclassified",
+        "reason": "결정 구조를 판별할 근거가 부족합니다.",
+        "question": "결과를 보고 누가 어떤 결정을 해야 하나요? 대표 입력과 기대 출력 한 건을 확인하세요.",
+        "candidates": [],
+        "excluded_clauses": []
+      },
+      "before_pass": false,
+      "after_pass": false
+    },
+    {
+      "request": "책방에서 세 권을 추천하되 같은 주제는 한 권까지만 넣고 재고 없는 책은 빼줘. 주간 편성은 필요 없어.",
+      "expected_primary": "RANKING",
+      "before": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "PLANNING",
+            "role": "primary",
+            "reason": "의사결정 단서: 주간, 편성",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "기간 전체 필수조건과 선호조건 중 무엇을 절대로 완화하면 안 되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          },
+          {
+            "family": "RANKING",
+            "role": "secondary",
+            "reason": "의사결정 단서: 추천",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "선택 불가능한 후보를 제외할 필수조건은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "limitations": "어휘 기반 후보 검색입니다. 추가 답변으로 요청을 다시 기술하고 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "after": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "RANKING",
+            "role": "primary",
+            "reason": "의사결정 단서: 추천",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "선택 불가능한 후보를 제외할 필수조건은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [
+          "주간 편성은 필요 없어"
+        ],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "before_pass": false,
+      "after_pass": true
+    },
+    {
+      "request": "청소 작업 구역 두 개가 겹쳐서 실제 닦은 바닥 면적을 계산하고 싶어. 그림보다는 숫자 보고서가 필요해.",
+      "expected_primary": "GEOMETRY",
+      "before": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "GEOMETRY",
+            "role": "primary",
+            "reason": "의사결정 단서: 면적",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "단순 면적 중첩인가요, 장애물 뒤 시야까지 판정해야 하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "limitations": "어휘 기반 후보 검색입니다. 추가 답변으로 요청을 다시 기술하고 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "after": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "GEOMETRY",
+            "role": "primary",
+            "reason": "의사결정 단서: 면적",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "단순 면적 중첩인가요, 장애물 뒤 시야까지 판정해야 하나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "before_pass": true,
+      "after_pass": true
+    }
+  ],
+  "before_passed": 1,
+  "after_passed": 2,
+  "mode_tests": [
+    {
+      "request": "답변을 작성해줘",
+      "mode": "NO_AI_REVIEW",
+      "actual": {
+        "status": "stopped",
+        "reason": "AI 금지 후속 평가에서는 질문 생성·답변 작성·실시간 코칭을 중단합니다.",
+        "candidates": []
+      },
+      "pass": true
+    },
+    {
+      "request": "실제 후속 평가 질문을 예상해줘",
+      "mode": "NO_AI_REVIEW",
+      "actual": {
+        "status": "stopped",
+        "reason": "AI 금지 후속 평가에서는 질문 생성·답변 작성·실시간 코칭을 중단합니다.",
+        "candidates": []
+      },
+      "pass": true
+    },
+    {
+      "request": "게임 구현을 도와줘",
+      "mode": "NO_AI_REVIEW",
+      "actual": {
+        "status": "stopped",
+        "reason": "AI 금지 후속 평가에서는 질문 생성·답변 작성·실시간 코칭을 중단합니다.",
+        "candidates": []
+      },
+      "pass": true
+    }
+  ],
+  "negation_regressions": [
+    {
+      "request": "추천이 아니라 주간 편성이 필요해",
+      "expected": "PLANNING",
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "PLANNING",
+            "role": "primary",
+            "reason": "의사결정 단서: 주간, 편성",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "기간 전체 필수조건과 선호조건 중 무엇을 절대로 완화하면 안 되나요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [
+          "추천이 아니라"
+        ],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "request": "주간 편성 아님. 개인 추천만 원해",
+      "expected": "RANKING",
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "RANKING",
+            "role": "primary",
+            "reason": "의사결정 단서: 추천",
+            "may_not_fit": "표면 용어만 같고 실제 결정이 다르면 분류를 변경하세요.",
+            "data_to_check": [],
+            "first_question": "선택 불가능한 후보를 제외할 필수조건은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first"
+            ],
+            "cards": []
+          }
+        ],
+        "excluded_clauses": [
+          "주간 편성 아님"
+        ],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "request": "주간 편성은 필요 없어.",
+      "expected": "unclassified",
+      "actual": {
+        "status": "unclassified",
+        "reason": "결정 구조를 판별할 근거가 부족합니다.",
+        "question": "결과를 보고 누가 어떤 결정을 해야 하나요? 대표 입력과 기대 출력 한 건을 확인하세요.",
+        "candidates": [],
+        "excluded_clauses": [
+          "주간 편성은 필요 없어"
+        ]
+      },
+      "pass": true
+    }
+  ]
+}

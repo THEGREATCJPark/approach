@@ -1,0 +1,123 @@
+[
+  {
+    "kind": "normal",
+    "input": {
+      "pairs": [
+        [
+          "pass",
+          "pass"
+        ],
+        [
+          "revise",
+          "pass"
+        ],
+        [
+          "unknown",
+          "unknown"
+        ]
+      ]
+    },
+    "expected": [
+      2,
+      3
+    ],
+    "basis": "3쌍 중 2일치"
+  },
+  {
+    "kind": "boundary",
+    "input": {
+      "pairs": [
+        [
+          "pass",
+          "pass"
+        ]
+      ]
+    },
+    "expected": [
+      1,
+      1
+    ],
+    "basis": "1쌍 100%이나 표본 작음"
+  },
+  {
+    "kind": "missing",
+    "input": {
+      "pairs": [
+        [
+          null,
+          "pass"
+        ]
+      ]
+    },
+    "expected": "unknown",
+    "basis": "완전쌍 0"
+  },
+  {
+    "kind": "conflict",
+    "input": {
+      "pairs": [
+        [
+          "pass",
+          "revise"
+        ],
+        [
+          "revise",
+          "pass"
+        ]
+      ]
+    },
+    "expected": [
+      0,
+      2
+    ],
+    "basis": "평균 같아도 일치 0"
+  },
+  {
+    "kind": "reorder",
+    "input": {
+      "pairs": [
+        [
+          "unknown",
+          "unknown"
+        ],
+        [
+          "revise",
+          "pass"
+        ],
+        [
+          "pass",
+          "pass"
+        ]
+      ]
+    },
+    "expected": [
+      2,
+      3
+    ],
+    "basis": "행순 무관"
+  },
+  {
+    "kind": "new_sample",
+    "input": {
+      "pairs": [
+        [
+          "revise",
+          "revise"
+        ],
+        [
+          "pass",
+          null
+        ],
+        [
+          "pass",
+          "revise"
+        ]
+      ]
+    },
+    "expected": [
+      1,
+      2
+    ],
+    "basis": "누락쌍 제외"
+  }
+]

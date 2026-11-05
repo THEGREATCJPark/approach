@@ -1,0 +1,80 @@
+[
+  {
+    "kind": "normal",
+    "input": {
+      "before": 130,
+      "after": 178,
+      "reset": false
+    },
+    "expected": 48,
+    "basis": "178−130=48분"
+  },
+  {
+    "kind": "boundary",
+    "input": {
+      "before": 130,
+      "after": 130,
+      "reset": false
+    },
+    "expected": 0,
+    "basis": "동일 누적값은 0"
+  },
+  {
+    "kind": "missing",
+    "input": {
+      "before": null,
+      "after": 178,
+      "reset": false
+    },
+    "expected": "unknown",
+    "basis": "기준값 없음"
+  },
+  {
+    "kind": "conflict",
+    "input": {
+      "before": 130,
+      "after": 4,
+      "reset": false
+    },
+    "expected": "reset_unknown",
+    "basis": "−126은 사용량이 아님"
+  },
+  {
+    "kind": "reset_crossing",
+    "input": {
+      "before": 130,
+      "after": 178,
+      "reset": true
+    },
+    "expected": "reset_unknown",
+    "basis": "증가해도 교체를 통과하면 보류"
+  },
+  {
+    "kind": "new_sample",
+    "input": {
+      "before": 5,
+      "after": 17,
+      "reset": false
+    },
+    "expected": 12,
+    "basis": "17−5=12"
+  },
+  {
+    "kind": "reorder",
+    "input": {
+      "readings": [
+        [
+          2,
+          178
+        ],
+        [
+          1,
+          130
+        ]
+      ],
+      "reset": false
+    },
+    "expected": 48,
+    "basis": "시간순 정렬 후 178−130=48; 파일 행순 무관"
+  }
+]

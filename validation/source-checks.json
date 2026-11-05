@@ -1,0 +1,577 @@
+{
+  "checked_at": "2026-11-05",
+  "checks": [
+    {
+      "id": "python-stdlib",
+      "url": "https://github.com/python/cpython",
+      "final_url": "https://github.com/python/cpython",
+      "http_status": 200,
+      "sha256": "a058b4b4baa90e18e7914ee1e68f96739ca382bc966815ef9c37a5f85e06cb31",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "python-stdlib",
+      "url": "https://docs.python.org/3/library/decimal.html",
+      "final_url": "https://docs.python.org/3/library/decimal.html",
+      "http_status": 200,
+      "sha256": "3922e5ca23bb8ff7a181dd33379052e549e166abfb75982eeecc9f687518548e",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "python-stdlib",
+      "url": "https://docs.python.org/3/license.html",
+      "final_url": "https://docs.python.org/3/license.html",
+      "http_status": 200,
+      "sha256": "e73577eb1d06c1bb444fc9967760193981512fc29aa98175998168d9412f36b5",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "sqlite",
+      "url": "https://www.sqlite.org/index.html",
+      "final_url": "https://www.sqlite.org/index.html",
+      "http_status": 200,
+      "sha256": "838b2fff9b4b60151b058ecfac2b6f1ac8243742bbfdcfc1859829f2bb9cf0f8",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "sqlite",
+      "url": "https://www.sqlite.org/fts5.html",
+      "final_url": "https://www.sqlite.org/fts5.html",
+      "http_status": 200,
+      "sha256": "de3092630358518a6869bf047055b3938e18b476e3fbc54f4e2146d1e593497f",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "sqlite",
+      "url": "https://www.sqlite.org/copyright.html",
+      "final_url": "https://www.sqlite.org/copyright.html",
+      "http_status": 200,
+      "sha256": "44ca9f793055c8e32fc65f65a4f5bcf813a33f5bdaaa084067dd617a4ed3cc70",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "or-tools",
+      "url": "https://github.com/google/or-tools",
+      "final_url": "https://github.com/google/or-tools",
+      "http_status": 200,
+      "sha256": "76927d71363081f33cf947ce170d66b6adf7c03b94e04ee75384e579f07dbfc5",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "or-tools",
+      "url": "https://developers.google.com/optimization/cp/cp_solver",
+      "final_url": "https://developers.google.com/optimization/cp/cp_solver",
+      "http_status": 200,
+      "sha256": "a887b27f240159c37d52239b266c5669faab92b8cf00ecd1ddd1db555d67779c",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "or-tools",
+      "url": "https://raw.githubusercontent.com/google/or-tools/stable/LICENSE",
+      "final_url": "https://raw.githubusercontent.com/google/or-tools/stable/LICENSE",
+      "http_status": 200,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "scipy",
+      "url": "https://github.com/scipy/scipy",
+      "final_url": "https://github.com/scipy/scipy",
+      "http_status": 200,
+      "sha256": "dce87e9cb6cc493630815a319ec4c746468f0e593b7fc48658faecc5b0998f66",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "scipy",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html",
+      "final_url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html",
+      "http_status": 200,
+      "sha256": "b40a69dadcc5ad747296c76ab7229bd12a18e893ce32f6d7d28fa65662175f45",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "scipy",
+      "url": "https://raw.githubusercontent.com/scipy/scipy/main/LICENSE.txt",
+      "final_url": "https://raw.githubusercontent.com/scipy/scipy/main/LICENSE.txt",
+      "http_status": 200,
+      "sha256": "221e59f5e910fd7f94e44f0dac77436a11338c285c6346232e4a850a50da0e94",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "cvxpy",
+      "url": "https://github.com/cvxpy/cvxpy",
+      "final_url": "https://github.com/cvxpy/cvxpy",
+      "http_status": 200,
+      "sha256": "1ea96c60242f009cce7dd04d76340a885242c5ab4a2cb25ba43ad3782cd007cf",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "cvxpy",
+      "url": "https://www.cvxpy.org/tutorial/dcp/index.html",
+      "final_url": "https://www.cvxpy.org/tutorial/dcp/index.html",
+      "http_status": 200,
+      "sha256": "3eda6a23d6e38ac193810226249a33fc80c1a738b84c5620d7e6c9eebbb3e38b",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "cvxpy",
+      "url": "https://raw.githubusercontent.com/cvxpy/cvxpy/master/LICENSE",
+      "final_url": "https://raw.githubusercontent.com/cvxpy/cvxpy/master/LICENSE",
+      "http_status": 200,
+      "sha256": "94d81cb282da837f4ace0df08b52fd1c72e07da9efb52e5aa6d556a5cea5286f",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "shapely",
+      "url": "https://github.com/shapely/shapely",
+      "final_url": "https://github.com/shapely/shapely",
+      "http_status": 200,
+      "sha256": "7d57e2e93591784ac8d48c3712ad7b7ff70899e96dc55fdb6ae82eab8dc568d6",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "shapely",
+      "url": "https://shapely.readthedocs.io/en/stable/manual.html",
+      "final_url": "https://shapely.readthedocs.io/en/stable/manual.html",
+      "http_status": 200,
+      "sha256": "7d1917b4945c616203374b600e6db83339d262e721b70af74224059ae118e4e7",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "shapely",
+      "url": "https://raw.githubusercontent.com/shapely/shapely/main/LICENSE.txt",
+      "final_url": "https://raw.githubusercontent.com/shapely/shapely/main/LICENSE.txt",
+      "http_status": 200,
+      "sha256": "4a207eac9bf257ed286e1c6f0fce253d1abfdb134fc61ec855e37f5692a3f754",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "networkx",
+      "url": "https://github.com/networkx/networkx",
+      "final_url": "https://github.com/networkx/networkx",
+      "http_status": 200,
+      "sha256": "eb388797bda83e0f30f85bb06f54e15bde3086000076849e7163bfa017e38769",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "networkx",
+      "url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.shortest_path.html",
+      "final_url": "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.shortest_path.html",
+      "http_status": 200,
+      "sha256": "5bc7716028530eeaed384541b82723692e27a495252b2e01fd1457b20d2e5532",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "networkx",
+      "url": "https://raw.githubusercontent.com/networkx/networkx/main/LICENSE.txt",
+      "final_url": "https://raw.githubusercontent.com/networkx/networkx/main/LICENSE.txt",
+      "http_status": 200,
+      "sha256": "6025f323ea29dc2f0ee0abd9523bf910186f55b0e148e6ebf646c55566278e2e",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "pytest",
+      "url": "https://github.com/pytest-dev/pytest",
+      "final_url": "https://github.com/pytest-dev/pytest",
+      "http_status": 200,
+      "sha256": "be53efbd2dc10f4e32134054a3d91361ebb96a47bdec5feac04a26f3fc04733b",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "pytest",
+      "url": "https://docs.pytest.org/en/stable/getting-started.html",
+      "final_url": "https://docs.pytest.org/en/stable/getting-started.html",
+      "http_status": 200,
+      "sha256": "78186eac1ea16c6cbd4a679bb2f8842fc8b39e0a1701d88a87b83f03f2a522a5",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "pytest",
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/main/LICENSE",
+      "final_url": "https://raw.githubusercontent.com/pytest-dev/pytest/main/LICENSE",
+      "http_status": 200,
+      "sha256": "ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "hypothesis",
+      "url": "https://github.com/HypothesisWorks/hypothesis",
+      "final_url": "https://github.com/HypothesisWorks/hypothesis",
+      "http_status": 200,
+      "sha256": "c43dca1cca727690bc053fbcacf59b24352c81024e004ddba7c5237ce4f88c93",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "hypothesis",
+      "url": "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
+      "final_url": "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
+      "http_status": 200,
+      "sha256": "1f9153800ad6e6a3544d82a05fbb5b87b3a97e1ba444de36eadf3f9cf42619d7",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "hypothesis",
+      "url": "https://raw.githubusercontent.com/HypothesisWorks/hypothesis/master/hypothesis-python/LICENSE.txt",
+      "checked_at": "2026-11-05",
+      "status": "not_found",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "playwright",
+      "url": "https://github.com/microsoft/playwright",
+      "final_url": "https://github.com/microsoft/playwright",
+      "http_status": 200,
+      "sha256": "02beb7cf98e28544f4b6ca90c498c815e20b7754ed367534bec6766e12cda7f5",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "playwright",
+      "url": "https://playwright.dev/docs/intro",
+      "final_url": "https://playwright.dev/docs/intro",
+      "http_status": 200,
+      "sha256": "5b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7",
+      "checked_at": "2026-11-05",
+      "status": "blocked_content",
+      "note": "HTTP 200이지만 오류 페이지; 본문 확인 성공 아님"
+    },
+    {
+      "id": "playwright",
+      "url": "https://raw.githubusercontent.com/microsoft/playwright/main/LICENSE",
+      "final_url": "https://raw.githubusercontent.com/microsoft/playwright/main/LICENSE",
+      "http_status": 200,
+      "sha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "domain-storytelling",
+      "url": "https://domainstorytelling.org/",
+      "final_url": "https://domainstorytelling.org/",
+      "http_status": 200,
+      "sha256": "bc7f8372b3c49d80802afdf5fe9d6b2931c169fd4c5a082fb31ecfaee58de1ba",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "job-story",
+      "url": "https://www.intercom.com/blog/using-job-stories-design-features-ui-ux/",
+      "final_url": "https://www.intercom.com/blog/using-job-stories-design-features-ui-ux",
+      "http_status": 200,
+      "sha256": "8603e097e0675e381ac1268b06549ba61c3ec92711ff375801703f39677dd117",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "example-mapping",
+      "url": "https://cucumber.io/docs/bdd/example-mapping/",
+      "final_url": "https://cucumber.io/docs/bdd/example-mapping/",
+      "http_status": 200,
+      "sha256": "d750b0a9bed049d1513898d0fd4aedcf84163fe4cf7df084611b06037ebf2fc4",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "assumption-mapping",
+      "url": "https://www.strategyzer.com/library/how-to-test-assumptions",
+      "checked_at": "2026-11-05",
+      "status": "not_found",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "premortem",
+      "url": "https://hbr.org/2007/09/performing-a-project-premortem",
+      "final_url": "https://hbr.org/2007/09/performing-a-project-premortem",
+      "http_status": 200,
+      "sha256": "5b131ca14aa96311d3432b0062c7443d3b0e6346ec279bd376a75f0a76bcd5d7",
+      "checked_at": "2026-11-05",
+      "status": "blocked_content",
+      "note": "HTTP 200이지만 오류 페이지; 본문 확인 성공 아님"
+    },
+    {
+      "id": "traceability",
+      "url": "https://cucumber.io/docs/gherkin/reference/",
+      "final_url": "https://cucumber.io/docs/gherkin/reference/",
+      "http_status": 200,
+      "sha256": "d5f655389df7362ad8dca90b4be61e9044345f84643a5a1549f4aa770dcc6552",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "vertical-slice",
+      "url": "https://alistair.cockburn.us/Walking+skeleton/",
+      "checked_at": "2026-11-05",
+      "status": "not_found",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "baseline-first",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html",
+      "final_url": "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html",
+      "http_status": 200,
+      "sha256": "0a499766ac073aeb5c36117e1025ca5afdb41b27af734e57b88a019fee00519d",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "verification",
+      "url": "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
+      "final_url": "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
+      "http_status": 200,
+      "sha256": "1f9153800ad6e6a3544d82a05fbb5b87b3a97e1ba444de36eadf3f9cf42619d7",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "timeboxing",
+      "url": "https://scrumguides.org/scrum-guide.html",
+      "final_url": "https://scrumguides.org/scrum-guide.html",
+      "http_status": 200,
+      "sha256": "64aade688c3f2bceb1051268310e1cdcf503ac424e052a07414f60cabea8bcc0",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "hypothesis",
+      "url": "https://raw.githubusercontent.com/HypothesisWorks/hypothesis/master/LICENSE.txt",
+      "final_url": "https://raw.githubusercontent.com/HypothesisWorks/hypothesis/master/LICENSE.txt",
+      "http_status": 200,
+      "sha256": "df2ca456f6cda1226620ee99f16bafb6345241040996734d3a46e3afe414c056",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "assumption-mapping",
+      "url": "https://www.strategyzer.com/library/how-to-test-your-idea-start-with-the-most-critical-hypotheses",
+      "final_url": "https://www.strategyzer.com/library/how-to-test-your-idea-start-with-the-most-critical-hypotheses",
+      "http_status": 200,
+      "sha256": "28883ddfd464f02e6bd5f2c83fa78ca4c7814e1310c0c088b1d97102182e9d78",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "vertical-slice",
+      "url": "https://alistaircockburn.com/Bio",
+      "final_url": "https://alistaircockburn.com/Bio",
+      "http_status": 200,
+      "sha256": "5f4da42b95b64e4c3e531113f9065c9e5e443d078d3a5ffba59562d1bea4b0b6",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "premortem",
+      "url": "https://www.gary-klein.com/premortem",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "web_search",
+      "note": "저자 페이지의 premortem 정의 확인"
+    },
+    {
+      "id": "playwright",
+      "url": "https://playwright.dev/docs/intro",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "web_open",
+      "note": "HTTP fetch 오류페이지 후 별도 web 도구로 설치/예제/브라우저 요구 본문 확인"
+    },
+    {
+      "id": "or-tools",
+      "url": "https://developers.google.com/optimization/install/python",
+      "final_url": "https://developers.google.com/optimization/install/python",
+      "http_status": 200,
+      "sha256": "c9a51b10860f677c627352cfeadce5c96a226dcf6f0217d37d4b5dd6595e8eab",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "scipy",
+      "url": "https://scipy.org/install/",
+      "final_url": "https://scipy.org/install/",
+      "http_status": 200,
+      "sha256": "05784e18a0002bc49633b58165a63aa8515ca6f2a7ec6180c1a138b2a586de66",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "shapely",
+      "url": "https://shapely.readthedocs.io/en/stable/installation.html",
+      "checked_at": "2026-11-05",
+      "status": "unreachable",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "symposium",
+      "url": "https://github.com/Q00/Symposium",
+      "final_url": "https://github.com/Q00/Symposium",
+      "http_status": 200,
+      "sha256": "5bb42324b4b1a47450ccdbe0057b92b3f533e547854350c762e2594b2542a6c4",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "ouroboros",
+      "url": "https://github.com/Q00/ouroboros",
+      "final_url": "https://github.com/Q00/ouroboros",
+      "http_status": 200,
+      "sha256": "def9f4430fd5f6061623a1dc00a697b0f58bf4bcc5a7afe6c67c5bbd551006af",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "aidlc",
+      "url": "https://github.com/awslabs/aidlc-workflows",
+      "final_url": "https://github.com/awslabs/aidlc-workflows",
+      "http_status": 200,
+      "sha256": "2da2d7a67f13a2e044125b0ee825608cd902e9441533f0a4668f3a08f27b7173",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "gstack",
+      "url": "https://github.com/garrytan/gstack",
+      "final_url": "https://github.com/garrytan/gstack",
+      "http_status": 200,
+      "sha256": "ecb51547d9a6e9c9f1b7b071ece50e2460f6c84e03682e289ef85a2183151418",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "premortem",
+      "url": "https://www.gary-klein.com/premortem",
+      "final_url": "https://www.gary-klein.com/premortem",
+      "http_status": 200,
+      "sha256": "7e2a75491d760453caee28ebad72144818c73e90ceddf866ad512cb42e16178d",
+      "checked_at": "2026-11-05",
+      "status": "reachable"
+    },
+    {
+      "id": "Q00/Symposium",
+      "url": "https://github.com/Q00/Symposium/blob/main/README.md",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "GitHub REST contents API",
+      "blob_sha": "33cfdcc399b150b660c81283bbfcd249f0a9bbe8",
+      "note": "본문을 읽었으며 외부 명령 실행하지 않음"
+    },
+    {
+      "id": "Q00/Symposium",
+      "url": "https://github.com/Q00/Symposium/blob/main/LICENSE",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "GitHub REST contents API",
+      "blob_sha": "d1dfd9ad40fac715525351e3854bafe86d9f1b6b",
+      "note": "본문을 읽었으며 외부 명령 실행하지 않음"
+    },
+    {
+      "id": "Q00/ouroboros",
+      "url": "https://github.com/Q00/ouroboros/blob/main/README.md",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "GitHub REST contents API",
+      "blob_sha": "fa4979cc5331ec222b225774432f2cf76acfc7e1",
+      "note": "본문을 읽었으며 외부 명령 실행하지 않음"
+    },
+    {
+      "id": "Q00/ouroboros",
+      "url": "https://github.com/Q00/ouroboros/blob/main/LICENSE",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "GitHub REST contents API",
+      "blob_sha": "d69340d84e2483291e5142351ff281f90739c689",
+      "note": "본문을 읽었으며 외부 명령 실행하지 않음"
+    },
+    {
+      "id": "awslabs/aidlc-workflows",
+      "url": "https://github.com/awslabs/aidlc-workflows/blob/main/README.md",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "GitHub REST contents API",
+      "blob_sha": "51243b75ae01f6393df4d7a49c5caaa923de6f47",
+      "note": "본문을 읽었으며 외부 명령 실행하지 않음"
+    },
+    {
+      "id": "awslabs/aidlc-workflows",
+      "url": "https://github.com/awslabs/aidlc-workflows/blob/main/LICENSE",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "GitHub REST contents API",
+      "blob_sha": "09951d9f8743a65d034616e602995a40a56c5cbd",
+      "note": "본문을 읽었으며 외부 명령 실행하지 않음"
+    },
+    {
+      "id": "garrytan/gstack",
+      "url": "https://github.com/garrytan/gstack/blob/main/README.md",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "GitHub REST contents API",
+      "blob_sha": "47e3e4ee9d0dc04ceb4cddf57d92da07dd719004",
+      "note": "본문을 읽었으며 외부 명령 실행하지 않음"
+    },
+    {
+      "id": "garrytan/gstack",
+      "url": "https://github.com/garrytan/gstack/blob/main/LICENSE",
+      "checked_at": "2026-11-05",
+      "status": "docs_verified",
+      "transport": "GitHub REST contents API",
+      "blob_sha": "35029511144443297cad2d26e4bac17d0e352f93",
+      "note": "본문을 읽었으며 외부 명령 실행하지 않음"
+    }
+  ],
+  "tool_smoke": [
+    {
+      "tool_id": "python-stdlib",
+      "runtime": "Python 3.12.14",
+      "input": "Decimal(\"0.1\") + Decimal(\"0.2\")",
+      "expected": "0.3",
+      "actual": "0.3",
+      "status": "pass"
+    },
+    {
+      "tool_id": "sqlite",
+      "runtime": "SQLite 3.53.1 through Python sqlite3",
+      "input": "FTS5 notes: repair gasket, inspect cable; MATCH gasket",
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "actual": [
+        [
+          1
+        ]
+      ],
+      "status": "pass"
+    }
+  ],
+  "limits": [
+    "URL 도달 여부와 본문 검토는 설치·전체 기능 검증이 아니다.",
+    "mutable branch와 stable docs를 확인했으며 commit SHA를 고정하지 않았다.",
+    "공식 예제 전체를 실행하지 않았다. 별도로 명시한 두 local smoke만 실행했다."
+  ]
+}
