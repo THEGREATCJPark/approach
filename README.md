@@ -3,6 +3,9 @@
 낯선 업무 요청에서 **자료 확인 → 질문 → 최소 구현 → 검증 → 사용자 피드백**으로 이동하는 한국어 참고자료.
 모든 업무 사례는 공개 일반 방법에 근거한 독립 창작이다. 실제 문제의 익명화·기출 복원이 아니다.
 
+**주 사용법:** 제작 요구사항 README 전체를 채팅에 붙여넣고 “이 저장소를 확인해서 가이드에 따라 진행 방법을 알려줘”라고 요청한다.
+[붙여넣기 시작 문장](START_HERE.md)과 [응답 예시](examples/synthetic/readme-intake.md)를 제공한다. 이미 적힌 조건은 재질문하지 않고 원문 요구를 구현·검증 계획으로 연결한다.
+
 - 사람용 한 페이지: [QUICK_REFERENCE](QUICK_REFERENCE.md)
 - AI 첫 경로: [AGENTS](AGENTS.md) → [START_HERE](START_HERE.md) → [ROUTER](ROUTER.md)
 - 사용 경계: [RULES_GATE](RULES_GATE.md)

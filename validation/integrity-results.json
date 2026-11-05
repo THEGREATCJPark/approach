@@ -26,7 +26,7 @@
   "case_markdown_files": 120,
   "duplicate_case_paths": [],
   "orphan_case_paths": [],
-  "local_links_checked": 1171,
+  "local_links_checked": 1190,
   "errors": [],
   "warnings": [
     "ranking-availability: tests[0]: legacy basis is in card 손계산 근거 section, not per-test metadata",
