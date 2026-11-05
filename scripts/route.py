@@ -3,6 +3,8 @@
 import argparse
 import json
 import re
+import math
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -68,6 +70,67 @@ def positive_clauses(text):
     return ' '.join(kept), excluded
 
 
+GENERIC_KEYWORDS = {'데이터', '자료', '실제', '상태', '분리', '결과', '방법', '확인', '입력', '출력', '기본', '판정', '비교', '검증', '기준', '필수', '정보', '처리', '대상', '경계', '근거', '조건', '요청', '선택'}
+
+def lexical_tokens(text):
+    """Korean 2/3-character grams preserve particles; Latin words remain words."""
+    tokens = []
+    for word in re.findall(r'[가-힣]+|[a-zA-Z][a-zA-Z_-]+', text.lower()):
+        if re.fullmatch(r'[가-힣]+', word):
+            for size in [2, 3]:
+                tokens.extend(word[i:i+size] for i in range(len(word)-size+1))
+        else:
+            tokens.append(word)
+    return tokens
+
+
+def card_scores(query, cases):
+    """BM25-style lexical ranking; no embeddings, APIs or success probabilities."""
+    docs = []
+    for card in cases:
+        fields = [card.get(k, '') for k in ['title', 'keywords_ko', 'keywords_en', 'problem_structure', 'decision_signature', 'data_required', 'applicable_when']]
+        docs.append(Counter(lexical_tokens(json.dumps(fields, ensure_ascii=False))))
+    if not docs:
+        return {}
+    frequencies = Counter(token for doc in docs for token in doc)
+    average = sum(sum(doc.values()) for doc in docs) / len(docs) or 1
+    query_terms = set(lexical_tokens(query))
+    scores = {}
+    for card, doc in zip(cases, docs):
+        length = sum(doc.values())
+        score = 0.0
+        for token in query_terms & doc.keys():
+            df = frequencies[token]
+            if df > max(3, 0.35 * len(docs)):
+                continue  # Common workflow words should not dominate the actual decision.
+            idf = math.log(1 + (len(docs)-df+0.5)/(df+0.5))
+            tf = doc[token]
+            score += idf * tf * 2.2 / (tf + 1.2 * (0.25 + 0.75 * length/average))
+        scores[card['id']] = score
+    return scores
+
+
+def catalog_fallback(query, cases):
+    """Only explicit, non-generic keywords; an uncertain family still abstains."""
+    compact = re.sub(r'\s+', '', query)
+    matches = []
+    for card in cases:
+        hits = []
+        for raw in card.get('keywords_ko', []) + card.get('keywords_en', []):
+            term = re.sub(r'\s+', '', str(raw).lower())
+            if term in GENERIC_KEYWORDS or len(term) < 2 or len(term) > 24:
+                continue
+            if term in compact:
+                hits.append(term)
+        unique = set(hits)
+        if len(unique) >= 2 or any(len(t) >= 4 for t in unique):
+            matches.append((len(unique), card['family'], sorted(unique)))
+    families = {family for _, family, _ in matches}
+    if len(families) != 1:
+        return []  # Cross-family ambiguity should trigger a clarifying question.
+    return sorted(matches, key=lambda row:(-row[0],row[1]))[:1]
+
+
 def load_cases(root=ROOT):
     path = root / 'catalog/cases.json'
     if not path.exists():
@@ -88,17 +151,17 @@ def route(text, cases=None, mode='PREP', automation='unknown'):
             # Output form ('analysis only') is weaker than a concrete decision structure.
             weight = sum(0.25 if term in ['분석만', '분석 보고'] else 1 for term in hits)
             scores.append((weight, family, hits))
+    if not scores:
+        scores = catalog_fallback(query, cases)
     scores.sort(key=lambda row: (-row[0], row[1]))
     if not scores:
         return {'status': 'unclassified', 'reason': '결정 구조를 판별할 근거가 부족합니다.', 'question': '결과를 보고 누가 어떤 결정을 해야 하나요? 대표 입력과 기대 출력 한 건을 확인하세요.', 'candidates': [], 'excluded_clauses': excluded}
     result = []
+    lexical_scores = card_scores(query, cases)
     for _, family, hits in scores[:3]:
         available = [c for c in cases if c.get('family', '').upper() == family]
-        # Specific card keywords break ties within the family only.
-        def relevance(c):
-            words = c.get('keywords_ko', []) + c.get('keywords_en', [])
-            return sum(1 for word in words if str(word).lower() in query)
-        available.sort(key=lambda c: (-relevance(c), c.get('id', '')))
+        # Global inverse document frequency ranks actual decisions within the family.
+        available.sort(key=lambda c: (-lexical_scores.get(c['id'], 0), c.get('id', '')))
         selected = available[:2]
         c = selected[0] if selected else {}
         result.append({'family': family, 'role': 'primary' if not result else 'secondary',
@@ -107,7 +170,8 @@ def route(text, cases=None, mode='PREP', automation='unknown'):
             'data_to_check': c.get('data_required', []),
             'first_question': QUESTIONS[family],
             'baseline_methods': c.get('method_ids', ['baseline-first']),
-            'cards': [x.get('path', '') for x in selected]})
+            'cards': [x.get('path', '') for x in selected],
+            'retrieval_method': 'offline Korean character ngram BM25-style; rank is not confidence'})
     return {'status': 'candidate', 'candidates': result, 'excluded_clauses': excluded,
         'limitations': '어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.',
         'execution': '브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요.' if automation != 'allowed' else '자동화 allowed 기록은 해당 기능의 명시적 허용 근거가 있어야 유효합니다. 이 검색기는 자동화를 실행하지 않습니다.'}

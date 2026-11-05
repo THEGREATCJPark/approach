@@ -1,0 +1,1289 @@
+{
+  "case_count": 18,
+  "test_count": 66,
+  "python": "3.12.14",
+  "scope": "Independent synthetic calculation/rule oracles; no real user, UI, text semantics or organizational impact verified.",
+  "results": [
+    {
+      "case_id": "currency-basis",
+      "kind": "normal",
+      "input": {
+        "amount": "12.50",
+        "rate": "1.24"
+      },
+      "expected": "15.50",
+      "actual": "15.50",
+      "basis": "12.50×1.24=15.5000",
+      "status": "pass"
+    },
+    {
+      "case_id": "currency-basis",
+      "kind": "boundary",
+      "input": {
+        "amount": "0.005",
+        "rate": "1"
+      },
+      "expected": "0.01",
+      "actual": "0.01",
+      "basis": "half-up 둘째자리",
+      "status": "pass"
+    },
+    {
+      "case_id": "currency-basis",
+      "kind": "missing",
+      "input": {
+        "amount": "12.50",
+        "rate": null
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "환율 없음",
+      "status": "pass"
+    },
+    {
+      "case_id": "price-volume-bridge",
+      "kind": "normal",
+      "input": {
+        "p0": 10,
+        "p1": 12,
+        "q0": 5,
+        "q1": 8
+      },
+      "expected": [
+        10,
+        36,
+        46
+      ],
+      "actual": [
+        10.0,
+        36.0,
+        46.0
+      ],
+      "basis": "가격2×5=10,물량12×3=36,96−50=46",
+      "status": "pass"
+    },
+    {
+      "case_id": "price-volume-bridge",
+      "kind": "boundary",
+      "input": {
+        "p0": 10,
+        "p1": 12,
+        "q0": 0,
+        "q1": 2
+      },
+      "expected": [
+        0,
+        24,
+        24
+      ],
+      "actual": [
+        0.0,
+        24.0,
+        24.0
+      ],
+      "basis": "기준 수량0 가격효과0",
+      "status": "pass"
+    },
+    {
+      "case_id": "price-volume-bridge",
+      "kind": "missing",
+      "input": {
+        "p0": 10,
+        "p1": null,
+        "q0": 5,
+        "q1": 8
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "신단가 없음",
+      "status": "pass"
+    },
+    {
+      "case_id": "revision-ledger",
+      "kind": "normal",
+      "input": {
+        "rows": [
+          [
+            "a",
+            1,
+            10
+          ],
+          [
+            "a",
+            2,
+            12
+          ],
+          [
+            "b",
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": 15,
+      "actual": 15,
+      "basis": "최신 a12+b3",
+      "status": "pass"
+    },
+    {
+      "case_id": "revision-ledger",
+      "kind": "boundary",
+      "input": {
+        "rows": [
+          [
+            "a",
+            1,
+            0
+          ],
+          [
+            "a",
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "actual": 0,
+      "basis": "동일 버전 동일값 재전송은 1건",
+      "status": "pass"
+    },
+    {
+      "case_id": "revision-ledger",
+      "kind": "missing",
+      "input": {
+        "rows": [
+          [
+            "a",
+            2,
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "최신값 미확정",
+      "status": "pass"
+    },
+    {
+      "case_id": "revision-ledger",
+      "kind": "conflict",
+      "input": {
+        "rows": [
+          [
+            "a",
+            2,
+            12
+          ],
+          [
+            "a",
+            2,
+            13
+          ]
+        ]
+      },
+      "expected": "conflict",
+      "actual": "conflict",
+      "basis": "동일 키버전 상충",
+      "status": "pass"
+    },
+    {
+      "case_id": "scenario-demand",
+      "kind": "normal",
+      "input": {
+        "base": 80,
+        "rates": [
+          -25,
+          0,
+          50
+        ]
+      },
+      "expected": [
+        60,
+        80,
+        120
+      ],
+      "actual": [
+        60.0,
+        80.0,
+        120.0
+      ],
+      "basis": "80×0.75,1,1.5",
+      "status": "pass"
+    },
+    {
+      "case_id": "scenario-demand",
+      "kind": "boundary",
+      "input": {
+        "base": 80,
+        "rates": [
+          -100,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        80,
+        80
+      ],
+      "actual": [
+        0.0,
+        80.0,
+        80.0
+      ],
+      "basis": "−100%는0",
+      "status": "pass"
+    },
+    {
+      "case_id": "scenario-demand",
+      "kind": "missing",
+      "input": {
+        "base": null,
+        "rates": [
+          -25,
+          0,
+          50
+        ]
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "기준값 미수집",
+      "status": "pass"
+    },
+    {
+      "case_id": "report-source-coverage",
+      "kind": "normal",
+      "input": {
+        "links": [
+          [
+            "a",
+            "s1"
+          ],
+          [
+            "b",
+            "s2"
+          ]
+        ],
+        "available": [
+          "s1"
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        [
+          "b"
+        ]
+      ],
+      "actual": [
+        1,
+        2,
+        [
+          "b"
+        ]
+      ],
+      "basis": "2주장 중1출처 존재",
+      "status": "pass"
+    },
+    {
+      "case_id": "report-source-coverage",
+      "kind": "boundary",
+      "input": {
+        "links": [],
+        "available": []
+      },
+      "expected": "no_claims",
+      "actual": "no_claims",
+      "basis": "0/0을100%로 표시하지 않음",
+      "status": "pass"
+    },
+    {
+      "case_id": "report-source-coverage",
+      "kind": "missing",
+      "input": {
+        "links": [
+          [
+            "a",
+            null
+          ]
+        ],
+        "available": [
+          "s1"
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        [
+          "a"
+        ]
+      ],
+      "actual": [
+        0,
+        1,
+        [
+          "a"
+        ]
+      ],
+      "basis": "미연결1건",
+      "status": "pass"
+    },
+    {
+      "case_id": "bounded-missing-total",
+      "kind": "normal",
+      "input": {
+        "counts": [
+          8,
+          null,
+          5
+        ],
+        "cap": 10
+      },
+      "expected": [
+        13,
+        23
+      ],
+      "actual": [
+        13,
+        23
+      ],
+      "basis": "관측13,누락1×10",
+      "status": "pass"
+    },
+    {
+      "case_id": "bounded-missing-total",
+      "kind": "boundary",
+      "input": {
+        "counts": [
+          0,
+          0
+        ],
+        "cap": 10
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "actual": [
+        0,
+        0
+      ],
+      "basis": "미관측없음",
+      "status": "pass"
+    },
+    {
+      "case_id": "bounded-missing-total",
+      "kind": "missing",
+      "input": {
+        "counts": [
+          8,
+          null
+        ],
+        "cap": null
+      },
+      "expected": [
+        8,
+        null
+      ],
+      "actual": [
+        8,
+        null
+      ],
+      "basis": "상한 근거 없음",
+      "status": "pass"
+    },
+    {
+      "case_id": "support-rule-overlap",
+      "kind": "normal",
+      "input": {
+        "tags": [
+          "damage"
+        ]
+      },
+      "expected": "repair",
+      "actual": "repair",
+      "basis": "한팀 매칭",
+      "status": "pass"
+    },
+    {
+      "case_id": "support-rule-overlap",
+      "kind": "boundary",
+      "input": {
+        "tags": []
+      },
+      "expected": "unclassified",
+      "actual": "unclassified",
+      "basis": "태그가 비어있음",
+      "status": "pass"
+    },
+    {
+      "case_id": "support-rule-overlap",
+      "kind": "missing",
+      "input": {
+        "tags": null
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "태그 미수집",
+      "status": "pass"
+    },
+    {
+      "case_id": "support-rule-overlap",
+      "kind": "conflict",
+      "input": {
+        "tags": [
+          "damage",
+          "delivery"
+        ]
+      },
+      "expected": "review",
+      "actual": "review",
+      "basis": "두팀 겹침",
+      "status": "pass"
+    },
+    {
+      "case_id": "duplicate-ticket-fingerprint",
+      "kind": "normal",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "u",
+            "2031-01-01",
+            "flat"
+          ],
+          [
+            "b",
+            "u",
+            "2031-01-01",
+            "flat"
+          ],
+          [
+            "c",
+            "u",
+            "2031-01-01",
+            "brake"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "actual": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "basis": "같은3필드 a,b만 후보",
+      "status": "pass"
+    },
+    {
+      "case_id": "duplicate-ticket-fingerprint",
+      "kind": "boundary",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "u",
+            "2031-01-01",
+            "flat"
+          ]
+        ]
+      },
+      "expected": [],
+      "actual": [],
+      "basis": "1건은중복아님",
+      "status": "pass"
+    },
+    {
+      "case_id": "duplicate-ticket-fingerprint",
+      "kind": "missing",
+      "input": {
+        "rows": [
+          [
+            "a",
+            null,
+            "2031-01-01",
+            "flat"
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "토큰미확인",
+      "status": "pass"
+    },
+    {
+      "case_id": "duplicate-ticket-fingerprint",
+      "kind": "replay",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "u",
+            "2031-01-01",
+            "flat"
+          ],
+          [
+            "a",
+            "u",
+            "2031-01-01",
+            "flat"
+          ]
+        ]
+      },
+      "expected": [],
+      "actual": [],
+      "basis": "동일ticket재전송은한건",
+      "status": "pass"
+    },
+    {
+      "case_id": "duplicate-ticket-fingerprint",
+      "kind": "key_conflict",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "u",
+            "2031-01-01",
+            "flat"
+          ],
+          [
+            "a",
+            "u",
+            "2031-01-01",
+            "brake"
+          ]
+        ]
+      },
+      "expected": "conflict",
+      "actual": "conflict",
+      "basis": "같은ticket다른payload는충돌",
+      "status": "pass"
+    },
+    {
+      "case_id": "draft-release-gate",
+      "kind": "normal",
+      "input": {
+        "checks": [
+          true,
+          true,
+          true
+        ]
+      },
+      "expected": "ready_for_human_send",
+      "actual": "ready_for_human_send",
+      "basis": "필수3항목검토",
+      "status": "pass"
+    },
+    {
+      "case_id": "draft-release-gate",
+      "kind": "boundary",
+      "input": {
+        "checks": [
+          true,
+          false,
+          true
+        ]
+      },
+      "expected": "hold",
+      "actual": "hold",
+      "basis": "1항목반려",
+      "status": "pass"
+    },
+    {
+      "case_id": "draft-release-gate",
+      "kind": "missing",
+      "input": {
+        "checks": [
+          true,
+          null,
+          true
+        ]
+      },
+      "expected": "pending",
+      "actual": "pending",
+      "basis": "1항목미검토",
+      "status": "pass"
+    },
+    {
+      "case_id": "draft-release-gate",
+      "kind": "incomplete_schema",
+      "input": {
+        "checks": [
+          true
+        ]
+      },
+      "expected": "invalid",
+      "actual": "invalid",
+      "basis": "필수3관문중2개가누락된배열은승인불가",
+      "status": "pass"
+    },
+    {
+      "case_id": "draft-release-gate",
+      "kind": "invalid_type",
+      "input": {
+        "checks": [
+          true,
+          1,
+          true
+        ]
+      },
+      "expected": "invalid",
+      "actual": "invalid",
+      "basis": "숫자1을검토완료true로해석하지않음",
+      "status": "pass"
+    },
+    {
+      "case_id": "escalation-authority",
+      "kind": "normal",
+      "input": {
+        "amount": 80,
+        "limit": 100,
+        "special": false
+      },
+      "expected": "within_authority",
+      "actual": "within_authority",
+      "basis": "80≤100",
+      "status": "pass"
+    },
+    {
+      "case_id": "escalation-authority",
+      "kind": "boundary",
+      "input": {
+        "amount": 100,
+        "limit": 100,
+        "special": false
+      },
+      "expected": "within_authority",
+      "actual": "within_authority",
+      "basis": "동일한도포함",
+      "status": "pass"
+    },
+    {
+      "case_id": "escalation-authority",
+      "kind": "missing",
+      "input": {
+        "amount": null,
+        "limit": 100,
+        "special": false
+      },
+      "expected": "estimate_required",
+      "actual": "estimate_required",
+      "basis": "금액미확정",
+      "status": "pass"
+    },
+    {
+      "case_id": "escalation-authority",
+      "kind": "override",
+      "input": {
+        "amount": 1,
+        "limit": 100,
+        "special": true
+      },
+      "expected": "escalate",
+      "actual": "escalate",
+      "basis": "특별사고우선",
+      "status": "pass"
+    },
+    {
+      "case_id": "escalation-authority",
+      "kind": "unknown_override",
+      "input": {
+        "amount": 80,
+        "limit": 100,
+        "special": null
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "특별이관조건미확인시권한내확정금지",
+      "status": "pass"
+    },
+    {
+      "case_id": "escalation-authority",
+      "kind": "missing_limit",
+      "input": {
+        "amount": 80,
+        "limit": null,
+        "special": false
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "권한한도미확인",
+      "status": "pass"
+    },
+    {
+      "case_id": "handoff-action-fields",
+      "kind": "normal",
+      "input": {
+        "status": "open",
+        "next_action": "재고 확인",
+        "owner": "desk",
+        "due": "2031-01-02"
+      },
+      "expected": "handoff_ready",
+      "actual": "handoff_ready",
+      "basis": "필수3필드존재",
+      "status": "pass"
+    },
+    {
+      "case_id": "handoff-action-fields",
+      "kind": "boundary",
+      "input": {
+        "status": "resolved",
+        "next_action": null,
+        "owner": null,
+        "due": null
+      },
+      "expected": "archive_ready",
+      "actual": "archive_ready",
+      "basis": "완료건별도",
+      "status": "pass"
+    },
+    {
+      "case_id": "handoff-action-fields",
+      "kind": "missing",
+      "input": {
+        "status": "open",
+        "next_action": "재고 확인",
+        "owner": null,
+        "due": null
+      },
+      "expected": [
+        "owner",
+        "due"
+      ],
+      "actual": [
+        "owner",
+        "due"
+      ],
+      "basis": "책임자기한누락",
+      "status": "pass"
+    },
+    {
+      "case_id": "repeat-cause-pareto",
+      "kind": "normal",
+      "input": {
+        "causes": [
+          "a",
+          "a",
+          "a",
+          "b",
+          "c"
+        ],
+        "threshold": 0.8
+      },
+      "expected": [
+        "a",
+        "b"
+      ],
+      "actual": [
+        "a",
+        "b"
+      ],
+      "basis": "a60%+b20%=80%",
+      "status": "pass"
+    },
+    {
+      "case_id": "repeat-cause-pareto",
+      "kind": "boundary",
+      "input": {
+        "causes": [
+          "a"
+        ],
+        "threshold": 0
+      },
+      "expected": [],
+      "actual": [],
+      "basis": "목표0이면선택없음",
+      "status": "pass"
+    },
+    {
+      "case_id": "repeat-cause-pareto",
+      "kind": "missing",
+      "input": {
+        "causes": [
+          "a",
+          null
+        ],
+        "threshold": 0.8
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "미분류보완",
+      "status": "pass"
+    },
+    {
+      "case_id": "rehearsal-budget",
+      "kind": "normal",
+      "input": {
+        "words": 120,
+        "limit": 100,
+        "essential": [
+          "e1"
+        ],
+        "present": [
+          "e1"
+        ]
+      },
+      "expected": "shorten",
+      "actual": "shorten",
+      "basis": "근거유지되지만20어절초과",
+      "status": "pass"
+    },
+    {
+      "case_id": "rehearsal-budget",
+      "kind": "boundary",
+      "input": {
+        "words": 100,
+        "limit": 100,
+        "essential": [
+          "e1"
+        ],
+        "present": [
+          "e1"
+        ]
+      },
+      "expected": "within_budget",
+      "actual": "within_budget",
+      "basis": "한도동일허용",
+      "status": "pass"
+    },
+    {
+      "case_id": "rehearsal-budget",
+      "kind": "missing",
+      "input": {
+        "words": 80,
+        "limit": 100,
+        "essential": [
+          "e1"
+        ],
+        "present": null
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "내용확인안됨",
+      "status": "pass"
+    },
+    {
+      "case_id": "rehearsal-budget",
+      "kind": "loss",
+      "input": {
+        "words": 80,
+        "limit": 100,
+        "essential": [
+          "e1"
+        ],
+        "present": []
+      },
+      "expected": "restore_evidence",
+      "actual": "restore_evidence",
+      "basis": "짧아도근거누락",
+      "status": "pass"
+    },
+    {
+      "case_id": "disclosure-labels",
+      "kind": "normal",
+      "input": {
+        "labels": [
+          "public",
+          "internal"
+        ],
+        "destination": "public"
+      },
+      "expected": "blocked",
+      "actual": "blocked",
+      "basis": "내부자료공개불가",
+      "status": "pass"
+    },
+    {
+      "case_id": "disclosure-labels",
+      "kind": "boundary",
+      "input": {
+        "labels": [
+          "public"
+        ],
+        "destination": "public"
+      },
+      "expected": "within_labels",
+      "actual": "within_labels",
+      "basis": "라벨상허용",
+      "status": "pass"
+    },
+    {
+      "case_id": "disclosure-labels",
+      "kind": "missing",
+      "input": {
+        "labels": [
+          null
+        ],
+        "destination": "public"
+      },
+      "expected": "review",
+      "actual": "review",
+      "basis": "권한불명",
+      "status": "pass"
+    },
+    {
+      "case_id": "disclosure-labels",
+      "kind": "unknown_destination",
+      "input": {
+        "labels": [
+          "internal"
+        ],
+        "destination": "unknown"
+      },
+      "expected": "review",
+      "actual": "review",
+      "basis": "목적지불명을내부로간주하지않음",
+      "status": "pass"
+    },
+    {
+      "case_id": "bilingual-quantity",
+      "kind": "normal",
+      "input": {
+        "a": [
+          2,
+          "min"
+        ],
+        "b": [
+          120,
+          "s"
+        ],
+        "same_scope": true
+      },
+      "expected": "quantity_match",
+      "actual": "quantity_match",
+      "basis": "2×60=120",
+      "status": "pass"
+    },
+    {
+      "case_id": "bilingual-quantity",
+      "kind": "boundary",
+      "input": {
+        "a": [
+          0,
+          "min"
+        ],
+        "b": [
+          0,
+          "s"
+        ],
+        "same_scope": true
+      },
+      "expected": "quantity_match",
+      "actual": "quantity_match",
+      "basis": "0변환",
+      "status": "pass"
+    },
+    {
+      "case_id": "bilingual-quantity",
+      "kind": "missing",
+      "input": {
+        "a": [
+          2,
+          null
+        ],
+        "b": [
+          120,
+          "s"
+        ],
+        "same_scope": true
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "단위미확인",
+      "status": "pass"
+    },
+    {
+      "case_id": "bilingual-quantity",
+      "kind": "conflict",
+      "input": {
+        "a": [
+          2,
+          "min"
+        ],
+        "b": [
+          2,
+          "s"
+        ],
+        "same_scope": true
+      },
+      "expected": "quantity_mismatch",
+      "actual": "quantity_mismatch",
+      "basis": "120≠2",
+      "status": "pass"
+    },
+    {
+      "case_id": "revision-evidence-loss",
+      "kind": "normal",
+      "input": {
+        "required": [
+          "a",
+          "b"
+        ],
+        "old": [
+          "a",
+          "b"
+        ],
+        "new": [
+          "a",
+          "c"
+        ],
+        "known": [
+          "a",
+          "b"
+        ]
+      },
+      "expected": [
+        [
+          "b"
+        ],
+        [
+          "c"
+        ],
+        [
+          "b"
+        ]
+      ],
+      "actual": [
+        [
+          "b"
+        ],
+        [
+          "c"
+        ],
+        [
+          "b"
+        ]
+      ],
+      "basis": "b누락,c미확인,b회귀",
+      "status": "pass"
+    },
+    {
+      "case_id": "revision-evidence-loss",
+      "kind": "boundary",
+      "input": {
+        "required": [],
+        "old": [],
+        "new": [],
+        "known": []
+      },
+      "expected": [
+        [],
+        [],
+        []
+      ],
+      "actual": [
+        [],
+        [],
+        []
+      ],
+      "basis": "빈기준명시",
+      "status": "pass"
+    },
+    {
+      "case_id": "revision-evidence-loss",
+      "kind": "missing",
+      "input": {
+        "required": [
+          "a"
+        ],
+        "old": [
+          "a"
+        ],
+        "new": null,
+        "known": [
+          "a"
+        ]
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "새초안태깅안됨",
+      "status": "pass"
+    },
+    {
+      "case_id": "assumption-challenge-queue",
+      "kind": "normal",
+      "input": {
+        "rows": [
+          [
+            "a",
+            3,
+            2
+          ],
+          [
+            "b",
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        "a",
+        "b"
+      ],
+      "actual": [
+        "a",
+        "b"
+      ],
+      "basis": "6>4",
+      "status": "pass"
+    },
+    {
+      "case_id": "assumption-challenge-queue",
+      "kind": "boundary",
+      "input": {
+        "rows": [
+          [
+            "b",
+            2,
+            2
+          ],
+          [
+            "a",
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        "a",
+        "b"
+      ],
+      "actual": [
+        "a",
+        "b"
+      ],
+      "basis": "동점ID순",
+      "status": "pass"
+    },
+    {
+      "case_id": "assumption-challenge-queue",
+      "kind": "missing",
+      "input": {
+        "rows": [
+          [
+            "a",
+            3,
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "actual": "unknown",
+      "basis": "불확실성미평가",
+      "status": "pass"
+    },
+    {
+      "case_id": "ai-verification-ledger",
+      "kind": "normal",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "ai",
+            "pass",
+            "e1"
+          ],
+          [
+            "b",
+            "ai",
+            "not_run",
+            null
+          ],
+          [
+            "c",
+            "human",
+            "pass",
+            "e2"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "a"
+        ],
+        [
+          "b"
+        ],
+        []
+      ],
+      "actual": [
+        [
+          "a"
+        ],
+        [
+          "b"
+        ],
+        []
+      ],
+      "basis": "AI a만근거있는pass",
+      "status": "pass"
+    },
+    {
+      "case_id": "ai-verification-ledger",
+      "kind": "boundary",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "ai",
+            "pass",
+            null
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "a"
+        ],
+        []
+      ],
+      "actual": [
+        [],
+        [
+          "a"
+        ],
+        []
+      ],
+      "basis": "pass라도근거없음",
+      "status": "pass"
+    },
+    {
+      "case_id": "ai-verification-ledger",
+      "kind": "missing",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "unknown",
+            "not_run",
+            null
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [],
+        [
+          "a"
+        ]
+      ],
+      "actual": [
+        [],
+        [],
+        [
+          "a"
+        ]
+      ],
+      "basis": "작성주체미확인",
+      "status": "pass"
+    }
+  ]
+}

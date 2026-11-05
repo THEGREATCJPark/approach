@@ -1,0 +1,878 @@
+{
+  "checked_at": "2026-11-05T06:53:46.223760+00:00",
+  "environment": "3.12.14",
+  "design": "author_designed_before_catalog_available; not a blind external benchmark",
+  "evaluation": "separate script author executed stored test prompts; not an independent user study",
+  "total": 21,
+  "passed": 21,
+  "failed": 0,
+  "results": [
+    {
+      "type": "request",
+      "request": "기간이 다른 매출을 일평균으로 비교하는 분석 보고만 필요해",
+      "expected_families": [
+        "ANALYTICS"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "ANALYTICS",
+            "role": "primary",
+            "reason": "의사결정 단서: 매출, 분석 보고",
+            "may_not_fit": "교차효과를 중복 합산하거나 매출 분해를 가격 인상의 인과 효과로 표현하지 않는다.",
+            "data_to_check": [
+              "행=동일 품목 두 기간 비교, 키 item_id; p0,p1 십진 단가, q0,q1 정수 수량. fixture 단위는 가상 통화/개. null은 미수집. 개선=품목별 원자료; 고객별 정보 불필요."
+            ],
+            "first_question": "비교 대상의 기간·모집단·단위가 일치하나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/analytics/price-volume-bridge.md",
+              "cases/analytics/open-day-rate.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "문의 내용을 분류하고 담당자에게 이관할 근거를 찾아줘",
+      "expected_families": [
+        "SUPPORT"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "SUPPORT",
+            "role": "primary",
+            "reason": "의사결정 단서: 문의, 이관",
+            "may_not_fit": "긴 요약문 생성으로 행동 누락을 숨기지 않는다. 개인정보를 과도하게 요약에 포함하지 않는다.",
+            "data_to_check": [
+              "행=인수인계 건, 키 ticket_id; status=open/resolved, next_action/owner/due는 문자열 또는 null. due는 이 예제에서 정규화된 기한 문자열이며 날짜 유효성 검사는 별도. 개선=첨부 근거 링크."
+            ],
+            "first_question": "처리 순서를 정하나요, 근거를 찾나요, 담당 부서를 정하나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/support/handoff-action-fields.md",
+              "cases/support/support-rule-overlap.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "사전 설명 연습으로 내 구현 선택의 증거를 점검하고 싶어",
+      "expected_families": [
+        "COACH"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "COACH",
+            "role": "primary",
+            "reason": "의사결정 단서: 설명 연습",
+            "may_not_fit": "점수곱을 객관적 위험확률로 해석하지 않는다. 실제 평가 질문을 예측하거나 답을 생성하지 않는다.",
+            "data_to_check": [
+              "행=가정, 키 assumption_id; fixture rows=[id,impact,uncertainty], 각 점수 정수1~3의 합의된 서열. null은 미평가. 개선=가정별 검증로그. 점수곱은 보정된 위험확률 아님."
+            ],
+            "first_question": "시험 전 창작 연습인가요? 본인의 선택을 입증할 실제 준비 기록은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/coach/assumption-challenge-queue.md",
+              "cases/coach/disclosure-labels.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "정원 12명 행사 신청을 접수하고 중복 체크인을 막아줘",
+      "expected_families": [
+        "EVENT"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "EVENT",
+            "role": "primary",
+            "reason": "의사결정 단서: 체크인, 정원",
+            "may_not_fit": "버튼 비활성화만으로 멱등성을 보장하지 않는다. 요청순서를 바꿔도 수락자가 같아야 한다는 잘못된 불변식을 쓰지 않는다.",
+            "data_to_check": [
+              "최소: ordered requests [request_id,person_id], capacity 정수. 행은 서버 수신순 사건, request_id는 재시도 식별, person_id는 좌석 유일성. null 키는 invalid. 개선: 취소·승격 사건. 원문 이름 대신 내부 키."
+            ],
+            "first_question": "정원이 찼을 때 거절·대기·승인 예외 중 어떤 정책이 적용되나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/event/seat-retry.md",
+              "cases/event/event-reward-ledger.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "도면의 장애물 뒤 가림과 겹치는 커버리지 면적을 구해줘",
+      "expected_families": [
+        "GEOMETRY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "GEOMETRY",
+            "role": "primary",
+            "reason": "의사결정 단서: 커버리지, 가림, 면적, 도면",
+            "may_not_fit": "개별 커버 수 합계로 점수화하지 않는다. 이산 표를 사용한 결과에 실제 시야·보안 효과를 보장하지 않는다.",
+            "data_to_check": [
+              "최소: candidate_id, cost 정수(예산 단위), covers 구역 ID 목록; budget. 한 행은 설치 후보. 키 candidate_id. null coverage는 unknown. 개선: 가중치·금지 설치 위치. 감지 기하를 이 표에서 추론하지 않는다."
+            ],
+            "first_question": "단순 면적 중첩인가요, 장애물 뒤 시야까지 판정해야 하나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/geometry/budget-cover.md",
+              "cases/geometry/radial-monitor-range.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "선수 지식에 맞춰 오개념 진단 퀴즈를 만들고 싶어",
+      "expected_families": [
+        "LEARNING"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "LEARNING",
+            "role": "primary",
+            "reason": "의사결정 단서: 선수 지식, 오개념, 퀴즈",
+            "may_not_fit": "오답 문자열에 특정 단어가 있다는 이유로 오개념을 확정하지 않는다. 생성형 튜터는 진단 근거를 대신하지 못한다.",
+            "data_to_check": [
+              "필수 attempt_id, tags 배열, feedback_map(tag→승인 피드백 id). 한 객체는 한 시도. null tags는 관측 없음, []는 관측된 오개념 없음. 설명 원문·승인버전은 운영 자료. 점수만으로 태그 생성하지 않는다."
+            ],
+            "first_question": "설명을 읽는 것이 목표인가요, 새 문제를 직접 수행하는 것이 목표인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/LEARNING/misconception-feedback.md",
+              "cases/LEARNING/prerequisite-ready.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "센서 시계열의 작은 변화와 결측을 구분하고 싶어",
+      "expected_families": [
+        "OPERATIONS"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "OPERATIONS",
+            "role": "primary",
+            "reason": "의사결정 단서: 센서",
+            "may_not_fit": "전체 평균만으로 장비나 작업자를 순위화하지 않는다. 회귀모형보다 정의와 층화 확인이 먼저다. 층이 너무 작으면 순위 대신 관측수와 불확실성을 표시한다.",
+            "data_to_check": [
+              "최소 필수: period, type, total(건), rework(건), 기준 weight. 한 행은 기간×유형 집계, 복합키 유일. null은 집계 미완료, 0건은 관측 대상 없음. 작업 시간은 있으면 개선. 정의가 없으면 수치만 병렬 제시하고 개선 판단 보류."
+            ],
+            "first_question": "경보 기준은 규격 위반인가요, 안정된 공정의 변화인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/OPERATIONS/stratified-rate.md",
+              "cases/OPERATIONS/time-slope.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "식단을 7일 편성하되 예산과 영양 조건을 모두 맞춰줘",
+      "expected_families": [
+        "PLANNING"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "PLANNING",
+            "role": "primary",
+            "reason": "의사결정 단서: 편성",
+            "may_not_fit": "인기 추천 문제와 기간 편성은 다르다. 후보를 무작정 추천 점수로 정렬하면 기간 제약을 놓친다. 큰 입력은 하루 수 축소와 수동 검토로 시작한다.",
+            "data_to_check": [
+              "최소 필수: activity id, cost(예산 단위), available_days; day 정수0..2와 fixed 활동 id, budget 정수. 한 행은 활동 혹은 고정 슬롯이며 타입 필드로 구분한다. null 비용은 미견적,0은 무료. 참가자 신원은 없어도 가능. 견적 미확정이면 최적 비용 주장 보류."
+            ],
+            "first_question": "기간 전체 필수조건과 선호조건 중 무엇을 절대로 완화하면 안 되나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/PLANNING/rotation-budget.md",
+              "cases/PLANNING/pack-order.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "증빙 누락과 승인 권한별 비용 처리 절차를 안내해줘",
+      "expected_families": [
+        "POLICY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "POLICY",
+            "role": "primary",
+            "reason": "의사결정 단서: 승인 권한, 증빙, 비용 처리",
+            "may_not_fit": "법률·회계 판단이 아니라 창작 운영 규칙 예제다. 챗봇이 정책을 추측하게 하지 않는다. 버전 불명 시 자동 경로를 멈추고 확인 담당자만 안내.",
+            "data_to_check": [
+              "최소 필수: request_id, amount(정수 비용단위), evidence(true/false/null), policy_version. 한 행은 신청 한 건. null 증빙은 미확인. 승인자표는 필수, 신청자 이름은 없어도 가능. 정책이 없으면 자료 요청 상태만 제공."
+            ],
+            "first_question": "이 건에 적용되는 정책 버전·효력 시점·승인권자는 누구인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/POLICY/evidence-approval.md",
+              "cases/POLICY/policy-receipt-allocation.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "새 공급원과 기존 공급원의 동등성을 허용범위로 검토해줘",
+      "expected_families": [
+        "QUALITY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "QUALITY",
+            "role": "primary",
+            "reason": "의사결정 단서: 동등성, 허용범위",
+            "may_not_fit": "현재 예제는 임의 합성 구간이며 실제 동등성 검정을 실행하지 않았다. 통계 라이브러리 설치만으로 설계 타당성이 확보되지 않는다. 원자료 없으면 포함 관계까지만 검증.",
+            "data_to_check": [
+              "최소 필수: batch_id, lower, upper(같은 두께 단위), margin>0, interval_method, confidence. 한 행은 한 비교의 사전 검증된 차이 구간. null은 미계산. 본 소형 예제는 주어진 구간의 포함 관계만 검사하며 신뢰구간을 추정하지 않는다. 원자료·분산·표본수 없으면 통계 타당성을 주장할 수 없다."
+            ],
+            "first_question": "차이가 없다는 검정인가요, 사전 합의한 허용범위 내 동등성을 입증하나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/QUALITY/equivalence-interval.md",
+              "cases/QUALITY/trial-exposure-cap.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "식단 후보 중 제공 가능한 것만 골라 개인 선호 순위를 추천해줘",
+      "expected_families": [
+        "RANKING"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "RANKING",
+            "role": "primary",
+            "reason": "의사결정 단서: 추천, 제공 가능",
+            "may_not_fit": "노출 조건이 다른 집계로 인기도를 확정하지 않는다.",
+            "data_to_check": [
+              "카드 한 행: id 문자열 키, impressions 비음수 정수 회, clicks 정수 회(0~impressions). comparable 불리언은 동일 집계 조건 확인 여부. (clicks+1)/(impressions+2)는 순위 점수이며 개인의 확률 추정 보장이 아니다."
+            ],
+            "first_question": "선택 불가능한 후보를 제외할 필수조건은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/RANKING/ranking-cold-start.md",
+              "cases/RANKING/ranking-without-labels.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "여러 수리 지점의 방문 순서를 시간창 안에서 정해줘",
+      "expected_families": [
+        "MOBILITY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "MOBILITY",
+            "role": "primary",
+            "reason": "의사결정 단서: 방문 순서, 시간창",
+            "may_not_fit": "서비스 완료 마감인 업무에 시작 마감 규칙을 적용하지 않는다.",
+            "data_to_check": [
+              "start 정수 분, stops 각 [id,travel,open,close,service] 분. travel은 직전 서비스 종료 후 이동 분. close 포함. 한 행은 순서가 고정된 방문1회."
+            ],
+            "first_question": "방문 순서를 바꿀 수 있나요, 고정 경로의 출발시각만 조정하나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/MOBILITY/mobility-window-wait.md",
+              "cases/MOBILITY/mobility-departure.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "게임 충돌과 승패 상태를 구현하고 재시작을 초기화해줘",
+      "expected_families": [
+        "INTERACTIVE"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "INTERACTIVE",
+            "role": "primary",
+            "reason": "의사결정 단서: 게임, 충돌, 재시작, 승패",
+            "may_not_fit": "분산 네트워크의 합의 문제를 이 로컬 batch 규칙으로 해결했다고 하지 않는다.",
+            "data_to_check": "경기 상태 session 정수, phase ready/running/ended, hp A/B 정수. damage 사건은 session,tick,player,amount,id. 같은 tick 전체 피해 적용 후 승패 판정. 재시작은 새 session.",
+            "first_question": "단일 사용자 상태 전이면 충분한가요, 실제 동시 접속이 필수인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/INTERACTIVE/interactive-reset.md",
+              "cases/INTERACTIVE/interactive-collision.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "재고의 가용량과 잠금량을 나누고 재시도 중복 실행을 막아줘",
+      "expected_families": [
+        "TRANSACTION"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "TRANSACTION",
+            "role": "primary",
+            "reason": "의사결정 단서: 가용량, 잠금량, 재시도 중복",
+            "may_not_fit": "분산 환경에서 이 메모리 ledger를 운영용 멱등 저장소로 쓰지 않는다.",
+            "data_to_check": "품목 stock total/locked 정수 개수, available=total-locked. 요청 id가 멱등 키이며 qty 양의 정수. 인도 시 total과 locked 모두 감소. 예약 시 locked만 증가.",
+            "first_question": "심사 통과와 실제 수량 변경은 어느 단계에서 확정되나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/TRANSACTION/transaction-reservation.md",
+              "cases/TRANSACTION/idempotent-fulfillment.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "부품 공급 의존 관계의 영향 경로와 병목을 찾고 싶어",
+      "expected_families": [
+        "DEPENDENCY"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "DEPENDENCY",
+            "role": "primary",
+            "reason": "의사결정 단서: 의존, 영향 경로, 병목",
+            "may_not_fit": "금액 손실·확률 예측이 필요한 과제에 단순 도달 수를 답으로 쓰지 않는다.",
+            "data_to_check": "방향 간선 한 행. source 공급 노드, target 의존 노드, type required/optional, verified 불리언. 아래는 source 중단이 target 검토 대상으로 전파되는 방향. 관계키(source,target,type).",
+            "first_question": "관계 존재만 추적하나요, 수량 영향까지 추정할 근거가 있나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/DEPENDENCY/dependency-reachability.md",
+              "cases/DEPENDENCY/dependency-removal-bottleneck.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          },
+          {
+            "family": "MOBILITY",
+            "role": "secondary",
+            "reason": "의사결정 단서: 경로",
+            "may_not_fit": "고정 경로 시간표에는 방문 순서 최적화가 맞지 않는다.",
+            "data_to_check": "노드 O 출발점, A/B/C 수거함. times[from][to] 정수 분. 대각선0, 모든 사용 간선 필수. 아래는 의도적으로 대칭인 합성 행렬이며 현실 가정이 아니다.",
+            "first_question": "방문 순서를 바꿀 수 있나요, 고정 경로의 출발시각만 조정하나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/MOBILITY/mobility-tour.md",
+              "cases/MOBILITY/mobility-window-wait.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "도와줘",
+      "expected_families": [],
+      "actual": {
+        "status": "unclassified",
+        "reason": "결정 구조를 판별할 근거가 부족합니다.",
+        "question": "결과를 보고 누가 어떤 결정을 해야 하나요? 대표 입력과 기대 출력 한 건을 확인하세요.",
+        "candidates": [],
+        "excluded_clauses": []
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "접수 정원 확인과 결제 재시도 중복 방지를 함께 다뤄줘",
+      "expected_families": [
+        "EVENT",
+        "TRANSACTION"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "EVENT",
+            "role": "primary",
+            "reason": "의사결정 단서: 정원",
+            "may_not_fit": "버튼 비활성화만으로 멱등성을 보장하지 않는다. 요청순서를 바꿔도 수락자가 같아야 한다는 잘못된 불변식을 쓰지 않는다.",
+            "data_to_check": [
+              "최소: ordered requests [request_id,person_id], capacity 정수. 행은 서버 수신순 사건, request_id는 재시도 식별, person_id는 좌석 유일성. null 키는 invalid. 개선: 취소·승격 사건. 원문 이름 대신 내부 키."
+            ],
+            "first_question": "정원이 찼을 때 거절·대기·승인 예외 중 어떤 정책이 적용되나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/event/seat-retry.md",
+              "cases/event/deadline-offset.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          },
+          {
+            "family": "TRANSACTION",
+            "role": "secondary",
+            "reason": "의사결정 단서: 재시도 중복",
+            "may_not_fit": "실패응답을 부수효과 없음으로 간주해 재실행하지 않는다. 클라이언트 버튼 잠금만으로 멱등을 보장하지 않는다. 분류테스트를 동시성·정확히한번실행 보장으로 확대하지 않는다. 시간 부족 시 자동재실행을 제외하고 수동검토 안내 유지.",
+            "data_to_check": [
+              "최소: key 문자열, quantity 양의 정수, history={key:[quantity,status,effect]}, status done/pending/failed, effect applied/absent/unknown. 한 행 이행요청. null history는 조회실패 unknown, {}는 기록없음 확인. failed의 effect absent는 별도 실행기 대조로 확인된 값이며 응답실패만으로 추정하지 않는다. 개선: atomic DB unique·payload hash·실행기 조정."
+            ],
+            "first_question": "심사 통과와 실제 수량 변경은 어느 단계에서 확정되나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/TRANSACTION/idempotent-fulfillment.md",
+              "cases/TRANSACTION/evidence-manual-review.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "request",
+      "request": "브라우저 자동화 금지 상태에서 센서 시계열 이상 분석만 하자",
+      "expected_families": [
+        "OPERATIONS"
+      ],
+      "actual": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "OPERATIONS",
+            "role": "primary",
+            "reason": "의사결정 단서: 센서",
+            "may_not_fit": "한계 초과는 원인 분석이 아니다. 지도나 이상탐지 모델이 결측 문제를 고치지는 않는다. 기준 미확정이면 관측/누락 표까지만 만든다.",
+            "data_to_check": [
+              "최소 필수: slot(기준 시간대의 정시 슬롯), temp_c(섭씨/null), 센서 id와 기대 슬롯 목록. 한 행은 센서 한 개의 관측 슬롯. null은 미수신. 교정상태는 있으면 개선, 지도는 없어도 가능. 시각 기준이 없으면 연속성 경보 보류."
+            ],
+            "first_question": "경보 기준은 규격 위반인가요, 안정된 공정의 변화인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/OPERATIONS/missing-versus-alarm.md",
+              "cases/OPERATIONS/time-slope.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          },
+          {
+            "family": "ANALYTICS",
+            "role": "secondary",
+            "reason": "의사결정 단서: 분석만",
+            "may_not_fit": "모든 행 sum 또는 파일명 사전순을 최신 정의로 쓰지 않는다. 값 누락을 0으로 채우지 않는다.",
+            "data_to_check": [
+              "행=report_key의 승인 버전, fixture rows=[key,version,value]; version 양의 정수, value 정수 단위수량. null value는 미확정이며 삭제와 다르다. 키=(key,version). 개선=승인 시각/tombstone. 파일수정일은 대체 기준 아님."
+            ],
+            "first_question": "비교 대상의 기간·모집단·단위가 일치하나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/analytics/revision-ledger.md",
+              "cases/analytics/bounded-missing-total.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "revision",
+      "input": {
+        "initial": "식단 추천 순위가 필요해",
+        "expected_initial": "RANKING",
+        "clarification": "개인 추천이 아니라 기간 전체 식단 계획에 예산 제약을 적용해",
+        "expected_revised": "PLANNING"
+      },
+      "actual_initial": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "RANKING",
+            "role": "primary",
+            "reason": "의사결정 단서: 추천",
+            "may_not_fit": "여러 요청의 공동 배정 또는 시간별 예약을 이 단순 순위로 풀지 않는다.",
+            "data_to_check": "키트 한 행. id 문자열 기본키, available 정수 개수, restricted 불리언, tags 문자열 배열. 요청은 interests 집합, k 정수. 재고 기준 시각은 실제 운영에서 필수다.",
+            "first_question": "선택 불가능한 후보를 제외할 필수조건은 무엇인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/RANKING/ranking-availability.md",
+              "cases/RANKING/ranking-without-labels.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "actual_revised": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "PLANNING",
+            "role": "primary",
+            "reason": "의사결정 단서: 식단 계획",
+            "may_not_fit": "인기 추천 문제와 기간 편성은 다르다. 후보를 무작정 추천 점수로 정렬하면 기간 제약을 놓친다. 큰 입력은 하루 수 축소와 수동 검토로 시작한다.",
+            "data_to_check": [
+              "최소 필수: activity id, cost(예산 단위), available_days; day 정수0..2와 fixed 활동 id, budget 정수. 한 행은 활동 혹은 고정 슬롯이며 타입 필드로 구분한다. null 비용은 미견적,0은 무료. 참가자 신원은 없어도 가능. 견적 미확정이면 최적 비용 주장 보류."
+            ],
+            "first_question": "기간 전체 필수조건과 선호조건 중 무엇을 절대로 완화하면 안 되나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/PLANNING/rotation-budget.md",
+              "cases/PLANNING/planning-infeasible-witness.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [
+          "개인 추천이 아니라"
+        ],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "revision",
+      "input": {
+        "initial": "센서 이상 추이를 보고 싶어",
+        "expected_initial": "OPERATIONS",
+        "clarification": "추이보다 공급원 변경 동등성 승인에 필요한 허용범위 검토야",
+        "expected_revised": "QUALITY"
+      },
+      "actual_initial": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "OPERATIONS",
+            "role": "primary",
+            "reason": "의사결정 단서: 센서, 추이",
+            "may_not_fit": "전후 차이를 정비의 인과효과로 단정하지 않는다. 분석 도구보다 제외 규칙 기록이 먼저다. 조건이 달라졌으면 수치를 병렬로 보여주는 범위까지 축소한다.",
+            "data_to_check": [
+              "필수 relative_day 정수(정비일0), value 수치(분/100건), washout_days 비음수정수. 한 행은 하루 집계, day 고유. 전은day<0,후는day>washout. null 값은 미확인. 조건표는 실제 해석에 필요."
+            ],
+            "first_question": "경보 기준은 규격 위반인가요, 안정된 공정의 변화인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/OPERATIONS/maintenance-washout.md",
+              "cases/OPERATIONS/missing-versus-alarm.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "actual_revised": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "QUALITY",
+            "role": "primary",
+            "reason": "의사결정 단서: 동등성, 공급원 변경, 허용범위",
+            "may_not_fit": "현재 예제는 임의 합성 구간이며 실제 동등성 검정을 실행하지 않았다. 통계 라이브러리 설치만으로 설계 타당성이 확보되지 않는다. 원자료 없으면 포함 관계까지만 검증.",
+            "data_to_check": [
+              "최소 필수: batch_id, lower, upper(같은 두께 단위), margin>0, interval_method, confidence. 한 행은 한 비교의 사전 검증된 차이 구간. null은 미계산. 본 소형 예제는 주어진 구간의 포함 관계만 검사하며 신뢰구간을 추정하지 않는다. 원자료·분산·표본수 없으면 통계 타당성을 주장할 수 없다."
+            ],
+            "first_question": "차이가 없다는 검정인가요, 사전 합의한 허용범위 내 동등성을 입증하나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/QUALITY/equivalence-interval.md",
+              "cases/QUALITY/trial-exposure-cap.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          },
+          {
+            "family": "OPERATIONS",
+            "role": "secondary",
+            "reason": "의사결정 단서: 추이",
+            "may_not_fit": "편향 평균0이 두 장비의 완전한 일치를 의미하지 않는다. t검정 비유의로 교체 승인하지 않는다. 동일시료 키가 없으면 대응 비교 중단.",
+            "data_to_check": [
+              "필수 specimen_id, a,b 수치(mm), tolerance 평균편향 허용(mm). 한 행은 같은 시료의 대응 측정. id 고유; null은 미측정. 교정·시각은 실제 장비 승인에 추가로 필요."
+            ],
+            "first_question": "경보 기준은 규격 위반인가요, 안정된 공정의 변화인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/OPERATIONS/paired-instrument-bias.md",
+              "cases/OPERATIONS/position-error-vector.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    },
+    {
+      "type": "revision",
+      "input": {
+        "initial": "비용 처리 정책과 승인 절차 안내가 필요해",
+        "expected_initial": "POLICY",
+        "clarification": "절차 안내는 충분하고 재고 잠금과 재시도 멱등성이 문제야",
+        "expected_revised": "TRANSACTION"
+      },
+      "actual_initial": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "POLICY",
+            "role": "primary",
+            "reason": "의사결정 단서: 비용 처리, 승인 절차",
+            "may_not_fit": "법률·회계 판단이 아니라 창작 운영 규칙 예제다. 챗봇이 정책을 추측하게 하지 않는다. 버전 불명 시 자동 경로를 멈추고 확인 담당자만 안내.",
+            "data_to_check": [
+              "최소 필수: request_id, amount(정수 비용단위), evidence(true/false/null), policy_version. 한 행은 신청 한 건. null 증빙은 미확인. 승인자표는 필수, 신청자 이름은 없어도 가능. 정책이 없으면 자료 요청 상태만 제공."
+            ],
+            "first_question": "이 건에 적용되는 정책 버전·효력 시점·승인권자는 누구인가요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/POLICY/evidence-approval.md",
+              "cases/POLICY/policy-delegation.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "actual_revised": {
+        "status": "candidate",
+        "candidates": [
+          {
+            "family": "TRANSACTION",
+            "role": "primary",
+            "reason": "의사결정 단서: 재고 잠금, 멱등",
+            "may_not_fit": "분산 환경에서 이 메모리 ledger를 운영용 멱등 저장소로 쓰지 않는다.",
+            "data_to_check": "품목 stock total/locked 정수 개수, available=total-locked. 요청 id가 멱등 키이며 qty 양의 정수. 인도 시 total과 locked 모두 감소. 예약 시 locked만 증가.",
+            "first_question": "심사 통과와 실제 수량 변경은 어느 단계에서 확정되나요?",
+            "baseline_methods": [
+              "baseline-first",
+              "verification"
+            ],
+            "cards": [
+              "cases/TRANSACTION/transaction-reservation.md",
+              "cases/TRANSACTION/idempotent-fulfillment.md"
+            ],
+            "retrieval_method": "offline Korean character ngram BM25-style; rank is not confidence"
+          }
+        ],
+        "excluded_clauses": [],
+        "limitations": "어휘 기반 후보 검색이며 완전한 의미·부정문 해석을 하지 못합니다. 제외된 절이 맞는지 확인하고 추가 답변으로 요청을 다시 기술해 재분류하세요. 적합도 확률이나 검증된 자동 설계가 아닙니다.",
+        "execution": "브라우저 자동화는 실행하지 않습니다. 계산·단위 검사와 허용된 수동 확인을 사용하세요."
+      },
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "design": "15 fresh reviewer-authored requests from expansion-plan decisions before authored expansion catalog was read. Expected family and decision are frozen; selected-card adequacy needs manual review.",
+  "requests": [
+    {
+      "request": "매출이 오른 원인을 단가 상승과 판매 수량 변화로 나눠 설명해야 한다. 같은 상품 기준으로 두 기간을 비교해 줘.",
+      "expected_primary": "ANALYTICS",
+      "expected_decision": "가격·물량 변화 분해"
+    },
+    {
+      "request": "문의 이력에서 말투만 다르고 같은 고장인 건들을 묶어 담당자가 대표 사례부터 읽도록 하고 싶다.",
+      "expected_primary": "SUPPORT",
+      "expected_decision": "유사 문의 묶기"
+    },
+    {
+      "request": "시험 전 발표 연습으로 긴 설명을 줄이려고 한다. 이미 입증한 핵심 판단과 한계는 빠지면 안 된다.",
+      "expected_primary": "COACH",
+      "expected_decision": "장황한 설명 개선"
+    },
+    {
+      "request": "정원이 찬 행사에서 한 명이 취소했다. 대기 명단 첫 사람의 응답 기한이 지났다면 누구를 올리고 어떤 이력을 남겨야 하나.",
+      "expected_primary": "EVENT",
+      "expected_decision": "대기 승격과 기한"
+    },
+    {
+      "request": "도면에 표시된 후보 설치점 중 배관 통로 안에 있는 점은 어떤 점수가 높아도 설치할 수 없다. 경계에 걸친 점도 판정해야 한다.",
+      "expected_primary": "GEOMETRY",
+      "expected_decision": "설치 금지 영역 필수조건"
+    },
+    {
+      "request": "학습 자료에서 역할 이름과 작업 단계 이름, 산출물 이름을 같은 종류로 외우고 있다. 서로 다른 분류 축을 구별시키고 싶다.",
+      "expected_primary": "LEARNING",
+      "expected_decision": "분류 체계 축 구별"
+    },
+    {
+      "request": "센서의 하루 수치는 모두 정상 범위인데 며칠 동안 조금씩 계속 치우친다. 한 번의 큰 이상과 다른 경보 규칙을 검토하자.",
+      "expected_primary": "OPERATIONS",
+      "expected_decision": "작은 지속 변화 검출"
+    },
+    {
+      "request": "주간 편성의 수요일 항목은 이미 확정됐다. 그것을 그대로 둔 채 나머지 날만 예산과 반복 조건에 맞춰 다시 계산해야 한다.",
+      "expected_primary": "PLANNING",
+      "expected_decision": "고정 일정 유지 재계산"
+    },
+    {
+      "request": "비용 처리 규정이 월 중간에 바뀌었다. 오늘 접수한 지난달 사용 건에 어느 정책 버전을 적용하는지 안내해야 한다.",
+      "expected_primary": "POLICY",
+      "expected_decision": "정책 효력일 버전 선택"
+    },
+    {
+      "request": "품질 평균은 비슷하지만 한 번의 생산 묶음에 불량이 몰렸다. 여러 lot를 한데 합친 비율만으로 공급원을 승인하면 안 될 것 같다.",
+      "expected_primary": "QUALITY",
+      "expected_decision": "lot 계층 비교"
+    },
+    {
+      "request": "추천을 처음 받는 사람이라 과거 선택 이력이 전혀 없다. 제공 가능한 후보 안에서 어떤 기본 목록을 보여줄지 정해야 한다.",
+      "expected_primary": "RANKING",
+      "expected_decision": "신규 사용자 기본 추천"
+    },
+    {
+      "request": "방문 경로를 짤 때 총 이동시간만 줄이면 한 사람이 너무 멀리 간다. 가장 긴 개인 이동시간을 줄이는 공평한 배정을 비교하고 싶다.",
+      "expected_primary": "MOBILITY",
+      "expected_decision": "최대 이동시간 공평성"
+    },
+    {
+      "request": "게임 봇이 계속 가장 가까운 목표로만 움직이다가 같은 두 칸을 왕복한다. 사람 없이도 추적과 회피 상태가 바뀌는 작은 규칙을 만들자.",
+      "expected_primary": "INTERACTIVE",
+      "expected_decision": "간단한 봇 상태 선택"
+    },
+    {
+      "request": "요청의 심사는 통과했지만 실제 재고 이동은 아직 끝나지 않았다. 화면에서 승인과 실행 완료를 별도 상태로 보여야 한다.",
+      "expected_primary": "TRANSACTION",
+      "expected_decision": "심사와 실행 상태 분리"
+    },
+    {
+      "request": "공급 의존 그래프의 같은 연결에 대해 두 자료가 서로 반대 방향을 말한다. 출처와 확인 시점을 보존하고 확정 관계와 구분하고 싶다.",
+      "expected_primary": "DEPENDENCY",
+      "expected_decision": "관계 출처 충돌 처리"
+    }
+  ]
+}

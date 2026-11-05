@@ -1,0 +1,1055 @@
+{
+  "case_count": 18,
+  "test_count": 56,
+  "results": [
+    {
+      "case": "sightline-barrier",
+      "type": "normal",
+      "input": {
+        "target_x": 8,
+        "barrier_x": [
+          3,
+          11
+        ]
+      },
+      "expected": "blocked",
+      "basis": "3은 (0,8] 안",
+      "actual": "blocked",
+      "status": "pass"
+    },
+    {
+      "case": "sightline-barrier",
+      "type": "boundary",
+      "input": {
+        "target_x": 8,
+        "barrier_x": [
+          9
+        ]
+      },
+      "expected": "visible",
+      "basis": "9는 표적 뒤",
+      "actual": "visible",
+      "status": "pass"
+    },
+    {
+      "case": "sightline-barrier",
+      "type": "missing",
+      "input": {
+        "target_x": 8,
+        "barrier_x": null
+      },
+      "expected": "unknown",
+      "basis": "미측정은 빈 목록 아님",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "minimum-cover-cost",
+      "type": "normal",
+      "input": {
+        "required": [
+          "u",
+          "v"
+        ],
+        "candidates": [
+          [
+            "a",
+            4,
+            [
+              "u",
+              "v"
+            ]
+          ],
+          [
+            "b",
+            1,
+            [
+              "u"
+            ]
+          ],
+          [
+            "c",
+            2,
+            [
+              "v"
+            ]
+          ]
+        ]
+      },
+      "expected": 3,
+      "basis": "b+c 비용 1+2 < a의4",
+      "actual": 3,
+      "status": "pass"
+    },
+    {
+      "case": "minimum-cover-cost",
+      "type": "boundary",
+      "input": {
+        "required": [],
+        "candidates": [
+          [
+            "a",
+            4,
+            [
+              "u"
+            ]
+          ]
+        ]
+      },
+      "expected": 0,
+      "basis": "빈 집합 비용0",
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "case": "minimum-cover-cost",
+      "type": "missing",
+      "input": {
+        "required": [
+          "u"
+        ],
+        "candidates": [
+          [
+            "a",
+            2,
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "미확인 커버를 빈 집합으로 간주하지 않음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "priority-zone-weight",
+      "type": "normal",
+      "input": {
+        "weights": {
+          "u": 7,
+          "v": 2,
+          "w": 2
+        },
+        "candidates": [
+          [
+            "a",
+            [
+              "v",
+              "w"
+            ]
+          ],
+          [
+            "b",
+            [
+              "u"
+            ]
+          ]
+        ]
+      },
+      "expected": "b",
+      "basis": "a=4,b=7",
+      "actual": "b",
+      "status": "pass"
+    },
+    {
+      "case": "priority-zone-weight",
+      "type": "boundary",
+      "input": {
+        "weights": {
+          "u": 0
+        },
+        "candidates": [
+          [
+            "b",
+            [
+              "u"
+            ]
+          ],
+          [
+            "a",
+            [
+              "u"
+            ]
+          ]
+        ]
+      },
+      "expected": "a",
+      "basis": "동점0,ID a",
+      "actual": "a",
+      "status": "pass"
+    },
+    {
+      "case": "priority-zone-weight",
+      "type": "missing",
+      "input": {
+        "weights": {
+          "u": 7
+        },
+        "candidates": [
+          [
+            "a",
+            [
+              "z"
+            ]
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "z 중요도 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "installation-exclusion",
+      "type": "normal",
+      "input": {
+        "point": [
+          3,
+          4
+        ],
+        "forbidden": [
+          0,
+          0,
+          5,
+          5
+        ]
+      },
+      "expected": "forbidden",
+      "basis": "0<=3,4<=5",
+      "actual": "forbidden",
+      "status": "pass"
+    },
+    {
+      "case": "installation-exclusion",
+      "type": "boundary",
+      "input": {
+        "point": [
+          5,
+          2
+        ],
+        "forbidden": [
+          0,
+          0,
+          5,
+          5
+        ]
+      },
+      "expected": "forbidden",
+      "basis": "x=5 경계 포함",
+      "actual": "forbidden",
+      "status": "pass"
+    },
+    {
+      "case": "installation-exclusion",
+      "type": "missing",
+      "input": {
+        "point": [
+          8,
+          2
+        ],
+        "forbidden": null
+      },
+      "expected": "unknown",
+      "basis": "영역 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "drawing-unit-check",
+      "type": "normal",
+      "input": {
+        "drawing_length": 12,
+        "unit": "cm",
+        "measured_mm": 121,
+        "tolerance_mm": 2
+      },
+      "expected": "match",
+      "basis": "120과121 차1<=2",
+      "actual": "match",
+      "status": "pass"
+    },
+    {
+      "case": "drawing-unit-check",
+      "type": "boundary",
+      "input": {
+        "drawing_length": 1,
+        "unit": "m",
+        "measured_mm": 1002,
+        "tolerance_mm": 2
+      },
+      "expected": "match",
+      "basis": "차2는 경계 포함",
+      "actual": "match",
+      "status": "pass"
+    },
+    {
+      "case": "drawing-unit-check",
+      "type": "missing",
+      "input": {
+        "drawing_length": 12,
+        "unit": null,
+        "measured_mm": 120,
+        "tolerance_mm": 2
+      },
+      "expected": "unknown",
+      "basis": "단위 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "radial-monitor-range",
+      "type": "normal",
+      "input": {
+        "center": [
+          0,
+          0
+        ],
+        "radius_m": 5,
+        "targets": [
+          [
+            "u",
+            3,
+            4
+          ],
+          [
+            "v",
+            6,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "basis": "25<=25,36>25",
+      "actual": 1,
+      "status": "pass"
+    },
+    {
+      "case": "radial-monitor-range",
+      "type": "boundary",
+      "input": {
+        "center": [
+          2,
+          2
+        ],
+        "radius_m": 0,
+        "targets": [
+          [
+            "u",
+            2,
+            2
+          ],
+          [
+            "v",
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "basis": "같은 점만 거리0",
+      "actual": 1,
+      "status": "pass"
+    },
+    {
+      "case": "radial-monitor-range",
+      "type": "missing",
+      "input": {
+        "center": [
+          0,
+          0
+        ],
+        "radius_m": 5,
+        "targets": [
+          [
+            "u",
+            null,
+            4
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "좌표 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "survival-resource-tick",
+      "type": "normal",
+      "input": {
+        "oxygen": 10,
+        "rate": 2,
+        "elapsed_s": 3,
+        "paused": false
+      },
+      "expected": 4,
+      "basis": "10-2*3=4",
+      "actual": 4,
+      "status": "pass"
+    },
+    {
+      "case": "survival-resource-tick",
+      "type": "boundary",
+      "input": {
+        "oxygen": 10,
+        "rate": 2,
+        "elapsed_s": 5,
+        "paused": false
+      },
+      "expected": 0,
+      "basis": "정확히0",
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "case": "survival-resource-tick",
+      "type": "missing",
+      "input": {
+        "oxygen": 10,
+        "rate": 2,
+        "elapsed_s": null,
+        "paused": false
+      },
+      "expected": "unknown",
+      "basis": "시간 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "bot-grid-step",
+      "type": "normal",
+      "input": {
+        "pos": [
+          0,
+          0
+        ],
+        "target": [
+          2,
+          1
+        ],
+        "blocked": []
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "basis": "오른쪽으로 거리3→2",
+      "actual": [
+        1,
+        0
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "bot-grid-step",
+      "type": "boundary",
+      "input": {
+        "pos": [
+          0,
+          0
+        ],
+        "target": [
+          1,
+          0
+        ],
+        "blocked": [
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "basis": "거리 감소 유일 칸 막힘",
+      "actual": [
+        0,
+        0
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "bot-grid-step",
+      "type": "missing",
+      "input": {
+        "pos": [
+          0,
+          0
+        ],
+        "target": [
+          1,
+          0
+        ],
+        "blocked": null
+      },
+      "expected": "unknown",
+      "basis": "벽 정보 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "shrinking-safe-zone",
+      "type": "normal",
+      "input": {
+        "initial_radius_m": 10,
+        "shrink_m_per_s": 2,
+        "min_radius_m": 3,
+        "elapsed_s": 2,
+        "distance_m": 7
+      },
+      "expected": "outside",
+      "basis": "반경6,거리7",
+      "actual": "outside",
+      "status": "pass"
+    },
+    {
+      "case": "shrinking-safe-zone",
+      "type": "boundary",
+      "input": {
+        "initial_radius_m": 10,
+        "shrink_m_per_s": 2,
+        "min_radius_m": 3,
+        "elapsed_s": 8,
+        "distance_m": 3
+      },
+      "expected": "safe",
+      "basis": "최소반경3 경계",
+      "actual": "safe",
+      "status": "pass"
+    },
+    {
+      "case": "shrinking-safe-zone",
+      "type": "missing",
+      "input": {
+        "initial_radius_m": 10,
+        "shrink_m_per_s": 2,
+        "min_radius_m": 3,
+        "elapsed_s": null,
+        "distance_m": 3
+      },
+      "expected": "unknown",
+      "basis": "시간 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "simultaneous-outcome",
+      "type": "normal",
+      "input": {
+        "arrivals": [
+          [
+            "a",
+            10.5
+          ],
+          [
+            "b",
+            10.8
+          ]
+        ],
+        "deadline_s": 10,
+        "grace_s": 1,
+        "batch_complete": true
+      },
+      "expected": [
+        "a"
+      ],
+      "basis": "유예상한11 이내 둘 중10.5가 빠름",
+      "actual": [
+        "a"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "simultaneous-outcome",
+      "type": "boundary",
+      "input": {
+        "arrivals": [
+          [
+            "a",
+            11
+          ],
+          [
+            "b",
+            11
+          ],
+          [
+            "c",
+            11.1
+          ]
+        ],
+        "deadline_s": 10,
+        "grace_s": 1,
+        "batch_complete": true
+      },
+      "expected": [
+        "a",
+        "b"
+      ],
+      "basis": "11 경계 포함, 두 명 동률,11.1 제외",
+      "actual": [
+        "a",
+        "b"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "simultaneous-outcome",
+      "type": "missing",
+      "input": {
+        "arrivals": [
+          [
+            "a",
+            9
+          ]
+        ],
+        "deadline_s": 10,
+        "grace_s": 1,
+        "batch_complete": false
+      },
+      "expected": "pending",
+      "basis": "전체 도착배치 미완료로 승자보류",
+      "actual": "pending",
+      "status": "pass"
+    },
+    {
+      "case": "score-event-replay",
+      "type": "normal",
+      "input": {
+        "events": [
+          [
+            "e1",
+            3,
+            ""
+          ],
+          [
+            "e2",
+            5,
+            ""
+          ],
+          [
+            "r1",
+            -3,
+            "e1"
+          ]
+        ]
+      },
+      "expected": 5,
+      "basis": "3+5-3=5, e1 한 번 취소",
+      "actual": 5,
+      "status": "pass"
+    },
+    {
+      "case": "score-event-replay",
+      "type": "boundary",
+      "input": {
+        "events": [
+          [
+            "e1",
+            3,
+            ""
+          ],
+          [
+            "r1",
+            -3,
+            "e1"
+          ],
+          [
+            "r2",
+            -3,
+            "e1"
+          ]
+        ]
+      },
+      "expected": "conflict",
+      "basis": "같은 원획득 e1 두번취소 금지",
+      "actual": "conflict",
+      "status": "pass"
+    },
+    {
+      "case": "score-event-replay",
+      "type": "missing",
+      "input": {
+        "events": [
+          [
+            "r1",
+            -3,
+            "e1"
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "원획득 e1 자료없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "multiplayer-scope-gate",
+      "type": "normal",
+      "input": {
+        "devices": 3,
+        "shared_state": true,
+        "server_permission": "allowed"
+      },
+      "expected": "server_needed",
+      "basis": "다중 장치 공유",
+      "actual": "server_needed",
+      "status": "pass"
+    },
+    {
+      "case": "multiplayer-scope-gate",
+      "type": "boundary",
+      "input": {
+        "devices": 1,
+        "shared_state": true,
+        "server_permission": "forbidden"
+      },
+      "expected": "local",
+      "basis": "단일 장치 통신 불필요",
+      "actual": "local",
+      "status": "pass"
+    },
+    {
+      "case": "multiplayer-scope-gate",
+      "type": "missing",
+      "input": {
+        "devices": 3,
+        "shared_state": true,
+        "server_permission": "unknown"
+      },
+      "expected": "unknown",
+      "basis": "통신 허용 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "review-execution-separation",
+      "type": "normal",
+      "input": {
+        "decision": "approved",
+        "receipt": false
+      },
+      "expected": "ready",
+      "basis": "허가됐으나 미인도",
+      "actual": "ready",
+      "status": "pass"
+    },
+    {
+      "case": "review-execution-separation",
+      "type": "boundary",
+      "input": {
+        "decision": "rejected",
+        "receipt": true
+      },
+      "expected": "conflict",
+      "basis": "거절과 인도 상충",
+      "actual": "conflict",
+      "status": "pass"
+    },
+    {
+      "case": "review-execution-separation",
+      "type": "missing",
+      "input": {
+        "decision": "approved",
+        "receipt": null
+      },
+      "expected": "unknown",
+      "basis": "실행 증거 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "policy-reason-priority",
+      "type": "normal",
+      "input": {
+        "authorized": false,
+        "age_days": 15,
+        "limit_days": 10,
+        "quantity": 4,
+        "max_quantity": 2
+      },
+      "expected": "AUTH",
+      "basis": "최우선 권한실패",
+      "actual": "AUTH",
+      "status": "pass"
+    },
+    {
+      "case": "policy-reason-priority",
+      "type": "boundary",
+      "input": {
+        "authorized": true,
+        "age_days": 10,
+        "limit_days": 10,
+        "quantity": 2,
+        "max_quantity": 2
+      },
+      "expected": "PASS",
+      "basis": "두 상한과같음 허용",
+      "actual": "PASS",
+      "status": "pass"
+    },
+    {
+      "case": "policy-reason-priority",
+      "type": "missing",
+      "input": {
+        "authorized": null,
+        "age_days": 1,
+        "limit_days": 10,
+        "quantity": 1,
+        "max_quantity": 2
+      },
+      "expected": "unknown",
+      "basis": "권한 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "evidence-manual-review",
+      "type": "normal",
+      "input": {
+        "required": [
+          "photo",
+          "tag"
+        ],
+        "present": [
+          "tag"
+        ],
+        "age_days": 1,
+        "max_age_days": 3,
+        "defect": false
+      },
+      "expected": "manual_missing",
+      "basis": "photo 누락",
+      "actual": "manual_missing",
+      "status": "pass"
+    },
+    {
+      "case": "evidence-manual-review",
+      "type": "boundary",
+      "input": {
+        "required": [
+          "photo"
+        ],
+        "present": [
+          "photo"
+        ],
+        "age_days": 3,
+        "max_age_days": 3,
+        "defect": false
+      },
+      "expected": "ready_for_decision",
+      "basis": "시효3 경계 허용",
+      "actual": "ready_for_decision",
+      "status": "pass"
+    },
+    {
+      "case": "evidence-manual-review",
+      "type": "missing",
+      "input": {
+        "required": [
+          "photo"
+        ],
+        "present": [
+          "photo"
+        ],
+        "age_days": null,
+        "max_age_days": 3,
+        "defect": false
+      },
+      "expected": "unknown",
+      "basis": "촬영 나이 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "idempotent-fulfillment",
+      "type": "normal",
+      "input": {
+        "key": "k1",
+        "quantity": 3,
+        "history": {
+          "k1": [
+            3,
+            "done",
+            "applied"
+          ]
+        }
+      },
+      "expected": "replay_done",
+      "basis": "같은 작업 완료기록",
+      "actual": "replay_done",
+      "status": "pass"
+    },
+    {
+      "case": "idempotent-fulfillment",
+      "type": "boundary",
+      "input": {
+        "key": "k1",
+        "quantity": 4,
+        "history": {
+          "k1": [
+            3,
+            "done",
+            "applied"
+          ]
+        }
+      },
+      "expected": "conflict",
+      "basis": "같은키 수량변경",
+      "actual": "conflict",
+      "status": "pass"
+    },
+    {
+      "case": "idempotent-fulfillment",
+      "type": "missing",
+      "input": {
+        "key": "k1",
+        "quantity": 3,
+        "history": null
+      },
+      "expected": "unknown",
+      "basis": "기록조회 실패",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "idempotent-fulfillment",
+      "type": "failed_safe_retry",
+      "input": {
+        "key": "k1",
+        "quantity": 3,
+        "history": {
+          "k1": [
+            3,
+            "failed",
+            "absent"
+          ]
+        }
+      },
+      "expected": "retry_allowed",
+      "basis": "실패했고 부수효과없음이확인된 경우만재시도",
+      "actual": "retry_allowed",
+      "status": "pass"
+    },
+    {
+      "case": "idempotent-fulfillment",
+      "type": "failed_uncertain",
+      "input": {
+        "key": "k1",
+        "quantity": 3,
+        "history": {
+          "k1": [
+            3,
+            "failed",
+            "unknown"
+          ]
+        }
+      },
+      "expected": "manual_review",
+      "basis": "실패응답이 실제이행없음을 증명하지않음",
+      "actual": "manual_review",
+      "status": "pass"
+    },
+    {
+      "case": "valuation-time-alignment",
+      "type": "normal",
+      "input": {
+        "quantity": 4,
+        "unit_price": 7,
+        "quantity_time": "2026-01-01T00:00:00Z",
+        "price_time": "2026-01-01T00:00:00Z"
+      },
+      "expected": 28,
+      "basis": "4*7=28 동일시점",
+      "actual": 28,
+      "status": "pass"
+    },
+    {
+      "case": "valuation-time-alignment",
+      "type": "boundary",
+      "input": {
+        "quantity": 0,
+        "unit_price": 7,
+        "quantity_time": "2026-01-01T00:00:00Z",
+        "price_time": "2026-01-02T00:00:00Z"
+      },
+      "expected": "stale",
+      "basis": "수량0이어도 시점게이트 적용",
+      "actual": "stale",
+      "status": "pass"
+    },
+    {
+      "case": "valuation-time-alignment",
+      "type": "missing",
+      "input": {
+        "quantity": 4,
+        "unit_price": null,
+        "quantity_time": "2026-01-01T00:00:00Z",
+        "price_time": "2026-01-01T00:00:00Z"
+      },
+      "expected": "unknown",
+      "basis": "단가없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "ledger-chain-audit",
+      "type": "normal",
+      "input": {
+        "opening": 5,
+        "entries": [
+          [
+            1,
+            3,
+            8
+          ],
+          [
+            2,
+            -2,
+            6
+          ]
+        ]
+      },
+      "expected": 6,
+      "basis": "5+3=8,8-2=6",
+      "actual": 6,
+      "status": "pass"
+    },
+    {
+      "case": "ledger-chain-audit",
+      "type": "boundary",
+      "input": {
+        "opening": 5,
+        "entries": [
+          [
+            1,
+            -5,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "basis": "정확히0 허용",
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "case": "ledger-chain-audit",
+      "type": "missing",
+      "input": {
+        "opening": 5,
+        "entries": [
+          [
+            1,
+            null,
+            5
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "변경량 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "python": "3.12.14",
+  "suites": [
+    {
+      "suite": "check_a",
+      "checks": 65,
+      "passed": 65,
+      "status": "pass"
+    },
+    {
+      "suite": "check_b",
+      "checks": 60,
+      "passed": 60,
+      "status": "pass"
+    },
+    {
+      "suite": "check_c",
+      "checks": 60,
+      "passed": 60,
+      "status": "pass"
+    },
+    {
+      "suite": "check_expansion_a",
+      "checks": 66,
+      "passed": 66,
+      "status": "pass"
+    },
+    {
+      "suite": "check_expansion_b",
+      "checks": 64,
+      "passed": 64,
+      "status": "pass"
+    },
+    {
+      "suite": "check_expansion_c",
+      "checks": 61,
+      "passed": 61,
+      "status": "pass"
+    },
+    {
+      "suite": "check_expansion_d",
+      "checks": 55,
+      "passed": 55,
+      "status": "pass"
+    },
+    {
+      "suite": "check_expansion_e",
+      "checks": 56,
+      "passed": 56,
+      "status": "pass"
+    }
+  ],
+  "covered_cases": 120,
+  "missing_cases": [],
+  "unexpected_cases": [],
+  "checks": 487,
+  "passed": 487,
+  "status": "pass",
+  "scope": "Small synthetic expected-value oracles only; not production applications, UI, concurrency, or user outcomes."
+}

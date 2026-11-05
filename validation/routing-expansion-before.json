@@ -1,0 +1,642 @@
+{
+  "checked_at": "2026-11-05T06:50:41.181568+00:00",
+  "python": "3.12.14",
+  "catalog_count": 120,
+  "design": "18 fresh validator-authored requests frozen before expanded catalog; no router tuning will be applied in response. Expected-case retrieval is evaluated separately from family classification.",
+  "total": 18,
+  "family_passed": 18,
+  "case_retrieval_evaluated": 17,
+  "expected_case_retrieved": 16,
+  "results": [
+    {
+      "test": {
+        "request": "휴관일이 많았던 전시관과 매일 열었던 전시관의 실적을 영업 하루당 입장객으로 비교하고 싶다. 총합 순위는 필요 없어.",
+        "expected_primary": "ANALYTICS",
+        "expected_case_id": "open-day-rate",
+        "intent": "운영일 분모 비교"
+      },
+      "actual_primary": "ANALYTICS",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "open-day-rate",
+          "title": "개관일 수가 다른 전시실 이용량 비교",
+          "family": "ANALYTICS",
+          "depth": "deep",
+          "path": "cases/analytics/open-day-rate.md",
+          "decision_signature": null
+        },
+        {
+          "id": "bounded-missing-total",
+          "title": "누락 수량이 있는 총량의 가능 범위",
+          "family": "ANALYTICS",
+          "depth": "standard",
+          "path": "cases/analytics/bounded-missing-total.md",
+          "decision_signature": {
+            "decision": "누락 수량이 있는 총량의 가능 범위",
+            "input_structure": "행=중복 없는 시간구간, 키 slot_id; counts는 정수 인원 또는 null, cap은 누락구간별 공통 최대 인원 정수. fixture에서 슬롯은 배열 위치. null cap은 상한 미확인. 개선=개별 슬롯 상한.",
+            "hard_constraint": "누락을0이라고 확정하거나 관측 평균 대체를 실제 총량으로 발표하지 않는다.",
+            "validation": "관측13,누락1×10"
+          }
+        }
+      ],
+      "excluded_clauses": [
+        "총합 순위는 필요 없어"
+      ],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "수리 문의마다 남은 작업시간이 다른데 마감까지 여유가 가장 적은 건부터 작업하고 싶다.",
+        "expected_primary": "SUPPORT",
+        "expected_case_id": "repair-slack",
+        "intent": "마감에서 작업량을 뺀 우선순위"
+      },
+      "actual_primary": "SUPPORT",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "repair-slack",
+          "title": "수리 문의의 마감 여유시간 정렬",
+          "family": "SUPPORT",
+          "depth": "deep",
+          "path": "cases/support/repair-slack.md",
+          "decision_signature": null
+        },
+        {
+          "id": "draft-release-gate",
+          "title": "답변 초안의 발송 전 필수 검토",
+          "family": "SUPPORT",
+          "depth": "standard",
+          "path": "cases/support/draft-release-gate.md",
+          "decision_signature": {
+            "decision": "답변 초안의 발송 전 필수 검토",
+            "input_structure": "행=초안 한 버전, 키 draft_id+version; evidence_checked,recipient_checked,policy_checked는 true/false/null. fixture checks 배열 순서가 세 필수항목. 개선=검토자/시각. 고객 메시지 원문은 예제 불필요.",
+            "hard_constraint": "모두 체크됐다고 자동 발송하지 않는다. 리뷰어 이름만 있으면 검토 완료로 추정하지 않는다.",
+            "validation": "필수3항목검토"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "시험 전 설명 연습이다. 내가 한 수치 주장이 준비 기록에 있는 사실인지 근거 대장을 보고 점검해 줘.",
+        "expected_primary": "COACH",
+        "expected_case_id": "claim-ledger",
+        "intent": "주장과 실제 증거 대조"
+      },
+      "actual_primary": "COACH",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "claim-ledger",
+          "title": "설명 연습의 수치 주장과 근거 대조",
+          "family": "COACH",
+          "depth": "deep",
+          "path": "cases/coach/claim-ledger.md",
+          "decision_signature": null
+        },
+        {
+          "id": "rater-disagreement",
+          "title": "모의 설명 평가자의 불일치 찾기",
+          "family": "COACH",
+          "depth": "deep",
+          "path": "cases/coach/rater-disagreement.md",
+          "decision_signature": null
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "온라인 행사 참여 자격을 신청 시각으로 판단한다. 제출 시각마다 UTC 오프셋이 달라서 마감 직전인지 확인해야 한다.",
+        "expected_primary": "EVENT",
+        "expected_case_id": "deadline-offset",
+        "intent": "절대 시각 마감 경계"
+      },
+      "actual_primary": "EVENT",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "deadline-offset",
+          "title": "시간대가 다른 신청의 마감 판정",
+          "family": "EVENT",
+          "depth": "deep",
+          "path": "cases/event/deadline-offset.md",
+          "decision_signature": null
+        },
+        {
+          "id": "event-reward-ledger",
+          "title": "참여 완료 보상의 한 번 지급",
+          "family": "EVENT",
+          "depth": "standard",
+          "path": "cases/event/event-reward-ledger.md",
+          "decision_signature": {
+            "decision": "창작: 작은 탐방 행사에서 완료 확인 메시지가 재전송되어 같은 기념 토큰이 여러 번 지급될 위험이 있다.",
+            "input_structure": "fixture 한 행 [claim_key, tokens]는 같은 행사에서 승인된 지급 요청. tokens는 비음수 정수 개수. claim_key는 참가자×행사의 멱등키. null 수량/키는 unknown. 실제 지급 API는 포함하지 않는다.",
+            "hard_constraint": "처음 본 키의 승인 토큰만 합산하고 같은 내용 재전송은 생략한다. 같은 키 다른 수량은 conflict.",
+            "validation": "0개 승인도 기록 가능한 경계"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "도면에서 두 청소 구역이 겹쳤다. 중복해서 세지 않은 실제 면적을 보고해야 한다.",
+        "expected_primary": "GEOMETRY",
+        "expected_case_id": "rectangle-union",
+        "intent": "겹친 사각형 합집합"
+      },
+      "actual_primary": "GEOMETRY",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "rectangle-union",
+          "title": "겹치는 바닥 점검 구역의 면적",
+          "family": "GEOMETRY",
+          "depth": "deep",
+          "path": "cases/geometry/rectangle-union.md",
+          "decision_signature": null
+        },
+        {
+          "id": "drawing-unit-check",
+          "title": "도면 좌표와 실측 기준선의 축척 검사",
+          "family": "GEOMETRY",
+          "depth": "standard",
+          "path": "cases/geometry/drawing-unit-check.md",
+          "decision_signature": {
+            "decision": "unit-validation",
+            "input_structure": "최소: drawing_length 양수, unit mm/cm/m, measured_mm 양수, tolerance_mm>=0; 한 행 calibration_id별 같은 기준선. null 필드는 unknown. 개선: 두 번째 축 기준선·원점·회전. 실측 없으면 축척 검증 불가.",
+            "hard_constraint": "위경도에 mm 환산을 적용하지 않는다. 단위 없는 숫자에서 자동으로 가장 잘 맞는 단위를 정답으로 확정하지 않는다.",
+            "validation": "120과121 차1<=2; 차2는 경계 포함; 단위 없음"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "신입 학습 퀴즈를 만들기 전에 선수 지식을 완료한 사람에게만 다음 단원을 열고 싶다.",
+        "expected_primary": "LEARNING",
+        "expected_case_id": "prerequisite-ready",
+        "intent": "선수 완료 관계"
+      },
+      "actual_primary": "LEARNING",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "prerequisite-ready",
+          "title": "선수 개념을 이수한 다음 실습 선택",
+          "family": "LEARNING",
+          "depth": "deep",
+          "path": "cases/LEARNING/prerequisite-ready.md",
+          "decision_signature": null
+        },
+        {
+          "id": "answer-evidence-coverage",
+          "title": "답변 주장마다 활성 근거 연결",
+          "family": "LEARNING",
+          "depth": "standard",
+          "path": "cases/LEARNING/answer-evidence-coverage.md",
+          "decision_signature": {
+            "decision": "답변 초안을 공개하기 전에 모든 주장에 근거가 있는지 판정",
+            "input_structure": "claim ids × source-supported fact ids",
+            "hard_constraint": "활성 출처 없는 주장은 지원됨 표시 금지",
+            "validation": "한 주장 누락·폐기 출처를 구분"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "센서 기록이 비어 있는 날을 정상으로 처리한 경보를 고쳐야 한다. 결측과 한계 초과를 별도로 표시하자.",
+        "expected_primary": "OPERATIONS",
+        "expected_case_id": "missing-versus-alarm",
+        "intent": "결측·정상·이상 세 상태"
+      },
+      "actual_primary": "OPERATIONS",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "missing-versus-alarm",
+          "title": "누락 센서와 실제 상한 초과 분리",
+          "family": "OPERATIONS",
+          "depth": "deep",
+          "path": "cases/OPERATIONS/missing-versus-alarm.md",
+          "decision_signature": null
+        },
+        {
+          "id": "inspection-value-per-minute",
+          "title": "경보 후 첫 점검의 탐지 가능성 대비 시간",
+          "family": "OPERATIONS",
+          "depth": "standard",
+          "path": "cases/OPERATIONS/inspection-value-per-minute.md",
+          "decision_signature": {
+            "decision": "제한된 점검시간에서 첫 확인 항목을 고른다",
+            "input_structure": "inspection id × estimated hit probability × minutes",
+            "hard_constraint": "확률·소요시간 근거와양수시간필수",
+            "validation": "비싼고확률점검과짧은점검비교"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "주간 서비스 편성에서 같은 항목이 연속하지 않게 하면서 총 예산을 지키는 작은 계획을 계산해 줘.",
+        "expected_primary": "PLANNING",
+        "expected_case_id": "rotation-budget",
+        "intent": "기간 반복 제약과 예산"
+      },
+      "actual_primary": "PLANNING",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "planning-repeat-gap",
+          "title": "서비스 종류의 최소 재등장 간격",
+          "family": "PLANNING",
+          "depth": "standard",
+          "path": "cases/PLANNING/planning-repeat-gap.md",
+          "decision_signature": {
+            "decision": "창작: 작은 체험 공간이 같은 활동을 연속 며칠 피하는 수준을 넘어 재등장 간격을 명확히 검증하려 한다.",
+            "input_structure": "schedule은 day0부터 활동 ID 배열, min_gap은 같은 ID 등장 인덱스 차이의 최소 정수. 한 행은 하루 한 활동. null 활동은 unknown이며 휴관 표시와 다르다.",
+            "hard_constraint": "활동별 최근 등장 위치를 저장하고 현재−이전<min_gap인 인접 재등장 쌍을 출력한다.",
+            "validation": "간격3은 허용"
+          }
+        },
+        {
+          "id": "planning-resource-blend",
+          "title": "서비스 묶음의 비용과 최소 성능",
+          "family": "PLANNING",
+          "depth": "standard",
+          "path": "cases/PLANNING/planning-resource-blend.md",
+          "decision_signature": {
+            "decision": "창작: 이동 안내소가 두 종류의 휴대 조명 묶음을 조합해 필요한 밝기 단위를 확보하려 한다.",
+            "input_structure": "A/B 각각 cost와 units는 정수 비용/성능단위, max_each 정수 개, required 최소 성능. 한 객체는 한 운영일 계획. 장치 상호간 빛 중첩이나 실제 조도는 모델 밖. null required는 unknown.",
+            "hard_constraint": "0..max_each 수량 조합을 전수열거해 성능 합≥required만 남기고 비용→수량→A수량 순으로 최소 선택한다.",
+            "validation": "요구0이면 빈 구성"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": false
+    },
+    {
+      "test": {
+        "request": "증빙이 없는 비용 요청은 금액이 작아도 보류해야 한다. 증빙이 있으면 승인 권한을 금액 구간으로 나눈다.",
+        "expected_primary": "POLICY",
+        "expected_case_id": "evidence-approval",
+        "intent": "증빙 관문 후 권한 분기"
+      },
+      "actual_primary": "POLICY",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "evidence-approval",
+          "title": "증빙 누락과 승인 권한을 분리한 비용 안내",
+          "family": "POLICY",
+          "depth": "deep",
+          "path": "cases/POLICY/evidence-approval.md",
+          "decision_signature": null
+        },
+        {
+          "id": "policy-delegation",
+          "title": "대리 승인 위임의 한도와 기간",
+          "family": "POLICY",
+          "depth": "standard",
+          "path": "cases/POLICY/policy-delegation.md",
+          "decision_signature": {
+            "decision": "창작: 소규모 자료관이 담당자 부재 중 대리 승인자가 처리할 수 있는 요청을 구별하려 한다.",
+            "input_structure": "amount,owner_limit,delegate_limit는 같은 정수 비용단위; day,start,end는 동일 기준 정수 일. 한 객체는 요청×위임 조합, 운영 키 request_id/delegation_id. null은 unknown.",
+            "hard_constraint": "유효기간 내이고 amount≤min(owner_limit,delegate_limit)이면 delegated, 아니면 original_owner로 전달.",
+            "validation": "한도와 종료일 포함"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "새 공급원 품질의 동등성을 보려 한다. 신뢰구간 전체가 미리 정한 허용범위 안에 있는지 판단해야 한다.",
+        "expected_primary": "QUALITY",
+        "expected_case_id": "equivalence-interval",
+        "intent": "동등성 구간"
+      },
+      "actual_primary": "QUALITY",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "equivalence-interval",
+          "title": "차이 미검출과 동등성 구간 판정 구별",
+          "family": "QUALITY",
+          "depth": "deep",
+          "path": "cases/QUALITY/equivalence-interval.md",
+          "decision_signature": null
+        },
+        {
+          "id": "mandatory-gates",
+          "title": "필수 승인 누락을 가격으로 상쇄하지 않는 후보 비교",
+          "family": "QUALITY",
+          "depth": "deep",
+          "path": "cases/QUALITY/mandatory-gates.md",
+          "decision_signature": null
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "추천 목록에서 품절과 금지 품목을 먼저 제거하고 관심 속성이 겹치는 순서로 남은 후보를 보여줘.",
+        "expected_primary": "RANKING",
+        "expected_case_id": "ranking-availability",
+        "intent": "필터 후 속성 순위"
+      },
+      "actual_primary": "RANKING",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "ranking-attribute-distance",
+          "title": "작업 조건과 가까운 공구 후보 순위",
+          "family": "RANKING",
+          "depth": "standard",
+          "path": "cases/RANKING/ranking-attribute-distance.md",
+          "decision_signature": {
+            "decision": "목표 수치 속성에 가까운 공구를 고른다",
+            "input_structure": "후보의 kg·mm 속성과 목표·정규화 단위",
+            "hard_constraint": "필수 규격은 별도 필터; 양수 정규화 단위",
+            "validation": "단위 정규화 거리와 정확 일치0"
+          }
+        },
+        {
+          "id": "ranking-availability",
+          "title": "대여 가능한 관찰 키트 우선 추천",
+          "family": "RANKING",
+          "depth": "deep",
+          "path": "cases/RANKING/ranking-availability.md",
+          "decision_signature": null
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "방문 순서는 고정되어 있다. 각 지점의 도착 제한에 모두 맞는 출발시각 범위를 알고 싶다.",
+        "expected_primary": "MOBILITY",
+        "expected_case_id": "mobility-departure",
+        "intent": "고정 경로 출발시간 교집합"
+      },
+      "actual_primary": "MOBILITY",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "mobility-departure",
+          "title": "고정 순회 점검의 출발 가능 구간",
+          "family": "MOBILITY",
+          "depth": "deep",
+          "path": "cases/MOBILITY/mobility-departure.md",
+          "decision_signature": null
+        },
+        {
+          "id": "mobility-tour",
+          "title": "수리 부품 순회 수거의 방문 순서",
+          "family": "MOBILITY",
+          "depth": "deep",
+          "path": "cases/MOBILITY/mobility-tour.md",
+          "decision_signature": null
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "게임이 끝난 뒤 재시작하면 예전 타이머와 체력, 승패가 남지 않아야 한다. 같은 시점에 둘 다 쓰러지는 경우도 있다.",
+        "expected_primary": "INTERACTIVE",
+        "expected_case_id": "interactive-reset",
+        "intent": "종료 동시성 및 재시작 초기화"
+      },
+      "actual_primary": "INTERACTIVE",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "interactive-reset",
+          "title": "동시 종료와 재시작의 세션 격리",
+          "family": "INTERACTIVE",
+          "depth": "deep",
+          "path": "cases/INTERACTIVE/interactive-reset.md",
+          "decision_signature": null
+        },
+        {
+          "id": "bot-grid-step",
+          "title": "단순 봇의 한 칸 이동과 막힌 경로",
+          "family": "INTERACTIVE",
+          "depth": "standard",
+          "path": "cases/INTERACTIVE/bot-grid-step.md",
+          "decision_signature": {
+            "decision": "grid-policy",
+            "input_structure": "최소: pos,target=[정수 x,y] cell, blocked 좌표배열, 한 행 bot_id의 tick. null blocked는 unknown, []는 없음. 유효 범위는 작은 무한 정수 격자 예제; 개선: 유한 지도 경계.",
+            "hard_constraint": "루프를 무한 반복해 목표 도달을 보장하지 않는다. 전체 경로 탐색 요구가 없으면 새 엔진 설치 제외.",
+            "validation": "오른쪽으로 거리3→2; 거리 감소 유일 칸 막힘; 벽 정보 미확인"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "재고 총량은 그대로 두고 예약한 수량만 잠금량에 더해 가용량을 줄인다. 같은 요청을 재처리해도 한 번만 바뀌어야 한다.",
+        "expected_primary": "TRANSACTION",
+        "expected_case_id": "transaction-reservation",
+        "intent": "멱등 예약량"
+      },
+      "actual_primary": "TRANSACTION",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "transaction-reservation",
+          "title": "대여 재고의 예약 잠금과 실행 분리",
+          "family": "TRANSACTION",
+          "depth": "deep",
+          "path": "cases/TRANSACTION/transaction-reservation.md",
+          "decision_signature": null
+        },
+        {
+          "id": "idempotent-fulfillment",
+          "title": "이행 요청 재처리와 payload 충돌",
+          "family": "TRANSACTION",
+          "depth": "standard",
+          "path": "cases/TRANSACTION/idempotent-fulfillment.md",
+          "decision_signature": {
+            "decision": "persisted-retry-state",
+            "input_structure": "최소: key 문자열, quantity 양의 정수, history={key:[quantity,status,effect]}, status done/pending/failed, effect applied/absent/unknown. 한 행 이행요청. null history는 조회실패 unknown, {}는 기록없음 확인. failed의 effect absent는 별도 실행기 대조로 확인된 값이며 응답실패만으로 추정하지 않는다. 개선: atomic DB unique·payload hash·실행기 조정.",
+            "hard_constraint": "실패응답을 부수효과 없음으로 간주해 재실행하지 않는다. 클라이언트 버튼 잠금만으로 멱등을 보장하지 않는다. 분류테스트를 동시성·정확히한번실행 보장으로 확대하지 않는다. 시간 부족 시 자동재실행을 제외하고 수동검토 안내 유지.",
+            "validation": "같은 작업 완료기록; 같은키 수량변경; 기록조회 실패; 실패했고 부수효과없음이확인된 경우만재시도; 실패응답이 실제이행없음을 증명하지않음"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "작업 의존 관계가 주어졌을 때 여러 작업을 동시에 할 수 있다고 가정한 최소 완료시간과 지연을 좌우하는 경로가 필요하다.",
+        "expected_primary": "DEPENDENCY",
+        "expected_case_id": "dependency-critical-path",
+        "intent": "가중 방향 비순환 경로"
+      },
+      "actual_primary": "DEPENDENCY",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "dependency-critical-path",
+          "title": "전시 설치 작업의 선행관계와 최소 완료시간",
+          "family": "DEPENDENCY",
+          "depth": "deep",
+          "path": "cases/DEPENDENCY/dependency-critical-path.md",
+          "decision_signature": null
+        },
+        {
+          "id": "dependency-reachability",
+          "title": "수리 부품 중단의 영향 경로 추적",
+          "family": "DEPENDENCY",
+          "depth": "deep",
+          "path": "cases/DEPENDENCY/dependency-reachability.md",
+          "decision_signature": null
+        },
+        {
+          "id": "mobility-departure",
+          "title": "고정 순회 점검의 출발 가능 구간",
+          "family": "MOBILITY",
+          "depth": "deep",
+          "path": "cases/MOBILITY/mobility-departure.md",
+          "decision_signature": null
+        },
+        {
+          "id": "mobility-tour",
+          "title": "수리 부품 순회 수거의 방문 순서",
+          "family": "MOBILITY",
+          "depth": "deep",
+          "path": "cases/MOBILITY/mobility-tour.md",
+          "decision_signature": null
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "자료도 없고 누가 무엇을 할지 아직 정하지 않았다. 일단 앱부터 만들어 달라.",
+        "expected_primary": "unclassified",
+        "expected_case_id": null,
+        "intent": "자료 없는 요청 분류 보류"
+      },
+      "actual_primary": "unclassified",
+      "family_pass": true,
+      "selected": [],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": null
+    },
+    {
+      "test": {
+        "request": "도면 면적 계산과 설치비 예산 안의 커버리지 선택을 같이 검토해 줘. 중요한 구역을 두 번 덮어도 혜택은 한 번만 센다.",
+        "expected_primary": "GEOMETRY",
+        "expected_case_id": "budget-cover",
+        "intent": "혼합 공간·예산 최적화"
+      },
+      "actual_primary": "GEOMETRY",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "priority-zone-weight",
+          "title": "중요 구역 가중치로 단일 센서 선택",
+          "family": "GEOMETRY",
+          "depth": "standard",
+          "path": "cases/geometry/priority-zone-weight.md",
+          "decision_signature": {
+            "decision": "weighted-coverage",
+            "input_structure": "최소: weights={zone_id:정수 중요도}, candidates=[id,covers] 한 행 후보, 슬롯 정확히1. 키 zone_id/candidate_id. 가중치 null 또는 미등록 zone은 unknown. 개선: 설치비. 공통 커버 집합의 가중치는 한 번만 합산.",
+            "hard_constraint": "가중치 합의 없이 중요도를 모델이 만들어내지 않는다. 미등록 구역을 0점 처리하지 않는다.",
+            "validation": "a=4,b=7; 동점0,ID a; z 중요도 미확인"
+          }
+        },
+        {
+          "id": "budget-cover",
+          "title": "예산 내 점검 거점의 이산 커버리지",
+          "family": "GEOMETRY",
+          "depth": "deep",
+          "path": "cases/geometry/budget-cover.md",
+          "decision_signature": null
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    },
+    {
+      "test": {
+        "request": "브라우저 자동화가 금지된 상태다. 누적 계량기가 초기화된 날의 단기 사용량을 분석 보고로 계산만 해 줘.",
+        "expected_primary": "ANALYTICS",
+        "expected_case_id": "counter-reset",
+        "intent": "리셋 감지 누적 차분 및 도구 제한"
+      },
+      "actual_primary": "ANALYTICS",
+      "family_pass": true,
+      "selected": [
+        {
+          "id": "counter-reset",
+          "title": "누적 관측계의 초기화와 단기 사용량",
+          "family": "ANALYTICS",
+          "depth": "deep",
+          "path": "cases/analytics/counter-reset.md",
+          "decision_signature": null
+        },
+        {
+          "id": "bounded-missing-total",
+          "title": "누락 수량이 있는 총량의 가능 범위",
+          "family": "ANALYTICS",
+          "depth": "standard",
+          "path": "cases/analytics/bounded-missing-total.md",
+          "decision_signature": {
+            "decision": "누락 수량이 있는 총량의 가능 범위",
+            "input_structure": "행=중복 없는 시간구간, 키 slot_id; counts는 정수 인원 또는 null, cap은 누락구간별 공통 최대 인원 정수. fixture에서 슬롯은 배열 위치. null cap은 상한 미확인. 개선=개별 슬롯 상한.",
+            "hard_constraint": "누락을0이라고 확정하거나 관측 평균 대체를 실제 총량으로 발표하지 않는다.",
+            "validation": "관측13,누락1×10"
+          }
+        }
+      ],
+      "excluded_clauses": [],
+      "decision_review": "not_applicable",
+      "expected_case_retrieved": true
+    }
+  ],
+  "limitations": "Family retrieval does not prove card suitability or implementation correctness. Manual decision review must inspect selected cards. Test-informed changes must be reported separately."
+}

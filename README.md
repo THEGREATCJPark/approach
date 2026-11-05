@@ -9,7 +9,8 @@
 - 실제 작성·검증 현황: [coverage](validation/coverage-report.md), [quality](validation/quality-report.md)
 - 도구 출처·확인 수준: [tools catalog](catalog/tools.json), [third-party notices](THIRD_PARTY_NOTICES.md)
 
-심화 사례 30건을 먼저 검증한다. 120건은 확장 목표이며 미작성 90건을 완성으로 세지 않는다.
+독립 창작 사례 **120건을 완성**했다: 15영역 × (심화2건 + 표준6건). [전체 색인](catalog/INDEX.md)에서 찾을 수 있다.
+표준 사례도 데이터 계약·분기 질문·정상/경계/정보 부족 기대값·실행 검사·피드백 질문을 포함한다.
 완성 앱 모음이 아니라 데이터 계약·판정 예·작은 계산·검증 근거다.
 실제 사용자 효과나 출제 적중을 보장하지 않는다.
 

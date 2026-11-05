@@ -1,29 +1,27 @@
-# 실제 작성 범위
+# 실제 작성 범위 — 120개 완료
 
-기준일 2026-11-05. 완료 사례 30개, 전부 심화. 추가 90개는 미작성이다.
-도구 카드 10개, 방법론 카드 10개, 선택적 워크플로 비교4개(도구 카드 수 제외).
-인터뷰 문서5개, 설명 연습 질문36개, 플레이북10개, 빈 기록 템플릿9개.
+2026-11-05 기준 독립 창작 사례 **120개 완료**: 기존 심화30개 + 추가 표준90개. 미작성0개.
+기존 심화30개 파일의 내용은 변경하지 않았다. 표준 카드도 데이터 계약·분기 질문·기준 방법·최소 구현·정상/경계/정보 부족 기대값·피드백을 갖췄다.
+도구10개, 방법론10개, 선택적 외부 워크플로 비교4개(도구 수 제외), 설명 연습 질문36개를 유지한다.
 
-| 영역 | 완성 | 심화 | 추가 목표(미작성) |
+| 영역 | 심화 | 표준 | 합계 |
 |---|---:|---:|---:|
-| ANALYTICS | 2 | 2 | 6 |
-| COACH | 2 | 2 | 6 |
-| DEPENDENCY | 2 | 2 | 6 |
-| EVENT | 2 | 2 | 6 |
-| GEOMETRY | 2 | 2 | 6 |
-| INTERACTIVE | 2 | 2 | 6 |
-| LEARNING | 2 | 2 | 6 |
-| MOBILITY | 2 | 2 | 6 |
-| OPERATIONS | 2 | 2 | 6 |
-| PLANNING | 2 | 2 | 6 |
-| POLICY | 2 | 2 | 6 |
-| QUALITY | 2 | 2 | 6 |
-| RANKING | 2 | 2 | 6 |
-| SUPPORT | 2 | 2 | 6 |
-| TRANSACTION | 2 | 2 | 6 |
+| [ANALYTICS](../families/ANALYTICS.md) | 2 | 6 | 8 |
+| [COACH](../families/COACH.md) | 2 | 6 | 8 |
+| [DEPENDENCY](../families/DEPENDENCY.md) | 2 | 6 | 8 |
+| [EVENT](../families/EVENT.md) | 2 | 6 | 8 |
+| [GEOMETRY](../families/GEOMETRY.md) | 2 | 6 | 8 |
+| [INTERACTIVE](../families/INTERACTIVE.md) | 2 | 6 | 8 |
+| [LEARNING](../families/LEARNING.md) | 2 | 6 | 8 |
+| [MOBILITY](../families/MOBILITY.md) | 2 | 6 | 8 |
+| [OPERATIONS](../families/OPERATIONS.md) | 2 | 6 | 8 |
+| [PLANNING](../families/PLANNING.md) | 2 | 6 | 8 |
+| [POLICY](../families/POLICY.md) | 2 | 6 | 8 |
+| [QUALITY](../families/QUALITY.md) | 2 | 6 | 8 |
+| [RANKING](../families/RANKING.md) | 2 | 6 | 8 |
+| [SUPPORT](../families/SUPPORT.md) | 2 | 6 | 8 |
+| [TRANSACTION](../families/TRANSACTION.md) | 2 | 6 | 8 |
 
-카탈로그의 수용 사례는 총 185개다. 아래 실행 계산과 일대일 개수 대응을 주장하지 않는다.
-독립 계산 검사 실행 합계 185개: A 65, B 60, C 60. 전체 앱·UI·동시성·현장 사용자 효과는 미검증이다.
-각 사례의 검증 대상은 작은 합성 입력·규칙·산술이며, 실제 업무 정책으로 적용하려면 새 자료와 담당자 확인이 필요하다.
+카탈로그 수용 시험 487개. 실제 합성 기대값 검사 **487/487 통과**. 모든120개 사례의 작은 입력을 다루며 완성 앱120개를 구현한 것은 아니다.
 
-[확장 조건](expansion-plan.md) · [검증과 한계](quality-report.md) · [카탈로그](../catalog/cases.json)
+[전체 사례 색인](../catalog/INDEX.md) · [전체 실행 결과](all-examples-results.json) · [확장 검증 보고](expansion-quality-report.md)

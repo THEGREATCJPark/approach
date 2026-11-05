@@ -42,7 +42,7 @@
 
 ## 오프라인 경로
 
-ROUTER 표 → families 문서 → cases 문서만으로 진행한다. 검색은 `catalog/cases.json`에서도 가능하다.
+ROUTER 표 → families 문서 → cases 문서만으로 진행한다. 검색은 `catalog/cases.json`과 [120개 사례 색인](catalog/INDEX.md)에서도 가능하다.
 Python이 허용되면 `python scripts/route.py '요청 내용'`을 보조로 쓴다. 점수는 성공확률이 아니다.
 설치가 막히면 사례의 표 계산·전수 열거·수동 판정을 사용하고 검증 범위가 줄었다고 기록한다.
 링크 확인 스크립트는 준비 작업 전용이며 TASK 시작 과정에서 실행하지 않는다.

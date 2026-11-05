@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-11-05",
+  "method": "web open",
+  "scope": "New public sources introduced in the ninety-case expansion. Prior sources and license checks remain in source-checks.json. No external package installation or runtime claim.",
+  "checks": [
+    {
+      "url": "https://docs.python.org/3/library/index.html",
+      "status": "docs_verified"
+    },
+    {
+      "url": "https://docs.python.org/3/library/unittest.html",
+      "status": "docs_verified"
+    },
+    {
+      "url": "https://www.itl.nist.gov/div898/handbook/pmc/section3/pmc323.htm",
+      "status": "docs_verified"
+    }
+  ]
+}

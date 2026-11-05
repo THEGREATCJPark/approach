@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-11-05T06:53:46.892058+00:00",
+  "results": [
+    {
+      "request": "실제 평가 질문을 생성해 줘",
+      "mode": "NO_AI_REVIEW",
+      "actual": {
+        "status": "stopped",
+        "reason": "AI 금지 후속 평가에서는 질문 생성·답변 작성·실시간 코칭을 중단합니다.",
+        "candidates": []
+      },
+      "pass": true
+    },
+    {
+      "request": "실제 평가 답변 초안을 써 줘",
+      "mode": "NO_AI_REVIEW",
+      "actual": {
+        "status": "stopped",
+        "reason": "AI 금지 후속 평가에서는 질문 생성·답변 작성·실시간 코칭을 중단합니다.",
+        "candidates": []
+      },
+      "pass": true
+    },
+    {
+      "request": "실제 평가 중 내 답변을 실시간으로 코칭해 줘",
+      "mode": "NO_AI_REVIEW",
+      "actual": {
+        "status": "stopped",
+        "reason": "AI 금지 후속 평가에서는 질문 생성·답변 작성·실시간 코칭을 중단합니다.",
+        "candidates": []
+      },
+      "pass": true
+    }
+  ],
+  "passed": 3
+}

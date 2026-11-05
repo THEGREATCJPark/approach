@@ -1,0 +1,1389 @@
+{
+  "ranking-cold-start": [
+    {
+      "kind": "normal",
+      "input": {
+        "comparable": true,
+        "items": [
+          [
+            "A",
+            10,
+            4
+          ],
+          [
+            "B",
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        "B",
+        "A"
+      ],
+      "basis": "A=5/12, B=2/4; B가 높다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "comparable": true,
+        "items": [
+          [
+            "A",
+            0,
+            0
+          ],
+          [
+            "B",
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        "A",
+        "B"
+      ],
+      "basis": "둘 다1/2, id로 동점 정리.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "comparable": null,
+        "items": [
+          [
+            "A",
+            10,
+            4
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "비교 가능 조건이 미확인이다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "ranking-attribute-distance": [
+    {
+      "kind": "normal",
+      "input": {
+        "target": [
+          2,
+          30
+        ],
+        "scales": [
+          1,
+          10
+        ],
+        "items": [
+          [
+            "A",
+            3,
+            30
+          ],
+          [
+            "B",
+            2,
+            50
+          ]
+        ]
+      },
+      "expected": [
+        "A",
+        "B"
+      ],
+      "basis": "A=1+0=1,B=0+2=2.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "target": [
+          2,
+          30
+        ],
+        "scales": [
+          1,
+          10
+        ],
+        "items": [
+          [
+            "A",
+            2,
+            30
+          ]
+        ]
+      },
+      "expected": [
+        "A"
+      ],
+      "basis": "정확 일치 거리0.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "target": [
+          2,
+          null
+        ],
+        "scales": [
+          1,
+          10
+        ],
+        "items": [
+          [
+            "A",
+            2,
+            30
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "목표 폭이 없으면 거리 정의가 미완성이다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing_item_attribute",
+      "input": {
+        "target": [
+          2,
+          30
+        ],
+        "scales": [
+          1,
+          10
+        ],
+        "items": [
+          [
+            "A",
+            null,
+            30
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "후보의 필수 중량 미확인은 계산 보류다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "ranking-restriction-evidence": [
+    {
+      "kind": "normal",
+      "input": {
+        "banned": [
+          "X"
+        ],
+        "items": [
+          [
+            "A",
+            [
+              "Y"
+            ],
+            true
+          ],
+          [
+            "B",
+            [
+              "X"
+            ],
+            true
+          ],
+          [
+            "C",
+            [
+              "Y"
+            ],
+            false
+          ]
+        ]
+      },
+      "expected": {
+        "A": "eligible",
+        "B": "excluded",
+        "C": "unknown"
+      },
+      "basis": "A 완전·교집합없음,B X포함,C 불완전.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "banned": [
+          "X"
+        ],
+        "items": [
+          [
+            "A",
+            [],
+            true
+          ]
+        ]
+      },
+      "expected": {
+        "A": "eligible"
+      },
+      "basis": "완전한 빈 목록은 미수집과 구별한다. 합성 계약상 성분0개다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "banned": null,
+        "items": [
+          [
+            "A",
+            [
+              "Y"
+            ],
+            true
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "금지 기준 부재.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing_components",
+      "input": {
+        "banned": [
+          "X"
+        ],
+        "items": [
+          [
+            "A",
+            null,
+            true
+          ]
+        ]
+      },
+      "expected": {
+        "A": "unknown"
+      },
+      "basis": "성분 목록 자체가 없으면 완전성 표시만으로 통과하지 않는다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "ranking-repeat-cooldown": [
+    {
+      "kind": "normal",
+      "input": {
+        "today": 20,
+        "cooldown": 7,
+        "items": [
+          [
+            "A",
+            9,
+            15
+          ],
+          [
+            "B",
+            8,
+            10
+          ],
+          [
+            "C",
+            7,
+            "never"
+          ]
+        ]
+      },
+      "expected": {
+        "eligible": [
+          "B",
+          "C"
+        ],
+        "unknown": []
+      },
+      "basis": "A5일 제외,B10일 허용,C 미선택 허용.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "today": 20,
+        "cooldown": 7,
+        "items": [
+          [
+            "A",
+            9,
+            13
+          ]
+        ]
+      },
+      "expected": {
+        "eligible": [
+          "A"
+        ],
+        "unknown": []
+      },
+      "basis": "정확히7일은 포함.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "today": 20,
+        "cooldown": 7,
+        "items": [
+          [
+            "A",
+            9,
+            null
+          ]
+        ]
+      },
+      "expected": {
+        "eligible": [],
+        "unknown": [
+          "A"
+        ]
+      },
+      "basis": "이력 미확인 A는 확정 추천에서 보류.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "ranking-score-explanation": [
+    {
+      "kind": "normal",
+      "input": {
+        "features": {
+          "interest": 1,
+          "level": 1,
+          "schedule": 0
+        },
+        "weights": {
+          "interest": 4,
+          "level": 2,
+          "schedule": 3
+        }
+      },
+      "expected": {
+        "total": 6,
+        "contributions": {
+          "interest": 4,
+          "level": 2,
+          "schedule": 0
+        }
+      },
+      "basis": "4+2+0=6.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "features": {
+          "interest": 0
+        },
+        "weights": {
+          "interest": 4
+        }
+      },
+      "expected": {
+        "total": 0,
+        "contributions": {
+          "interest": 0
+        }
+      },
+      "basis": "확인된0의 기여0.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "features": {
+          "interest": null
+        },
+        "weights": {
+          "interest": 4
+        }
+      },
+      "expected": "unknown",
+      "basis": "미확인 관심을 부정으로 해석하지 않는다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing_weight",
+      "input": {
+        "features": {
+          "interest": 1
+        },
+        "weights": {
+          "interest": null
+        }
+      },
+      "expected": "unknown",
+      "basis": "규칙 가중치가 없으면 점수 보류다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "ranking-without-labels": [
+    {
+      "kind": "normal",
+      "input": {
+        "recommendations": [
+          "A",
+          "A",
+          "X"
+        ],
+        "eligible": [
+          "A",
+          "B"
+        ],
+        "requested": 3
+      },
+      "expected": {
+        "duplicates": 1,
+        "invalid": [
+          "X"
+        ],
+        "unfilled": 2
+      },
+      "basis": "중복1; X는 부적합. 유효한 고유 후보는 A 한 개이므로 부족3-1=2.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "recommendations": [],
+        "eligible": [],
+        "requested": 0
+      },
+      "expected": {
+        "duplicates": 0,
+        "invalid": [],
+        "unfilled": 0
+      },
+      "basis": "요구0인 빈 목록은 계약 충족.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "recommendations": [
+          "A"
+        ],
+        "eligible": null,
+        "requested": 1
+      },
+      "expected": "unknown",
+      "basis": "제공 가능 기준 미확인.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "mobility-indivisible-capacity": [
+    {
+      "kind": "normal",
+      "input": {
+        "boxes": {
+          "a": 4,
+          "b": 3,
+          "c": 2
+        },
+        "capacities": [
+          5,
+          4
+        ]
+      },
+      "expected": true,
+      "basis": "a를4차량,b+c=5를5차량에 배정.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "boxes": {
+          "a": 3,
+          "b": 3,
+          "c": 3
+        },
+        "capacities": [
+          5,
+          4
+        ]
+      },
+      "expected": false,
+      "basis": "합계9=용량9지만 어떤 차량도 상자2개6을 못 싣는다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "boxes": {
+          "a": null
+        },
+        "capacities": [
+          5
+        ]
+      },
+      "expected": "unknown",
+      "basis": "상자 부피 미측정.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing_capacity",
+      "input": {
+        "boxes": {
+          "A": 3
+        },
+        "capacities": [
+          null
+        ]
+      },
+      "expected": "unknown",
+      "basis": "차량 용량 미확인은 가능 판정을 보류한다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "mobility-window-wait": [
+    {
+      "kind": "normal",
+      "input": {
+        "start": 0,
+        "stops": [
+          [
+            "A",
+            5,
+            10,
+            15,
+            3
+          ],
+          [
+            "B",
+            4,
+            15,
+            20,
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "feasible": true,
+        "finish": 19,
+        "wait": 5
+      },
+      "basis": "A도착5 대기5 시작10 종료13;B도착17 종료19.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "start": 0,
+        "stops": [
+          [
+            "A",
+            10,
+            0,
+            10,
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "feasible": true,
+        "finish": 12,
+        "wait": 0
+      },
+      "basis": "시작10=마감10 허용,완료12는 별개.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "start": 0,
+        "stops": [
+          [
+            "A",
+            null,
+            0,
+            10,
+            2
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "이동시간 미확인.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing_start",
+      "input": {
+        "start": null,
+        "stops": [
+          [
+            "A",
+            10,
+            0,
+            10,
+            2
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "출발 기준시각이 없어 도착시간 계산을 보류한다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "mobility-depot-minimax": [
+    {
+      "kind": "normal",
+      "input": {
+        "depots": [
+          [
+            "A",
+            [
+              2,
+              9
+            ]
+          ],
+          [
+            "B",
+            [
+              6,
+              6
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "id": "B",
+        "worst": 6
+      },
+      "basis": "A최대9,B최대6;B선택.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "depots": [
+          [
+            "A",
+            [
+              0
+            ]
+          ],
+          [
+            "B",
+            [
+              0
+            ]
+          ]
+        ]
+      },
+      "expected": {
+        "id": "A",
+        "worst": 0
+      },
+      "basis": "둘 다0이면id순.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "depots": [
+          [
+            "A",
+            [
+              2,
+              null
+            ]
+          ],
+          [
+            "B",
+            [
+              6,
+              6
+            ]
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "A의 최대값을 확정할 수 없어 전 후보 비교 보류.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "mobility-demand-clusters": [
+    {
+      "kind": "normal",
+      "input": {
+        "points": [
+          [
+            "A",
+            0
+          ],
+          [
+            "B",
+            3
+          ],
+          [
+            "C",
+            9
+          ]
+        ],
+        "radius": 4
+      },
+      "expected": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "C"
+        ]
+      ],
+      "basis": "AB3≤4,BC6>4.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "points": [
+          [
+            "A",
+            0
+          ],
+          [
+            "B",
+            4
+          ],
+          [
+            "C",
+            8
+          ]
+        ],
+        "radius": 4
+      },
+      "expected": [
+        [
+          "A",
+          "B",
+          "C"
+        ]
+      ],
+      "basis": "AB와BC가경계4로 연결;AC8이어도같은요소.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "points": [
+          [
+            "A",
+            null
+          ],
+          [
+            "B",
+            4
+          ]
+        ],
+        "radius": 4
+      },
+      "expected": "unknown",
+      "basis": "좌표미확인.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "mobility-fair-travel-cap": [
+    {
+      "kind": "normal",
+      "input": {
+        "users": [
+          [
+            "A",
+            [
+              2,
+              8
+            ]
+          ],
+          [
+            "B",
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "capacity": [
+          1,
+          1
+        ],
+        "cap": 4
+      },
+      "expected": true,
+      "basis": "A→첫지점,B→둘째지점.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "users": [
+          [
+            "A",
+            [
+              4
+            ]
+          ]
+        ],
+        "capacity": [
+          1
+        ],
+        "cap": 4
+      },
+      "expected": true,
+      "basis": "상한4 포함.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "users": [
+          [
+            "A",
+            [
+              null
+            ]
+          ]
+        ],
+        "capacity": [
+          1
+        ],
+        "cap": 4
+      },
+      "expected": "unknown",
+      "basis": "이동분 누락.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "mobility-unserved-ledger": [
+    {
+      "kind": "normal",
+      "input": {
+        "demand": {
+          "A": 5,
+          "B": 2
+        },
+        "assignments": [
+          [
+            "x",
+            "A",
+            3
+          ],
+          [
+            "y",
+            "B",
+            2
+          ]
+        ]
+      },
+      "expected": {
+        "A": {
+          "remaining": 2,
+          "over": 0
+        },
+        "B": {
+          "remaining": 0,
+          "over": 0
+        }
+      },
+      "basis": "A5-3=2,B2-2=0.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "demand": {
+          "A": 2
+        },
+        "assignments": [
+          [
+            "x",
+            "A",
+            3
+          ]
+        ]
+      },
+      "expected": {
+        "A": {
+          "remaining": 0,
+          "over": 1
+        }
+      },
+      "basis": "초과 1을 음수 잔여로 숨기지 않는다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "demand": {
+          "A": null
+        },
+        "assignments": []
+      },
+      "expected": "unknown",
+      "basis": "수요 미확인으로 잔여 계산을 보류한다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "unknown_request",
+      "input": {
+        "demand": {
+          "A": 2
+        },
+        "assignments": [
+          [
+            "x",
+            "Z",
+            4
+          ]
+        ]
+      },
+      "expected": "invalid_reference",
+      "basis": "수요에 없는 요청 Z를 조용히 버리지 않고 관계 키 오류로 반환한다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "dependency-relation-types": [
+    {
+      "kind": "normal",
+      "input": {
+        "source": "P",
+        "type": "supply",
+        "edges": [
+          [
+            "P",
+            "A",
+            "supply"
+          ],
+          [
+            "P",
+            "B",
+            "technology"
+          ],
+          [
+            "C",
+            "P",
+            "supply"
+          ]
+        ]
+      },
+      "expected": [
+        "A"
+      ],
+      "basis": "P에서 나가는 supply 대상은 A뿐이다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "source": "P",
+        "type": "supply",
+        "edges": [
+          [
+            "P",
+            "A",
+            "technology"
+          ]
+        ]
+      },
+      "expected": [],
+      "basis": "알려진 관계 중 해당 종류는 0개다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "source": "P",
+        "type": "supply",
+        "edges": [
+          [
+            "P",
+            "A",
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "P의 관계 종류가 미확인이다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "dependency-removal-bottleneck": [
+    {
+      "kind": "normal",
+      "input": {
+        "edges": [
+          [
+            "S",
+            "A"
+          ],
+          [
+            "A",
+            "T"
+          ]
+        ],
+        "source": "S",
+        "target": "T",
+        "remove": "A",
+        "complete": true
+      },
+      "expected": true,
+      "basis": "제거 전 S-A-T, 제거 후 경로 없음.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "edges": [
+          [
+            "S",
+            "A"
+          ],
+          [
+            "A",
+            "T"
+          ],
+          [
+            "S",
+            "T"
+          ]
+        ],
+        "source": "S",
+        "target": "T",
+        "remove": "A",
+        "complete": true
+      },
+      "expected": false,
+      "basis": "직접 S-T 대체 경로 유지.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "edges": [
+          [
+            "S",
+            "A"
+          ],
+          [
+            "A",
+            "T"
+          ]
+        ],
+        "source": "S",
+        "target": "T",
+        "remove": "A",
+        "complete": null
+      },
+      "expected": "unknown",
+      "basis": "관계 완전성이 미확인이다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "dependency-alternative-supply": [
+    {
+      "kind": "normal",
+      "input": {
+        "groups": [
+          [
+            false,
+            true
+          ],
+          [
+            true
+          ]
+        ]
+      },
+      "expected": "available",
+      "basis": "대체 첫 묶음 true, 필수 둘째 묶음 true.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "groups": [
+          [],
+          [
+            true
+          ]
+        ]
+      },
+      "expected": "unavailable",
+      "basis": "대체 후보 0개인 필수 묶음은 false다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "groups": [
+          [
+            false,
+            null
+          ],
+          [
+            true
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "첫 묶음에 확인된 true가 없고 미확인이 있다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "dependency-coefficient-sensitivity": [
+    {
+      "kind": "normal",
+      "input": {
+        "delta": "10",
+        "coefficients": [
+          "0.5",
+          "0.4"
+        ]
+      },
+      "expected": "2",
+      "basis": "10×0.5×0.4=2.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "delta": "10",
+        "coefficients": [
+          "0",
+          "0.4"
+        ]
+      },
+      "expected": "0",
+      "basis": "확인된 0 계수는 전파 0이다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "delta": "10",
+        "coefficients": [
+          null,
+          "0.4"
+        ]
+      },
+      "expected": "unknown",
+      "basis": "미확인 계수를 0으로 바꾸지 않는다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "dependency-evidence-validity": [
+    {
+      "kind": "normal",
+      "input": {
+        "relation": [
+          "P",
+          "K",
+          "supply"
+        ],
+        "day": 12,
+        "evidence": [
+          {
+            "id": "e1",
+            "relation": [
+              "P",
+              "K",
+              "supply"
+            ],
+            "position": "support",
+            "from_day": 10,
+            "to_day": 15,
+            "source": "note-a"
+          },
+          {
+            "id": "e2",
+            "relation": [
+              "P",
+              "K",
+              "supply"
+            ],
+            "position": "refute",
+            "from_day": 0,
+            "to_day": 12,
+            "source": "note-b"
+          }
+        ]
+      },
+      "expected": {
+        "status": "supported",
+        "support": [
+          "e1"
+        ],
+        "refute": []
+      },
+      "basis": "e1 유효. e2는 종료일12 미포함으로 만료. 현재 지지 근거만 남는다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "relation": [
+          "P",
+          "K",
+          "supply"
+        ],
+        "day": 12,
+        "evidence": [
+          {
+            "id": "e1",
+            "relation": [
+              "P",
+              "K",
+              "supply"
+            ],
+            "position": "support",
+            "from_day": 10,
+            "to_day": 15,
+            "source": "note-a"
+          },
+          {
+            "id": "e2",
+            "relation": [
+              "P",
+              "K",
+              "supply"
+            ],
+            "position": "refute",
+            "from_day": 12,
+            "to_day": 20,
+            "source": "note-b"
+          }
+        ]
+      },
+      "expected": {
+        "status": "conflict",
+        "support": [
+          "e1"
+        ],
+        "refute": [
+          "e2"
+        ]
+      },
+      "basis": "e2 시작일12 포함. 같은 관계에 지지·반박이 동시에 유효하므로 충돌.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "relation": [
+          "P",
+          "K",
+          "supply"
+        ],
+        "day": 12,
+        "evidence": [
+          {
+            "id": "e1",
+            "relation": [
+              "P",
+              "K",
+              "supply"
+            ],
+            "position": "support",
+            "from_day": 10,
+            "to_day": 15,
+            "source": null
+          }
+        ]
+      },
+      "expected": {
+        "status": "unknown",
+        "support": [],
+        "refute": []
+      },
+      "basis": "원 출처에 연결되지 않은 근거로 관계를 확정하지 않는다.",
+      "execution": "oracle_verified"
+    }
+  ],
+  "dependency-multigraph-display": [
+    {
+      "kind": "normal",
+      "input": {
+        "edges": [
+          [
+            "e1",
+            "A",
+            "B",
+            "supply"
+          ],
+          [
+            "e2",
+            "A",
+            "B",
+            "technology"
+          ],
+          [
+            "e3",
+            "B",
+            "A",
+            "return"
+          ]
+        ]
+      },
+      "expected": {
+        "nodes": 2,
+        "visual_edges": 2,
+        "relations": 3
+      },
+      "basis": "A→B 두 관계가 선 하나로 표시되고 B→A는 별도 선이다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "boundary",
+      "input": {
+        "edges": []
+      },
+      "expected": {
+        "nodes": 0,
+        "visual_edges": 0,
+        "relations": 0
+      },
+      "basis": "빈 관계 집합이며 노드 목록도 별도로 제공되지 않았다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "missing",
+      "input": {
+        "edges": [
+          [
+            "e1",
+            "A",
+            null,
+            "supply"
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "대상 노드가 미확인이다.",
+      "execution": "oracle_verified"
+    },
+    {
+      "kind": "duplicate_edge_id",
+      "input": {
+        "edges": [
+          [
+            "e1",
+            "A",
+            "B",
+            "supply"
+          ],
+          [
+            "e1",
+            "A",
+            "B",
+            "supply"
+          ]
+        ]
+      },
+      "expected": "duplicate_id",
+      "basis": "같은 기본 키를 두 관계로 세지 않는다. 정본 선택 전 입력을 수정한다.",
+      "execution": "oracle_verified"
+    }
+  ]
+}

@@ -1,0 +1,1167 @@
+{
+  "environment": "3.12.14",
+  "scope": "independent synthetic oracles; no production app, authentication, concurrency or user outcome validation",
+  "case_count": 18,
+  "test_count": 55,
+  "results": [
+    {
+      "case": "event-eligibility",
+      "kind": "normal",
+      "input": {
+        "required": "press",
+        "certificate": "press",
+        "expires": "2030-05-12",
+        "event": "2030-05-10"
+      },
+      "expected": "eligible",
+      "basis": "5월12일≥5월10일이고 종류 일치",
+      "actual": "eligible",
+      "status": "pass"
+    },
+    {
+      "case": "event-eligibility",
+      "kind": "boundary",
+      "input": {
+        "required": "press",
+        "certificate": "press",
+        "expires": "2030-05-10",
+        "event": "2030-05-10"
+      },
+      "expected": "eligible",
+      "basis": "만료일 포함",
+      "actual": "eligible",
+      "status": "pass"
+    },
+    {
+      "case": "event-eligibility",
+      "kind": "missing",
+      "input": {
+        "required": "press",
+        "certificate": null,
+        "expires": null,
+        "event": "2030-05-10"
+      },
+      "expected": "unknown",
+      "basis": "교육 기록 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "event-checkin",
+      "kind": "normal",
+      "input": {
+        "registered": [
+          "a",
+          "b"
+        ],
+        "scans": [
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "expected": {
+        "unique": 2,
+        "statuses": [
+          "checked_in",
+          "duplicate",
+          "checked_in"
+        ]
+      },
+      "basis": "고유 등록 티켓은 a,b 두 개",
+      "actual": {
+        "unique": 2,
+        "statuses": [
+          "checked_in",
+          "duplicate",
+          "checked_in"
+        ]
+      },
+      "status": "pass"
+    },
+    {
+      "case": "event-checkin",
+      "kind": "boundary",
+      "input": {
+        "registered": [
+          "a"
+        ],
+        "scans": []
+      },
+      "expected": {
+        "unique": 0,
+        "statuses": []
+      },
+      "basis": "스캔 0건은 관측된 0",
+      "actual": {
+        "unique": 0,
+        "statuses": []
+      },
+      "status": "pass"
+    },
+    {
+      "case": "event-checkin",
+      "kind": "missing",
+      "input": {
+        "registered": [
+          "a"
+        ],
+        "scans": [
+          null
+        ]
+      },
+      "expected": "unknown",
+      "basis": "식별키 누락",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "event-reward-ledger",
+      "kind": "normal",
+      "input": {
+        "rows": [
+          [
+            "a",
+            2
+          ],
+          [
+            "a",
+            2
+          ],
+          [
+            "b",
+            3
+          ]
+        ]
+      },
+      "expected": 5,
+      "basis": "a2를 한 번,b3을 한 번 합산",
+      "actual": 5,
+      "status": "pass"
+    },
+    {
+      "case": "event-reward-ledger",
+      "kind": "boundary",
+      "input": {
+        "rows": [
+          [
+            "a",
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "basis": "0개 승인도 기록 가능한 경계",
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "case": "event-reward-ledger",
+      "kind": "missing",
+      "input": {
+        "rows": [
+          [
+            "a",
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "승인 수량 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "event-cancel-priority",
+      "kind": "normal",
+      "input": {
+        "queue": [
+          "a",
+          "b",
+          "c"
+        ],
+        "events": [
+          [
+            "cancel",
+            "b"
+          ],
+          [
+            "join",
+            "b"
+          ]
+        ]
+      },
+      "expected": [
+        "a",
+        "c",
+        "b"
+      ],
+      "basis": "b 제거 후 끝에 재추가",
+      "actual": [
+        "a",
+        "c",
+        "b"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "event-cancel-priority",
+      "kind": "boundary",
+      "input": {
+        "queue": [],
+        "events": [
+          [
+            "join",
+            "a"
+          ]
+        ]
+      },
+      "expected": [
+        "a"
+      ],
+      "basis": "빈 대기열 첫 신청",
+      "actual": [
+        "a"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "event-cancel-priority",
+      "kind": "missing",
+      "input": {
+        "queue": [
+          "a"
+        ],
+        "events": [
+          [
+            "join",
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "신청자 식별 불가",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "event-rehearsal-capacity",
+      "kind": "normal",
+      "input": {
+        "intervals": [
+          [
+            0,
+            10
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            10,
+            20
+          ]
+        ],
+        "cap": 2
+      },
+      "expected": {
+        "peak": 2,
+        "over": false
+      },
+      "basis": "10분에 한 명 퇴장과 한 명 입장; 최대2",
+      "actual": {
+        "peak": 2,
+        "over": false
+      },
+      "status": "pass"
+    },
+    {
+      "case": "event-rehearsal-capacity",
+      "kind": "boundary",
+      "input": {
+        "intervals": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            10
+          ]
+        ],
+        "cap": 1
+      },
+      "expected": {
+        "peak": 1,
+        "over": false
+      },
+      "basis": "반열린 구간은 서로 겹치지 않음",
+      "actual": {
+        "peak": 1,
+        "over": false
+      },
+      "status": "pass"
+    },
+    {
+      "case": "event-rehearsal-capacity",
+      "kind": "missing",
+      "input": {
+        "intervals": [
+          [
+            0,
+            null
+          ]
+        ],
+        "cap": 2
+      },
+      "expected": "unknown",
+      "basis": "퇴장 시각 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "event-exception-expiry",
+      "kind": "normal",
+      "input": {
+        "event": "e1",
+        "scope": "e1",
+        "approver": "lead",
+        "authorized": [
+          "lead"
+        ],
+        "now": 20,
+        "expires": 30
+      },
+      "expected": "accepted",
+      "basis": "범위·권한 일치,20<30",
+      "actual": "accepted",
+      "status": "pass"
+    },
+    {
+      "case": "event-exception-expiry",
+      "kind": "boundary",
+      "input": {
+        "event": "e1",
+        "scope": "e1",
+        "approver": "lead",
+        "authorized": [
+          "lead"
+        ],
+        "now": 30,
+        "expires": 30
+      },
+      "expected": "denied",
+      "basis": "만료시각은 제외",
+      "actual": "denied",
+      "status": "pass"
+    },
+    {
+      "case": "event-exception-expiry",
+      "kind": "missing",
+      "input": {
+        "event": "e1",
+        "scope": "e1",
+        "approver": null,
+        "authorized": [
+          "lead"
+        ],
+        "now": 20,
+        "expires": 30
+      },
+      "expected": "unknown",
+      "basis": "승인 주체 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "policy-delegation",
+      "kind": "normal",
+      "input": {
+        "amount": 70,
+        "owner_limit": 100,
+        "delegate_limit": 80,
+        "day": 5,
+        "start": 1,
+        "end": 7
+      },
+      "expected": "delegated",
+      "basis": "70≤80이고1≤5≤7",
+      "actual": "delegated",
+      "status": "pass"
+    },
+    {
+      "case": "policy-delegation",
+      "kind": "boundary",
+      "input": {
+        "amount": 80,
+        "owner_limit": 100,
+        "delegate_limit": 80,
+        "day": 7,
+        "start": 1,
+        "end": 7
+      },
+      "expected": "delegated",
+      "basis": "한도와 종료일 포함",
+      "actual": "delegated",
+      "status": "pass"
+    },
+    {
+      "case": "policy-delegation",
+      "kind": "missing",
+      "input": {
+        "amount": 70,
+        "owner_limit": 100,
+        "delegate_limit": null,
+        "day": 5,
+        "start": 1,
+        "end": 7
+      },
+      "expected": "unknown",
+      "basis": "위임 한도 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "policy-duplicate-claim",
+      "kind": "normal",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "shop",
+            "r1",
+            "2030-01-01"
+          ],
+          [
+            "b",
+            "shop",
+            "r1",
+            "2030-01-01"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "basis": "다른 신청이 같은 증빙키",
+      "actual": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "policy-duplicate-claim",
+      "kind": "boundary",
+      "input": {
+        "rows": [
+          [
+            "a",
+            "shop",
+            "r1",
+            "2030-01-01"
+          ],
+          [
+            "a",
+            "shop",
+            "r1",
+            "2030-01-01"
+          ]
+        ]
+      },
+      "expected": [],
+      "basis": "같은 신청 재전송은 별도 청구가 아님",
+      "actual": [],
+      "status": "pass"
+    },
+    {
+      "case": "policy-duplicate-claim",
+      "kind": "missing",
+      "input": {
+        "rows": [
+          [
+            "a",
+            null,
+            "r1",
+            "2030-01-01"
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "발급처 없이는 키 미확정",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "policy-effective-version",
+      "kind": "normal",
+      "input": {
+        "filed": 8,
+        "decided": 12,
+        "cutoff": 10,
+        "locked_version": "v1",
+        "retroactive": false
+      },
+      "expected": {
+        "version": "v1",
+        "reason": "kept_at_filing"
+      },
+      "basis": "개정 후12일 처리라도8일 접수와 비소급 정책으로v1 유지",
+      "actual": {
+        "version": "v1",
+        "reason": "kept_at_filing"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "policy-effective-version",
+      "kind": "boundary",
+      "input": {
+        "filed": 10,
+        "decided": 12,
+        "cutoff": 10,
+        "locked_version": null,
+        "retroactive": false
+      },
+      "expected": {
+        "version": "v2",
+        "reason": "filed_under_new"
+      },
+      "basis": "접수일10은 개정일 포함; 구 버전 잠금 불필요",
+      "actual": {
+        "version": "v2",
+        "reason": "filed_under_new"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "policy-effective-version",
+      "kind": "missing",
+      "input": {
+        "filed": 8,
+        "decided": 12,
+        "cutoff": 10,
+        "locked_version": "v1",
+        "retroactive": null
+      },
+      "expected": "unknown",
+      "basis": "개정 전 접수 건의 소급 정책이 확인되지 않음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "policy-effective-version",
+      "kind": "retroactive_override",
+      "input": {
+        "filed": 8,
+        "decided": 12,
+        "cutoff": 10,
+        "locked_version": "v1",
+        "retroactive": true
+      },
+      "expected": {
+        "version": "v2",
+        "reason": "explicit_retroactive"
+      },
+      "basis": "normal과 날짜는 같지만 명시적 소급 정책이 결과를 바꿈",
+      "actual": {
+        "version": "v2",
+        "reason": "explicit_retroactive"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "policy-next-action",
+      "kind": "normal",
+      "input": {
+        "role": "applicant",
+        "state": "draft"
+      },
+      "expected": [
+        "edit",
+        "submit"
+      ],
+      "basis": "신청자는 초안 편집/제출",
+      "actual": [
+        "edit",
+        "submit"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "policy-next-action",
+      "kind": "boundary",
+      "input": {
+        "role": "applicant",
+        "state": "approved"
+      },
+      "expected": [],
+      "basis": "승인 후 직접 행동 없음",
+      "actual": [],
+      "status": "pass"
+    },
+    {
+      "case": "policy-next-action",
+      "kind": "missing",
+      "input": {
+        "role": null,
+        "state": "submitted"
+      },
+      "expected": "unknown",
+      "basis": "역할 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "policy-separation-duties",
+      "kind": "normal",
+      "input": {
+        "creator": "a",
+        "approver": "b",
+        "authorized": [
+          "b"
+        ]
+      },
+      "expected": "eligible",
+      "basis": "주체 다르고 b 권한 있음",
+      "actual": "eligible",
+      "status": "pass"
+    },
+    {
+      "case": "policy-separation-duties",
+      "kind": "boundary",
+      "input": {
+        "creator": "a",
+        "approver": "a",
+        "authorized": [
+          "a"
+        ]
+      },
+      "expected": "manual_escalation",
+      "basis": "권한이 있어도 자기 승인 금지",
+      "actual": "manual_escalation",
+      "status": "pass"
+    },
+    {
+      "case": "policy-separation-duties",
+      "kind": "missing",
+      "input": {
+        "creator": "a",
+        "approver": null,
+        "authorized": [
+          "b"
+        ]
+      },
+      "expected": "unknown",
+      "basis": "승인 주체 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "policy-receipt-allocation",
+      "kind": "normal",
+      "input": {
+        "total": 100,
+        "rows": [
+          [
+            "a",
+            35
+          ],
+          [
+            "b",
+            40
+          ]
+        ]
+      },
+      "expected": {
+        "state": "partial",
+        "remaining": 25
+      },
+      "basis": "100−75=25",
+      "actual": {
+        "state": "partial",
+        "remaining": 25
+      },
+      "status": "pass"
+    },
+    {
+      "case": "policy-receipt-allocation",
+      "kind": "boundary",
+      "input": {
+        "total": 100,
+        "rows": [
+          [
+            "a",
+            35
+          ],
+          [
+            "b",
+            65
+          ]
+        ]
+      },
+      "expected": {
+        "state": "complete",
+        "remaining": 0
+      },
+      "basis": "합계100",
+      "actual": {
+        "state": "complete",
+        "remaining": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "policy-receipt-allocation",
+      "kind": "missing",
+      "input": {
+        "total": 100,
+        "rows": [
+          [
+            "a",
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "배분액 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "planning-resource-blend",
+      "kind": "normal",
+      "input": {
+        "a": [
+          4,
+          3
+        ],
+        "b": [
+          7,
+          6
+        ],
+        "max_each": 3,
+        "required": 9
+      },
+      "expected": {
+        "a": 1,
+        "b": 1,
+        "cost": 11,
+        "units": 9
+      },
+      "basis": "A+B는11비용9단위;3A는12비용",
+      "actual": {
+        "a": 1,
+        "b": 1,
+        "cost": 11,
+        "units": 9
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-resource-blend",
+      "kind": "boundary",
+      "input": {
+        "a": [
+          4,
+          3
+        ],
+        "b": [
+          7,
+          6
+        ],
+        "max_each": 3,
+        "required": 0
+      },
+      "expected": {
+        "a": 0,
+        "b": 0,
+        "cost": 0,
+        "units": 0
+      },
+      "basis": "요구0이면 빈 구성",
+      "actual": {
+        "a": 0,
+        "b": 0,
+        "cost": 0,
+        "units": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-resource-blend",
+      "kind": "missing",
+      "input": {
+        "a": [
+          4,
+          3
+        ],
+        "b": [
+          7,
+          6
+        ],
+        "max_each": 3,
+        "required": null
+      },
+      "expected": "unknown",
+      "basis": "요구 성능 미정",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "planning-repeat-gap",
+      "kind": "normal",
+      "input": {
+        "schedule": [
+          "A",
+          "B",
+          "A",
+          "C"
+        ],
+        "min_gap": 3
+      },
+      "expected": [
+        [
+          0,
+          2
+        ]
+      ],
+      "basis": "같은A 간격2<3",
+      "actual": [
+        [
+          0,
+          2
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "planning-repeat-gap",
+      "kind": "boundary",
+      "input": {
+        "schedule": [
+          "A",
+          "B",
+          "C",
+          "A"
+        ],
+        "min_gap": 3
+      },
+      "expected": [],
+      "basis": "간격3은 허용",
+      "actual": [],
+      "status": "pass"
+    },
+    {
+      "case": "planning-repeat-gap",
+      "kind": "missing",
+      "input": {
+        "schedule": [
+          "A",
+          null,
+          "B"
+        ],
+        "min_gap": 3
+      },
+      "expected": "unknown",
+      "basis": "하루 활동 미정",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "planning-substitute-stock",
+      "kind": "normal",
+      "input": {
+        "need": "10",
+        "replacement_units": "2",
+        "yield_": "0.8",
+        "stock": 7,
+        "approved": true
+      },
+      "expected": {
+        "required": 7,
+        "shortage": 0
+      },
+      "basis": "10/1.6=6.25이므로7",
+      "actual": {
+        "required": 7,
+        "shortage": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-substitute-stock",
+      "kind": "boundary",
+      "input": {
+        "need": "8",
+        "replacement_units": "2",
+        "yield_": "1",
+        "stock": 4,
+        "approved": true
+      },
+      "expected": {
+        "required": 4,
+        "shortage": 0
+      },
+      "basis": "정확히4개",
+      "actual": {
+        "required": 4,
+        "shortage": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-substitute-stock",
+      "kind": "missing",
+      "input": {
+        "need": "10",
+        "replacement_units": "2",
+        "yield_": null,
+        "stock": 7,
+        "approved": true
+      },
+      "expected": "unknown",
+      "basis": "수율 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "planning-outage-repair",
+      "kind": "normal",
+      "input": {
+        "assignments": [
+          "A",
+          "A",
+          "B"
+        ],
+        "capacity": {
+          "A": 2,
+          "B": 3
+        },
+        "closed": [
+          "A"
+        ]
+      },
+      "expected": {
+        "moves": 2,
+        "assignment": [
+          "B",
+          "B",
+          "B"
+        ]
+      },
+      "basis": "A상자2개만 B로 이동",
+      "actual": {
+        "moves": 2,
+        "assignment": [
+          "B",
+          "B",
+          "B"
+        ]
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-outage-repair",
+      "kind": "boundary",
+      "input": {
+        "assignments": [
+          "A",
+          "B"
+        ],
+        "capacity": {
+          "A": 1,
+          "B": 1
+        },
+        "closed": []
+      },
+      "expected": {
+        "moves": 0,
+        "assignment": [
+          "A",
+          "B"
+        ]
+      },
+      "basis": "중단 없고 기존안 유효",
+      "actual": {
+        "moves": 0,
+        "assignment": [
+          "A",
+          "B"
+        ]
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-outage-repair",
+      "kind": "missing",
+      "input": {
+        "assignments": [
+          "A"
+        ],
+        "capacity": {
+          "B": null
+        },
+        "closed": [
+          "A"
+        ]
+      },
+      "expected": "unknown",
+      "basis": "대체 용량 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "planning-infeasible-witness",
+      "kind": "normal",
+      "input": {
+        "demand": 11,
+        "capacities": [
+          4,
+          5
+        ]
+      },
+      "expected": {
+        "state": "infeasible",
+        "shortage": 2
+      },
+      "basis": "11−9=2명 부족",
+      "actual": {
+        "state": "infeasible",
+        "shortage": 2
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-infeasible-witness",
+      "kind": "boundary",
+      "input": {
+        "demand": 9,
+        "capacities": [
+          4,
+          5
+        ]
+      },
+      "expected": {
+        "state": "capacity_sufficient",
+        "shortage": 0
+      },
+      "basis": "총합과 수요 같음",
+      "actual": {
+        "state": "capacity_sufficient",
+        "shortage": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-infeasible-witness",
+      "kind": "missing",
+      "input": {
+        "demand": null,
+        "capacities": [
+          4,
+          5
+        ]
+      },
+      "expected": "unknown",
+      "basis": "수요 미확정",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "planning-service-coverage",
+      "kind": "normal",
+      "input": {
+        "window": [
+          0,
+          60
+        ],
+        "shifts": [
+          [
+            0,
+            20
+          ],
+          [
+            30,
+            60
+          ]
+        ]
+      },
+      "expected": {
+        "gaps": [
+          [
+            20,
+            30
+          ]
+        ],
+        "minutes": 10
+      },
+      "basis": "20~30분만 미덮임",
+      "actual": {
+        "gaps": [
+          [
+            20,
+            30
+          ]
+        ],
+        "minutes": 10
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-service-coverage",
+      "kind": "boundary",
+      "input": {
+        "window": [
+          0,
+          60
+        ],
+        "shifts": [
+          [
+            0,
+            30
+          ],
+          [
+            30,
+            60
+          ]
+        ]
+      },
+      "expected": {
+        "gaps": [],
+        "minutes": 0
+      },
+      "basis": "30분 경계 맞닿음",
+      "actual": {
+        "gaps": [],
+        "minutes": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "planning-service-coverage",
+      "kind": "missing",
+      "input": {
+        "window": [
+          0,
+          60
+        ],
+        "shifts": [
+          [
+            0,
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "퇴근 시각 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    }
+  ]
+}

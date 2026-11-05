@@ -1,0 +1,1267 @@
+{
+  "python": "3.12.14",
+  "kind": "independent_fixture_oracle",
+  "limitations": "No production app, concurrency, natural-language semantics, or user outcome tested.",
+  "cases": 10,
+  "checks": 65,
+  "results": [
+    {
+      "case": "open-day-rate",
+      "kind": "normal",
+      "input": {
+        "visits": 480,
+        "days": 12,
+        "complete": true
+      },
+      "expected": 40,
+      "basis": "480÷12=40명/일",
+      "actual": 40.0,
+      "status": "pass"
+    },
+    {
+      "case": "open-day-rate",
+      "kind": "boundary",
+      "input": {
+        "visits": 0,
+        "days": 5,
+        "complete": true
+      },
+      "expected": 0,
+      "basis": "측정된 0÷5=0",
+      "actual": 0.0,
+      "status": "pass"
+    },
+    {
+      "case": "open-day-rate",
+      "kind": "missing",
+      "input": {
+        "visits": 480,
+        "days": null,
+        "complete": true
+      },
+      "expected": "unknown",
+      "basis": "분모 미수집",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "open-day-rate",
+      "kind": "conflict",
+      "input": {
+        "visits": 2,
+        "days": 0,
+        "complete": true
+      },
+      "expected": "invalid",
+      "basis": "개관 0일에 방문 2명은 계약 충돌",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "open-day-rate",
+      "kind": "period_comparison",
+      "input": {
+        "visits": 600,
+        "days": 20,
+        "complete": true
+      },
+      "expected": 30,
+      "basis": "합계 600>480이나 30<40",
+      "actual": 30.0,
+      "status": "pass"
+    },
+    {
+      "case": "open-day-rate",
+      "kind": "new_sample",
+      "input": {
+        "visits": 225,
+        "days": 9,
+        "complete": false
+      },
+      "expected": "unknown",
+      "basis": "미완료를 25로 확정하지 않음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "open-day-rate",
+      "kind": "reorder",
+      "input": {
+        "groups": [
+          [
+            "b",
+            600,
+            20
+          ],
+          [
+            "a",
+            480,
+            12
+          ]
+        ]
+      },
+      "expected": {
+        "a": 40,
+        "b": 30
+      },
+      "basis": "행순서를 뒤집어도 키별 개관일당 값은 a=40,b=30",
+      "actual": {
+        "b": 30.0,
+        "a": 40.0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "counter-reset",
+      "kind": "normal",
+      "input": {
+        "before": 130,
+        "after": 178,
+        "reset": false
+      },
+      "expected": 48,
+      "basis": "178−130=48분",
+      "actual": 48,
+      "status": "pass"
+    },
+    {
+      "case": "counter-reset",
+      "kind": "boundary",
+      "input": {
+        "before": 130,
+        "after": 130,
+        "reset": false
+      },
+      "expected": 0,
+      "basis": "동일 누적값은 0",
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "case": "counter-reset",
+      "kind": "missing",
+      "input": {
+        "before": null,
+        "after": 178,
+        "reset": false
+      },
+      "expected": "unknown",
+      "basis": "기준값 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "counter-reset",
+      "kind": "conflict",
+      "input": {
+        "before": 130,
+        "after": 4,
+        "reset": false
+      },
+      "expected": "reset_unknown",
+      "basis": "−126은 사용량이 아님",
+      "actual": "reset_unknown",
+      "status": "pass"
+    },
+    {
+      "case": "counter-reset",
+      "kind": "reset_crossing",
+      "input": {
+        "before": 130,
+        "after": 178,
+        "reset": true
+      },
+      "expected": "reset_unknown",
+      "basis": "증가해도 교체를 통과하면 보류",
+      "actual": "reset_unknown",
+      "status": "pass"
+    },
+    {
+      "case": "counter-reset",
+      "kind": "new_sample",
+      "input": {
+        "before": 5,
+        "after": 17,
+        "reset": false
+      },
+      "expected": 12,
+      "basis": "17−5=12",
+      "actual": 12,
+      "status": "pass"
+    },
+    {
+      "case": "counter-reset",
+      "kind": "reorder",
+      "input": {
+        "readings": [
+          [
+            2,
+            178
+          ],
+          [
+            1,
+            130
+          ]
+        ],
+        "reset": false
+      },
+      "expected": 48,
+      "basis": "시간순 정렬 후 178−130=48; 파일 행순 무관",
+      "actual": 48,
+      "status": "pass"
+    },
+    {
+      "case": "repair-slack",
+      "kind": "normal",
+      "input": {
+        "due": 90,
+        "work": 60,
+        "safety": false
+      },
+      "expected": 30,
+      "basis": "90−60=30분",
+      "actual": 30,
+      "status": "pass"
+    },
+    {
+      "case": "repair-slack",
+      "kind": "boundary",
+      "input": {
+        "due": 60,
+        "work": 60,
+        "safety": false
+      },
+      "expected": 0,
+      "basis": "여유 0",
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "case": "repair-slack",
+      "kind": "missing",
+      "input": {
+        "due": 90,
+        "work": null,
+        "safety": false
+      },
+      "expected": "estimate_required",
+      "basis": "추정 불명",
+      "actual": "estimate_required",
+      "status": "pass"
+    },
+    {
+      "case": "repair-slack",
+      "kind": "conflict",
+      "input": {
+        "due": 20,
+        "work": 40,
+        "safety": false
+      },
+      "expected": -20,
+      "basis": "20분 지연 위험",
+      "actual": -20,
+      "status": "pass"
+    },
+    {
+      "case": "repair-slack",
+      "kind": "safety_override",
+      "input": {
+        "due": 90,
+        "work": 60,
+        "safety": true
+      },
+      "expected": "escalate",
+      "basis": "안전 규칙 우선",
+      "actual": "escalate",
+      "status": "pass"
+    },
+    {
+      "case": "repair-slack",
+      "kind": "new_sample",
+      "input": {
+        "due": 100,
+        "work": 95,
+        "safety": false
+      },
+      "expected": 5,
+      "basis": "마감은 늦어도 여유 5로 먼저 착수 후보",
+      "actual": 5,
+      "status": "pass"
+    },
+    {
+      "case": "repair-slack",
+      "kind": "reorder",
+      "input": {
+        "tickets": [
+          [
+            "b",
+            100,
+            95
+          ],
+          [
+            "a",
+            90,
+            60
+          ]
+        ]
+      },
+      "expected": [
+        "b",
+        "a"
+      ],
+      "basis": "여유 5분인 b, 30분인 a 순; 입력순 의존 금지",
+      "actual": [
+        "b",
+        "a"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "policy-evidence",
+      "kind": "normal",
+      "input": {
+        "date": "2031-04-10",
+        "docs": [
+          [
+            "a",
+            "2031-01-01",
+            "2031-05-01"
+          ]
+        ]
+      },
+      "expected": "a",
+      "basis": "시작≤4월10일<종료",
+      "actual": "a",
+      "status": "pass"
+    },
+    {
+      "case": "policy-evidence",
+      "kind": "boundary",
+      "input": {
+        "date": "2031-05-01",
+        "docs": [
+          [
+            "a",
+            "2031-01-01",
+            "2031-05-01"
+          ],
+          [
+            "b",
+            "2031-05-01",
+            "2032-01-01"
+          ]
+        ]
+      },
+      "expected": "b",
+      "basis": "종료일은 이전 문서 제외",
+      "actual": "b",
+      "status": "pass"
+    },
+    {
+      "case": "policy-evidence",
+      "kind": "missing",
+      "input": {
+        "date": null,
+        "docs": []
+      },
+      "expected": "unknown",
+      "basis": "기준일 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "policy-evidence",
+      "kind": "conflict",
+      "input": {
+        "date": "2031-04-10",
+        "docs": [
+          [
+            "a",
+            "2031-01-01",
+            "2031-06-01"
+          ],
+          [
+            "b",
+            "2031-04-01",
+            "2031-07-01"
+          ]
+        ]
+      },
+      "expected": "conflict",
+      "basis": "동시 유효 두 문서",
+      "actual": "conflict",
+      "status": "pass"
+    },
+    {
+      "case": "policy-evidence",
+      "kind": "reorder",
+      "input": {
+        "date": "2031-05-01",
+        "docs": [
+          [
+            "b",
+            "2031-05-01",
+            "2032-01-01"
+          ],
+          [
+            "a",
+            "2031-01-01",
+            "2031-05-01"
+          ]
+        ]
+      },
+      "expected": "b",
+      "basis": "입력순 무관",
+      "actual": "b",
+      "status": "pass"
+    },
+    {
+      "case": "policy-evidence",
+      "kind": "new_sample",
+      "input": {
+        "date": "2033-01-01",
+        "docs": [
+          [
+            "a",
+            "2031-01-01",
+            "2031-05-01"
+          ]
+        ]
+      },
+      "expected": "not_found",
+      "basis": "기간 밖",
+      "actual": "not_found",
+      "status": "pass"
+    },
+    {
+      "case": "claim-ledger",
+      "kind": "normal",
+      "input": {
+        "claim": 8,
+        "evidence": 8,
+        "same_meaning": true
+      },
+      "expected": "supported",
+      "basis": "동일 범위 8=8",
+      "actual": "supported",
+      "status": "pass"
+    },
+    {
+      "case": "claim-ledger",
+      "kind": "boundary",
+      "input": {
+        "claim": 0,
+        "evidence": 0,
+        "same_meaning": true
+      },
+      "expected": "supported",
+      "basis": "관측 0은 근거",
+      "actual": "supported",
+      "status": "pass"
+    },
+    {
+      "case": "claim-ledger",
+      "kind": "missing",
+      "input": {
+        "claim": 8,
+        "evidence": null,
+        "same_meaning": true
+      },
+      "expected": "unverified",
+      "basis": "근거 부재",
+      "actual": "unverified",
+      "status": "pass"
+    },
+    {
+      "case": "claim-ledger",
+      "kind": "conflict",
+      "input": {
+        "claim": 8,
+        "evidence": 6,
+        "same_meaning": true
+      },
+      "expected": "contradicted",
+      "basis": "8≠6",
+      "actual": "contradicted",
+      "status": "pass"
+    },
+    {
+      "case": "claim-ledger",
+      "kind": "object_key_order",
+      "input": {
+        "evidence": 8,
+        "same_meaning": true,
+        "claim": 8
+      },
+      "expected": "supported",
+      "basis": "필드순 무관",
+      "actual": "supported",
+      "status": "pass"
+    },
+    {
+      "case": "claim-ledger",
+      "kind": "new_expression",
+      "input": {
+        "claim": 8,
+        "evidence": 8,
+        "same_meaning": false
+      },
+      "expected": "semantic_review",
+      "basis": "부정·기간 차이 등 의미 다르면 숫자 일치로 승인 금지",
+      "actual": "semantic_review",
+      "status": "pass"
+    },
+    {
+      "case": "claim-ledger",
+      "kind": "reorder",
+      "input": {
+        "claims": [
+          [
+            "b",
+            8,
+            6
+          ],
+          [
+            "a",
+            8,
+            8
+          ]
+        ]
+      },
+      "expected": {
+        "a": "supported",
+        "b": "contradicted"
+      },
+      "basis": "주장 행순을 바꾸어도 claim ID별 근거 판정 유지",
+      "actual": {
+        "b": "contradicted",
+        "a": "supported"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "rater-disagreement",
+      "kind": "normal",
+      "input": {
+        "pairs": [
+          [
+            "pass",
+            "pass"
+          ],
+          [
+            "revise",
+            "pass"
+          ],
+          [
+            "unknown",
+            "unknown"
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "basis": "3쌍 중 2일치",
+      "actual": [
+        2,
+        3
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "rater-disagreement",
+      "kind": "boundary",
+      "input": {
+        "pairs": [
+          [
+            "pass",
+            "pass"
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "basis": "1쌍 100%이나 표본 작음",
+      "actual": [
+        1,
+        1
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "rater-disagreement",
+      "kind": "missing",
+      "input": {
+        "pairs": [
+          [
+            null,
+            "pass"
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "완전쌍 0",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "rater-disagreement",
+      "kind": "conflict",
+      "input": {
+        "pairs": [
+          [
+            "pass",
+            "revise"
+          ],
+          [
+            "revise",
+            "pass"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "basis": "평균 같아도 일치 0",
+      "actual": [
+        0,
+        2
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "rater-disagreement",
+      "kind": "reorder",
+      "input": {
+        "pairs": [
+          [
+            "unknown",
+            "unknown"
+          ],
+          [
+            "revise",
+            "pass"
+          ],
+          [
+            "pass",
+            "pass"
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "basis": "행순 무관",
+      "actual": [
+        2,
+        3
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "rater-disagreement",
+      "kind": "new_sample",
+      "input": {
+        "pairs": [
+          [
+            "revise",
+            "revise"
+          ],
+          [
+            "pass",
+            null
+          ],
+          [
+            "pass",
+            "revise"
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "basis": "누락쌍 제외",
+      "actual": [
+        1,
+        2
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "deadline-offset",
+      "kind": "normal",
+      "input": {
+        "at": "2031-06-01T08:59:00+00:00",
+        "end": "2031-06-01T18:00:00+09:00"
+      },
+      "expected": "eligible",
+      "basis": "마감 UTC 09:00보다 1분 전",
+      "actual": "eligible",
+      "status": "pass"
+    },
+    {
+      "case": "deadline-offset",
+      "kind": "boundary",
+      "input": {
+        "at": "2031-06-01T09:00:00+00:00",
+        "end": "2031-06-01T18:00:00+09:00"
+      },
+      "expected": "eligible",
+      "basis": "같은 순간 포함",
+      "actual": "eligible",
+      "status": "pass"
+    },
+    {
+      "case": "deadline-offset",
+      "kind": "missing",
+      "input": {
+        "at": "2031-06-01T09:00:00",
+        "end": "2031-06-01T18:00:00+09:00"
+      },
+      "expected": "unknown",
+      "basis": "offset 없음",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "deadline-offset",
+      "kind": "conflict",
+      "input": {
+        "at": "2031-06-01T09:00:01+00:00",
+        "end": "2031-06-01T18:00:00+09:00"
+      },
+      "expected": "late",
+      "basis": "1초 초과",
+      "actual": "late",
+      "status": "pass"
+    },
+    {
+      "case": "deadline-offset",
+      "kind": "offset_equivalence",
+      "input": {
+        "at": "2031-06-01T18:00:00+09:00",
+        "end": "2031-06-01T09:00:00+00:00"
+      },
+      "expected": "eligible",
+      "basis": "동일 순간 표시 변경",
+      "actual": "eligible",
+      "status": "pass"
+    },
+    {
+      "case": "deadline-offset",
+      "kind": "new_sample",
+      "input": {
+        "at": "2031-06-01T04:30:00-04:00",
+        "end": "2031-06-01T09:00:00+00:00"
+      },
+      "expected": "eligible",
+      "basis": "UTC08:30",
+      "actual": "eligible",
+      "status": "pass"
+    },
+    {
+      "case": "deadline-offset",
+      "kind": "retry",
+      "input": {
+        "at": "2031-06-01T09:00:00+00:00",
+        "end": "2031-06-01T18:00:00+09:00",
+        "repeat": 2
+      },
+      "expected": [
+        "eligible",
+        "eligible"
+      ],
+      "basis": "같은 순수 판정 요청 두 번 재시도해도 동일 결과; 접수 부작용은 이 사례 범위 밖",
+      "actual": [
+        "eligible",
+        "eligible"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "seat-retry",
+      "kind": "normal",
+      "input": {
+        "cap": 2,
+        "requests": [
+          [
+            "x",
+            "p"
+          ],
+          [
+            "y",
+            "q"
+          ],
+          [
+            "z",
+            "r"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "p",
+          "q"
+        ],
+        [
+          "r"
+        ]
+      ],
+      "basis": "첫 두 명 수락",
+      "actual": [
+        [
+          "p",
+          "q"
+        ],
+        [
+          "r"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "seat-retry",
+      "kind": "boundary",
+      "input": {
+        "cap": 0,
+        "requests": [
+          [
+            "x",
+            "p"
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "p"
+        ]
+      ],
+      "basis": "정원0 대기",
+      "actual": [
+        [],
+        [
+          "p"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "seat-retry",
+      "kind": "missing",
+      "input": {
+        "cap": 2,
+        "requests": [
+          [
+            "x",
+            null
+          ]
+        ]
+      },
+      "expected": "invalid",
+      "basis": "사람 키 없음",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "seat-retry",
+      "kind": "conflict",
+      "input": {
+        "cap": 2,
+        "requests": [
+          [
+            "x",
+            "p"
+          ],
+          [
+            "x",
+            "q"
+          ]
+        ]
+      },
+      "expected": "conflict",
+      "basis": "같은 요청키 다른 payload",
+      "actual": "conflict",
+      "status": "pass"
+    },
+    {
+      "case": "seat-retry",
+      "kind": "duplicate",
+      "input": {
+        "cap": 2,
+        "requests": [
+          [
+            "x",
+            "p"
+          ],
+          [
+            "x",
+            "p"
+          ],
+          [
+            "y",
+            "p"
+          ],
+          [
+            "z",
+            "q"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "p",
+          "q"
+        ],
+        []
+      ],
+      "basis": "한 사람 한 좌석",
+      "actual": [
+        [
+          "p",
+          "q"
+        ],
+        []
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "seat-retry",
+      "kind": "new_sample",
+      "input": {
+        "cap": 1,
+        "requests": [
+          [
+            "z",
+            "r"
+          ],
+          [
+            "x",
+            "p"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "r"
+        ],
+        [
+          "p"
+        ]
+      ],
+      "basis": "수신순 바뀌면 수락자 변경",
+      "actual": [
+        [
+          "r"
+        ],
+        [
+          "p"
+        ]
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "rectangle-union",
+      "kind": "normal",
+      "input": {
+        "rects": [
+          [
+            0,
+            0,
+            3,
+            2
+          ],
+          [
+            2,
+            0,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 8,
+      "basis": "6+4−2=8m²",
+      "actual": 8,
+      "status": "pass"
+    },
+    {
+      "case": "rectangle-union",
+      "kind": "boundary",
+      "input": {
+        "rects": [
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 8,
+      "basis": "경계 접촉 면적0:4+4",
+      "actual": 8,
+      "status": "pass"
+    },
+    {
+      "case": "rectangle-union",
+      "kind": "missing",
+      "input": {
+        "rects": [
+          [
+            0,
+            null,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "좌표 누락",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "rectangle-union",
+      "kind": "conflict",
+      "input": {
+        "rects": [
+          [
+            3,
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": "invalid",
+      "basis": "xmin>xmax",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "rectangle-union",
+      "kind": "duplicate",
+      "input": {
+        "rects": [
+          [
+            0,
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            0,
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": 6,
+      "basis": "중복 영역 추가 면적0",
+      "actual": 6,
+      "status": "pass"
+    },
+    {
+      "case": "rectangle-union",
+      "kind": "new_sample",
+      "input": {
+        "rects": [
+          [
+            0,
+            0,
+            4,
+            4
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 16,
+      "basis": "완전 포함이면16",
+      "actual": 16,
+      "status": "pass"
+    },
+    {
+      "case": "budget-cover",
+      "kind": "normal",
+      "input": {
+        "budget": 4,
+        "candidates": [
+          [
+            "a",
+            2,
+            [
+              "u",
+              "v"
+            ]
+          ],
+          [
+            "b",
+            2,
+            [
+              "v",
+              "w"
+            ]
+          ],
+          [
+            "c",
+            3,
+            [
+              "x"
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        "a",
+        "b"
+      ],
+      "basis": "비용4,합집합3; c 단독1",
+      "actual": [
+        "a",
+        "b"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "budget-cover",
+      "kind": "boundary",
+      "input": {
+        "budget": 0,
+        "candidates": [
+          [
+            "a",
+            2,
+            [
+              "u"
+            ]
+          ]
+        ]
+      },
+      "expected": [],
+      "basis": "빈 집합 비용0",
+      "actual": [],
+      "status": "pass"
+    },
+    {
+      "case": "budget-cover",
+      "kind": "missing",
+      "input": {
+        "budget": 4,
+        "candidates": [
+          [
+            "a",
+            2,
+            null
+          ]
+        ]
+      },
+      "expected": "unknown",
+      "basis": "커버 표 미확인",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "budget-cover",
+      "kind": "conflict",
+      "input": {
+        "budget": -1,
+        "candidates": [
+          [
+            "a",
+            2,
+            [
+              "u"
+            ]
+          ]
+        ]
+      },
+      "expected": "invalid",
+      "basis": "음수 예산",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "budget-cover",
+      "kind": "duplicate",
+      "input": {
+        "budget": 4,
+        "candidates": [
+          [
+            "a",
+            2,
+            [
+              "u",
+              "u"
+            ]
+          ],
+          [
+            "b",
+            2,
+            [
+              "u"
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        "a"
+      ],
+      "basis": "중복 원소는1, 최소비용 동률 ID a",
+      "actual": [
+        "a"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "budget-cover",
+      "kind": "new_sample",
+      "input": {
+        "budget": 3,
+        "candidates": [
+          [
+            "a",
+            3,
+            [
+              "u",
+              "v"
+            ]
+          ],
+          [
+            "b",
+            2,
+            [
+              "u",
+              "v"
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        "b"
+      ],
+      "basis": "커버 같으면 비용2 선택",
+      "actual": [
+        "b"
+      ],
+      "status": "pass"
+    }
+  ]
+}

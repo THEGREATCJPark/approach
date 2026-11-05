@@ -68,7 +68,7 @@ def records(root, name, errors):
         return []
 
 
-def check(root):
+def check(root, expected_cases=None, expected_per_family=None, expected_family_count=None):
     errors, warnings = [], []
     catalogs = {name: records(root, name, errors) for name in ['cases', 'methods', 'tools']}
     try:
@@ -90,6 +90,18 @@ def check(root):
             if not isinstance(card, str) or not (root / card).is_file():
                 errors.append(f'{name}/{ident}: missing card {card}')
         ids[name] = seen
+    case_paths = [c.get('path') for c in catalogs['cases'] if isinstance(c.get('path'), str)]
+    duplicate_paths = [p for p, count in collections.Counter(case_paths).items() if count > 1]
+    for path in duplicate_paths:
+        errors.append(f'duplicate case path: {path}')
+    declared_paths = set(case_paths)
+    actual_paths = {p.relative_to(root).as_posix() for p in (root / 'cases').rglob('*.md')}
+    orphan_paths = sorted(actual_paths - declared_paths)
+    for path in orphan_paths:
+        errors.append(f'orphan case Markdown not in catalog: {path}')
+    for path in case_paths:
+        if not (root / path).resolve().is_relative_to((root / 'cases').resolve()):
+            errors.append(f'case path outside cases directory: {path}')
     for case in catalogs['cases']:
         ident = case.get('id', '?')
         for field in FIELDS:
@@ -108,14 +120,40 @@ def check(root):
                 for ref in refs:
                     if ref not in ids[name]:
                         errors.append(f'{ident}: unresolved {field} {ref}')
-        if case.get('depth') in ['deep', 'advanced', '심화']:
-            tests = case.get('tests', [])
-            if not isinstance(tests, list) or len(tests) < 6:
-                errors.append(f'{ident}: deep card needs at least 6 structured tests')
-            if not case.get('fixture') and not case.get('fixture_path'):
-                errors.append(f'{ident}: deep card needs fixture or fixture_path')
-            if case.get('fixture_path') and not (root / case['fixture_path']).is_file():
-                errors.append(f'{ident}: fixture_path missing')
+        deep = case.get('depth') in ['deep', 'advanced', '심화']
+        tests = case.get('tests', [])
+        minimum = 6 if deep else 3
+        if not isinstance(tests, list) or len(tests) < minimum:
+            errors.append(f'{ident}: card needs at least {minimum} structured tests')
+        if not case.get('fixture') and not case.get('fixture_path'):
+            errors.append(f'{ident}: card needs fixture or fixture_path')
+        if case.get('fixture_path') and not (root / case['fixture_path']).is_file():
+            errors.append(f'{ident}: fixture_path missing')
+        card_path = root / case.get('path', '__missing__')
+        card_body = card_path.read_text(encoding='utf-8') if card_path.is_file() else ''
+        if isinstance(tests, list):
+            for index, test in enumerate(tests):
+                at = f'{ident}: tests[{index}]'
+                if not isinstance(test, dict):
+                    errors.append(f'{at}: expected structured object'); continue
+                # Empty object input means the declared base fixture; null can model missing data.
+                for key in ['input', 'expected']:
+                    if key not in test or test[key] == '':
+                        errors.append(f'{at}: missing or empty {key}')
+                basis = test.get('basis', test.get('rationale', test.get('expected_basis')))
+                if basis is None and deep and '손계산 근거:' in card_body:
+                    warnings.append(f'{at}: legacy basis is in card 손계산 근거 section, not per-test metadata')
+                elif not basis or (isinstance(basis, str) and not basis.strip()):
+                    errors.append(f'{at}: substantive basis required; execution status is not a basis')
+        if not deep:
+            signature = case.get('decision_signature')
+            keys = ['decision', 'input_structure', 'hard_constraint', 'validation']
+            if not isinstance(signature, dict):
+                errors.append(f'{ident}: standard card needs decision_signature object')
+            else:
+                for key in keys:
+                    if not isinstance(signature.get(key), str) or not signature[key].strip():
+                        errors.append(f'{ident}: decision_signature.{key} needs substantive string')
         card_path = root / case.get('path', '__missing__')
         if card_path.is_file():
             body = card_path.read_text(encoding='utf-8')
@@ -132,7 +170,7 @@ def check(root):
                 except ValueError:
                     errors.append(f'{ident}: invalid fenced JSON')
             if metadata:
-                for field in FIELDS:
+                for field in FIELDS + (['decision_signature'] if not deep else []):
                     if field not in metadata[0]:
                         errors.append(f'{ident}: card metadata missing {field}')
                     elif metadata[0][field] != case.get(field):
@@ -158,18 +196,29 @@ def check(root):
             if not resolved.exists():
                 errors.append(f'{path.relative_to(root)}: broken local link {target}')
     counts = collections.Counter(c.get('family', '?') for c in catalogs['cases'])
+    if expected_cases is not None and len(catalogs['cases']) != expected_cases:
+        errors.append(f'expected {expected_cases} cases, got {len(catalogs["cases"])}')
+    if expected_family_count is not None and len(counts) != expected_family_count:
+        errors.append(f'expected {expected_family_count} families, got {len(counts)}')
+    if expected_per_family is not None:
+        for family, count in counts.items():
+            if count != expected_per_family:
+                errors.append(f'{family}: expected {expected_per_family} cases, got {count}')
     return {'status': 'pass' if not errors else 'fail', 'counts': {n: len(r) for n, r in catalogs.items()},
         'deep_cases': sum(c.get('depth') in ['deep', 'advanced', '심화'] for c in catalogs['cases']),
-        'families': dict(sorted(counts.items())), 'local_links_checked': link_count,
+        'families': dict(sorted(counts.items())), 'case_markdown_files': len(actual_paths), 'duplicate_case_paths': duplicate_paths, 'orphan_case_paths': orphan_paths, 'local_links_checked': link_count,
         'errors': errors, 'warnings': warnings,
-        'scope': 'Structural validation only; numerical examples, source verification and manual publication review are separate.'}
+        'scope': 'Structural validation including test input/expected/basis presence, not truth of expectations. Legacy deep-card bases may be in an explicit card section. Numerical execution, source verification and manual publication review are separate.'}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=ROOT)
+    parser.add_argument('--expected-cases', type=int)
+    parser.add_argument('--expected-per-family', type=int)
+    parser.add_argument('--expected-family-count', type=int)
     args = parser.parse_args()
-    result = check(args.root.resolve())
+    result = check(args.root.resolve(), args.expected_cases, args.expected_per_family, args.expected_family_count)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     raise SystemExit(result['status'] != 'pass')
 

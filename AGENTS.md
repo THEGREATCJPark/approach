@@ -20,9 +20,7 @@ NO_AI_REVIEW에서는 질문 생성·답변 작성·실시간 코칭을 모두 �
 ```sh
 python scripts/validate_repo.py
 python scripts/scan_publication.py
-python examples/synthetic/check_a.py
-python examples/synthetic/check_b.py
-python examples/synthetic/check_c.py
+python scripts/run_examples.py
 ```
 
 자료·방법의 상세 정본은 Markdown, 검색용 메타데이터는 catalog JSON이다.

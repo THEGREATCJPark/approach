@@ -1,0 +1,1003 @@
+{
+  "python": "3.12.14",
+  "kind": "independent_fixture_calculation",
+  "case_count": 10,
+  "test_count": 60,
+  "passed": 60,
+  "limitations": [
+    "No production application imported",
+    "No user study",
+    "No confidence interval estimation",
+    "No concurrent database test"
+  ],
+  "results": [
+    {
+      "case": "prerequisite-ready",
+      "kind": "정상",
+      "input": {
+        "done": [
+          "intro"
+        ]
+      },
+      "expected": [
+        "join",
+        "measure"
+      ],
+      "basis": "두 개의 직접 선수가 모두 intro이다.",
+      "actual": [
+        "join",
+        "measure"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "prerequisite-ready",
+      "kind": "경계",
+      "input": {
+        "done": [
+          "intro",
+          "measure",
+          "cut",
+          "join",
+          "finish"
+        ]
+      },
+      "expected": [],
+      "basis": "전부 완료이면 추천할 미완료가 없다.",
+      "actual": [],
+      "status": "pass"
+    },
+    {
+      "case": "prerequisite-ready",
+      "kind": "정보 부족",
+      "input": {
+        "done": null
+      },
+      "expected": "unknown",
+      "basis": "미기록은 미이수와 다르다.",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "prerequisite-ready",
+      "kind": "충돌",
+      "input": {
+        "done": [],
+        "cycle": true
+      },
+      "expected": "invalid_cycle",
+      "basis": "intro가 finish를 선수로 요구하면 순환이다.",
+      "actual": "invalid_cycle",
+      "status": "pass"
+    },
+    {
+      "case": "prerequisite-ready",
+      "kind": "순서변경",
+      "input": {
+        "done": [
+          "intro"
+        ],
+        "reverse": true
+      },
+      "expected": [
+        "join",
+        "measure"
+      ],
+      "basis": "행 순서는 의존 관계를 바꾸지 않는다.",
+      "actual": [
+        "join",
+        "measure"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "prerequisite-ready",
+      "kind": "새 표본",
+      "input": {
+        "done": [
+          "intro",
+          "measure",
+          "join"
+        ]
+      },
+      "expected": [
+        "cut"
+      ],
+      "basis": "finish는 아직 cut이 필요하다.",
+      "actual": [
+        "cut"
+      ],
+      "status": "pass"
+    },
+    {
+      "case": "concept-diagnostic",
+      "kind": "정상",
+      "input": {},
+      "expected": {
+        "safety": "ready",
+        "tools": "unknown",
+        "units": "practice"
+      },
+      "basis": "units 1/2, safety 2/2, tools 1개 응답.",
+      "actual": {
+        "safety": "ready",
+        "tools": "unknown",
+        "units": "practice"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "concept-diagnostic",
+      "kind": "경계",
+      "input": {
+        "only": [
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": {
+        "x": "ready"
+      },
+      "basis": "3/4=0.75 경계 포함.",
+      "actual": {
+        "x": "ready"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "concept-diagnostic",
+      "kind": "정보 부족",
+      "input": {
+        "only": [
+          null,
+          1
+        ]
+      },
+      "expected": {
+        "x": "unknown"
+      },
+      "basis": "관측 1개로 최소 2개 미달.",
+      "actual": {
+        "x": "unknown"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "concept-diagnostic",
+      "kind": "충돌",
+      "input": {
+        "conflict": true
+      },
+      "expected": "invalid",
+      "basis": "r1에 다른 점수가 같이 있으면 출처 확인.",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "concept-diagnostic",
+      "kind": "재전송",
+      "input": {
+        "duplicate": true
+      },
+      "expected": {
+        "safety": "ready",
+        "tools": "unknown",
+        "units": "practice"
+      },
+      "basis": "같은 id 같은 내용은 한 번만 센다.",
+      "actual": {
+        "safety": "ready",
+        "tools": "unknown",
+        "units": "practice"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "concept-diagnostic",
+      "kind": "새 표본",
+      "input": {
+        "only": [
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": {
+        "x": "practice"
+      },
+      "basis": "1/3은 0.75 미만.",
+      "actual": {
+        "x": "practice"
+      },
+      "status": "pass"
+    },
+    {
+      "case": "missing-versus-alarm",
+      "kind": "정상",
+      "input": {},
+      "expected": {
+        "normal": 4,
+        "alarm": 1,
+        "unknown": 1
+      },
+      "basis": "4,5,8,6 정상;9 경보;null 미확인.",
+      "actual": {
+        "normal": 4,
+        "alarm": 1,
+        "unknown": 1
+      },
+      "status": "pass"
+    },
+    {
+      "case": "missing-versus-alarm",
+      "kind": "경계",
+      "input": {
+        "values": [
+          8
+        ]
+      },
+      "expected": {
+        "normal": 1,
+        "alarm": 0,
+        "unknown": 0
+      },
+      "basis": "8 초과 규칙이므로 8은 정상.",
+      "actual": {
+        "normal": 1,
+        "alarm": 0,
+        "unknown": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "missing-versus-alarm",
+      "kind": "정보 부족",
+      "input": {
+        "values": [
+          null
+        ]
+      },
+      "expected": {
+        "normal": 0,
+        "alarm": 0,
+        "unknown": 1
+      },
+      "basis": "누락을 0으로 채우지 않는다.",
+      "actual": {
+        "normal": 0,
+        "alarm": 0,
+        "unknown": 1
+      },
+      "status": "pass"
+    },
+    {
+      "case": "missing-versus-alarm",
+      "kind": "충돌",
+      "input": {
+        "conflict": true
+      },
+      "expected": "invalid",
+      "basis": "같은 slot에 4와 7은 출처 충돌.",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "missing-versus-alarm",
+      "kind": "순서변경",
+      "input": {
+        "reverse": true
+      },
+      "expected": {
+        "normal": 4,
+        "alarm": 1,
+        "unknown": 1
+      },
+      "basis": "시간 키로 대응하면 순서와 무관.",
+      "actual": {
+        "normal": 4,
+        "alarm": 1,
+        "unknown": 1
+      },
+      "status": "pass"
+    },
+    {
+      "case": "missing-versus-alarm",
+      "kind": "새 표본",
+      "input": {
+        "values": [
+          8.1,
+          7.9,
+          null
+        ]
+      },
+      "expected": {
+        "normal": 1,
+        "alarm": 1,
+        "unknown": 1
+      },
+      "basis": "소수 상한 반례.",
+      "actual": {
+        "normal": 1,
+        "alarm": 1,
+        "unknown": 1
+      },
+      "status": "pass"
+    },
+    {
+      "case": "stratified-rate",
+      "kind": "정상",
+      "input": {},
+      "expected": {
+        "raw_before": 0.26,
+        "raw_after": 0.19,
+        "standard_after": 0.31
+      },
+      "basis": "2+24=26;12+7=19;0.2×0.15+0.8×0.35=0.31.",
+      "actual": {
+        "raw_before": 0.26,
+        "raw_after": 0.19,
+        "standard_after": 0.31
+      },
+      "status": "pass"
+    },
+    {
+      "case": "stratified-rate",
+      "kind": "경계",
+      "input": {
+        "zero": true
+      },
+      "expected": "unknown",
+      "basis": "0건 층은 비율을 만들 수 없다.",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "stratified-rate",
+      "kind": "정보 부족",
+      "input": {
+        "missing": true
+      },
+      "expected": "unknown",
+      "basis": "한 층의 집계 누락이면 표준화 비교 보류.",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "stratified-rate",
+      "kind": "충돌",
+      "input": {
+        "invalid": true
+      },
+      "expected": "invalid",
+      "basis": "재작업 21건/총20건은 불가능.",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "stratified-rate",
+      "kind": "순서변경",
+      "input": {
+        "reverse": true
+      },
+      "expected": {
+        "raw_before": 0.26,
+        "raw_after": 0.19,
+        "standard_after": 0.31
+      },
+      "basis": "집계 행 순서와 무관.",
+      "actual": {
+        "raw_before": 0.26,
+        "raw_after": 0.19,
+        "standard_after": 0.31
+      },
+      "status": "pass"
+    },
+    {
+      "case": "stratified-rate",
+      "kind": "새 표본",
+      "input": {
+        "same_mix": true
+      },
+      "expected": {
+        "raw_before": 0.26,
+        "raw_after": 0.31,
+        "standard_after": 0.31
+      },
+      "basis": "after simple 3/20, hard28/80이면 구성 고정.",
+      "actual": {
+        "raw_before": 0.26,
+        "raw_after": 0.31,
+        "standard_after": 0.31
+      },
+      "status": "pass"
+    },
+    {
+      "case": "rotation-budget",
+      "kind": "정상",
+      "input": {},
+      "expected": {
+        "plan": [
+          "A",
+          "B",
+          "A"
+        ],
+        "cost": 14
+      },
+      "basis": "4+6+4=14.",
+      "actual": {
+        "plan": [
+          "A",
+          "B",
+          "A"
+        ],
+        "cost": 14
+      },
+      "status": "pass"
+    },
+    {
+      "case": "rotation-budget",
+      "kind": "경계",
+      "input": {
+        "budget": 14
+      },
+      "expected": {
+        "plan": [
+          "A",
+          "B",
+          "A"
+        ],
+        "cost": 14
+      },
+      "basis": "예산 상한 포함.",
+      "actual": {
+        "plan": [
+          "A",
+          "B",
+          "A"
+        ],
+        "cost": 14
+      },
+      "status": "pass"
+    },
+    {
+      "case": "rotation-budget",
+      "kind": "정보 부족",
+      "input": {
+        "missing_cost": true
+      },
+      "expected": "unknown",
+      "basis": "A 비용 미확정이므로 최저비용 확정 불가.",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "rotation-budget",
+      "kind": "불가능",
+      "input": {
+        "budget": 13
+      },
+      "expected": "infeasible",
+      "basis": "고정 B 양옆 가장 싼 A도14.",
+      "actual": "infeasible",
+      "status": "pass"
+    },
+    {
+      "case": "rotation-budget",
+      "kind": "순서변경",
+      "input": {
+        "reverse": true
+      },
+      "expected": {
+        "plan": [
+          "A",
+          "B",
+          "A"
+        ],
+        "cost": 14
+      },
+      "basis": "입력 활동 순서는 동률 규칙을 바꾸지 않는다.",
+      "actual": {
+        "plan": [
+          "A",
+          "B",
+          "A"
+        ],
+        "cost": 14
+      },
+      "status": "pass"
+    },
+    {
+      "case": "rotation-budget",
+      "kind": "새 표본",
+      "input": {
+        "fixed": "C",
+        "budget": 15
+      },
+      "expected": {
+        "plan": [
+          "A",
+          "C",
+          "A"
+        ],
+        "cost": 15
+      },
+      "basis": "4+7+4=15.",
+      "actual": {
+        "plan": [
+          "A",
+          "C",
+          "A"
+        ],
+        "cost": 15
+      },
+      "status": "pass"
+    },
+    {
+      "case": "pack-order",
+      "kind": "정상",
+      "input": {},
+      "expected": {
+        "net": 16,
+        "packs": 3,
+        "order": 18,
+        "surplus": 2
+      },
+      "basis": "23+4−(8−2)−5=16,ceil(16/6)=3.",
+      "actual": {
+        "net": 16,
+        "packs": 3,
+        "order": 18,
+        "surplus": 2
+      },
+      "status": "pass"
+    },
+    {
+      "case": "pack-order",
+      "kind": "경계",
+      "input": {
+        "demand": 7
+      },
+      "expected": {
+        "net": 0,
+        "packs": 0,
+        "order": 0,
+        "surplus": 0
+      },
+      "basis": "7+4−6−5=0.",
+      "actual": {
+        "net": 0,
+        "packs": 0,
+        "order": 0,
+        "surplus": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "pack-order",
+      "kind": "정보 부족",
+      "input": {
+        "demand": null
+      },
+      "expected": "unknown",
+      "basis": "미확정 수요는0이 아님.",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "pack-order",
+      "kind": "충돌",
+      "input": {
+        "reserved": 9
+      },
+      "expected": "invalid",
+      "basis": "예약9가 보유8을 초과하는 예제 입력은 확인 필요.",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "pack-order",
+      "kind": "재시도",
+      "input": {
+        "repeat": true
+      },
+      "expected": {
+        "net": 16,
+        "packs": 3,
+        "order": 18,
+        "surplus": 2
+      },
+      "basis": "계산 재실행은 주문 생성이 아니다.",
+      "actual": {
+        "net": 16,
+        "packs": 3,
+        "order": 18,
+        "surplus": 2
+      },
+      "status": "pass"
+    },
+    {
+      "case": "pack-order",
+      "kind": "새 표본",
+      "input": {
+        "pack": 5
+      },
+      "expected": {
+        "net": 16,
+        "packs": 4,
+        "order": 20,
+        "surplus": 4
+      },
+      "basis": "포장 변경으로20개 주문.",
+      "actual": {
+        "net": 16,
+        "packs": 4,
+        "order": 20,
+        "surplus": 4
+      },
+      "status": "pass"
+    },
+    {
+      "case": "evidence-approval",
+      "kind": "정상",
+      "input": {
+        "amount": 80,
+        "evidence": true
+      },
+      "expected": "staff",
+      "basis": "100 이하.",
+      "actual": "staff",
+      "status": "pass"
+    },
+    {
+      "case": "evidence-approval",
+      "kind": "경계",
+      "input": {
+        "amount": 100,
+        "evidence": true
+      },
+      "expected": "staff",
+      "basis": "100 포함.",
+      "actual": "staff",
+      "status": "pass"
+    },
+    {
+      "case": "evidence-approval",
+      "kind": "정보 부족",
+      "input": {
+        "amount": 50,
+        "evidence": null
+      },
+      "expected": "unknown",
+      "basis": "증빙 확인 대기.",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "evidence-approval",
+      "kind": "충돌",
+      "input": {
+        "amount": -1,
+        "evidence": true
+      },
+      "expected": "invalid",
+      "basis": "음수 신청은 예제 정책 범위 밖.",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "evidence-approval",
+      "kind": "재시도",
+      "input": {
+        "amount": 101,
+        "evidence": true,
+        "repeat": true
+      },
+      "expected": "manager",
+      "basis": "재계산으로 승인 완료를 만들지 않는다.",
+      "actual": "manager",
+      "status": "pass"
+    },
+    {
+      "case": "evidence-approval",
+      "kind": "새 표본",
+      "input": {
+        "amount": 50,
+        "evidence": false
+      },
+      "expected": "need_evidence",
+      "basis": "증빙 없음은 보완 요청.",
+      "actual": "need_evidence",
+      "status": "pass"
+    },
+    {
+      "case": "resubmission-state",
+      "kind": "정상",
+      "input": {},
+      "expected": {
+        "state": "approved",
+        "applied": 5
+      },
+      "basis": "5개 허용 전이.",
+      "actual": {
+        "state": "approved",
+        "applied": 5
+      },
+      "status": "pass"
+    },
+    {
+      "case": "resubmission-state",
+      "kind": "경계",
+      "input": {
+        "events": []
+      },
+      "expected": {
+        "state": "draft",
+        "applied": 0
+      },
+      "basis": "빈 명령은 상태 유지.",
+      "actual": {
+        "state": "draft",
+        "applied": 0
+      },
+      "status": "pass"
+    },
+    {
+      "case": "resubmission-state",
+      "kind": "정보 부족",
+      "input": {
+        "events": [
+          {
+            "event_id": "x",
+            "action": null
+          }
+        ]
+      },
+      "expected": "unknown",
+      "basis": "명령 누락.",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "resubmission-state",
+      "kind": "충돌",
+      "input": {
+        "events": [
+          {
+            "event_id": "x",
+            "action": "approve"
+          }
+        ]
+      },
+      "expected": "invalid_transition",
+      "basis": "draft에서 직접 approve 불가.",
+      "actual": "invalid_transition",
+      "status": "pass"
+    },
+    {
+      "case": "resubmission-state",
+      "kind": "재전송",
+      "input": {
+        "duplicate": true
+      },
+      "expected": {
+        "state": "approved",
+        "applied": 5
+      },
+      "basis": "e1 같은 내용은 중복 적용하지 않는다.",
+      "actual": {
+        "state": "approved",
+        "applied": 5
+      },
+      "status": "pass"
+    },
+    {
+      "case": "resubmission-state",
+      "kind": "새 표본",
+      "input": {
+        "events": [
+          {
+            "event_id": "x",
+            "action": "submit"
+          },
+          {
+            "event_id": "x",
+            "action": "reject"
+          }
+        ]
+      },
+      "expected": "conflict",
+      "basis": "동일 id 다른 payload 거부.",
+      "actual": "conflict",
+      "status": "pass"
+    },
+    {
+      "case": "mandatory-gates",
+      "kind": "정상",
+      "input": {},
+      "expected": {
+        "selected": "m1",
+        "pass": 2,
+        "fail": 1,
+        "unknown": 2
+      },
+      "basis": "합격m1/m4 중12<15.",
+      "actual": {
+        "selected": "m1",
+        "pass": 2,
+        "fail": 1,
+        "unknown": 2
+      },
+      "status": "pass"
+    },
+    {
+      "case": "mandatory-gates",
+      "kind": "경계",
+      "input": {
+        "tie": true
+      },
+      "expected": {
+        "selected": "m1",
+        "pass": 2,
+        "fail": 1,
+        "unknown": 2
+      },
+      "basis": "동률은 id 사전순; 품질 우위라는 뜻 아님.",
+      "actual": {
+        "selected": "m1",
+        "pass": 2,
+        "fail": 1,
+        "unknown": 2
+      },
+      "status": "pass"
+    },
+    {
+      "case": "mandatory-gates",
+      "kind": "정보 부족",
+      "input": {
+        "all_unknown": true
+      },
+      "expected": {
+        "selected": null,
+        "pass": 0,
+        "fail": 0,
+        "unknown": 5
+      },
+      "basis": "검증 후보 없음.",
+      "actual": {
+        "selected": null,
+        "pass": 0,
+        "fail": 0,
+        "unknown": 5
+      },
+      "status": "pass"
+    },
+    {
+      "case": "mandatory-gates",
+      "kind": "충돌",
+      "input": {
+        "bad_cost": true
+      },
+      "expected": "invalid",
+      "basis": "음수 비용 입력 거부.",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "mandatory-gates",
+      "kind": "순서변경",
+      "input": {
+        "reverse": true
+      },
+      "expected": {
+        "selected": "m1",
+        "pass": 2,
+        "fail": 1,
+        "unknown": 2
+      },
+      "basis": "입력순서는 선택을 바꾸지 않는다.",
+      "actual": {
+        "selected": "m1",
+        "pass": 2,
+        "fail": 1,
+        "unknown": 2
+      },
+      "status": "pass"
+    },
+    {
+      "case": "mandatory-gates",
+      "kind": "새 표본",
+      "input": {
+        "approve_m3": true
+      },
+      "expected": {
+        "selected": "m3",
+        "pass": 3,
+        "fail": 1,
+        "unknown": 1
+      },
+      "basis": "m3 시험 통과 확인 후6이 최소.",
+      "actual": {
+        "selected": "m3",
+        "pass": 3,
+        "fail": 1,
+        "unknown": 1
+      },
+      "status": "pass"
+    },
+    {
+      "case": "equivalence-interval",
+      "kind": "정상",
+      "input": {
+        "lower": -0.2,
+        "upper": 0.3
+      },
+      "expected": "within_margin",
+      "basis": "두 끝이−0.5와0.5 내부.",
+      "actual": "within_margin",
+      "status": "pass"
+    },
+    {
+      "case": "equivalence-interval",
+      "kind": "경계",
+      "input": {
+        "lower": -0.5,
+        "upper": 0.3
+      },
+      "expected": "not_demonstrated",
+      "basis": "엄격 내부 포함 정책이므로 경계 접촉 불충분.",
+      "actual": "not_demonstrated",
+      "status": "pass"
+    },
+    {
+      "case": "equivalence-interval",
+      "kind": "정보 부족",
+      "input": {
+        "lower": null,
+        "upper": null
+      },
+      "expected": "unknown",
+      "basis": "구간 없음.",
+      "actual": "unknown",
+      "status": "pass"
+    },
+    {
+      "case": "equivalence-interval",
+      "kind": "충돌",
+      "input": {
+        "lower": 0.4,
+        "upper": -0.2
+      },
+      "expected": "invalid",
+      "basis": "하한>상한.",
+      "actual": "invalid",
+      "status": "pass"
+    },
+    {
+      "case": "equivalence-interval",
+      "kind": "재시도",
+      "input": {
+        "lower": -0.2,
+        "upper": 0.3,
+        "repeat": true
+      },
+      "expected": "within_margin",
+      "basis": "같은 구간 재평가는 기준 변화 없음.",
+      "actual": "within_margin",
+      "status": "pass"
+    },
+    {
+      "case": "equivalence-interval",
+      "kind": "새 표본",
+      "input": {
+        "lower": -0.8,
+        "upper": 0.9
+      },
+      "expected": "not_demonstrated",
+      "basis": "0을 포함해도 margin을 넘으므로 동등성 입증 아님.",
+      "actual": "not_demonstrated",
+      "status": "pass"
+    }
+  ]
+}

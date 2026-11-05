@@ -1,0 +1,1135 @@
+{
+  "approved-explanation": {
+    "fixture": {
+      "concept": "grain",
+      "max_chars": 8,
+      "docs": [
+        {
+          "id": "a",
+          "concept": "grain",
+          "approved": true,
+          "active": true,
+          "text": "결 방향 확인"
+        },
+        {
+          "id": "b",
+          "concept": "grain",
+          "approved": false,
+          "active": true,
+          "text": "결"
+        },
+        {
+          "id": "c",
+          "concept": "grain",
+          "approved": true,
+          "active": false,
+          "text": "옛 설명"
+        }
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": "a",
+        "basis": "활성·승인된 a의 길이7이8 이하."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "max_chars": 7
+        },
+        "expected": "a",
+        "basis": "길이7 포함."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "docs": null
+        },
+        "expected": "unknown",
+        "basis": "문서 부재를 짧은 설명 생성으로 대체하지 않음."
+      },
+      {
+        "kind": "불충분",
+        "input": {
+          "max_chars": 6
+        },
+        "expected": "no_fit",
+        "basis": "승인되지 않은 b를 대신 선택하지 않음."
+      }
+    ]
+  },
+  "taxonomy-ambiguity": {
+    "fixture": {
+      "entity_id": "tray",
+      "labels": [
+        "product",
+        "product"
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": "product",
+        "basis": "같은 라벨 중복 제거."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "labels": [
+            "role",
+            "process"
+          ]
+        },
+        "expected": "needs_review",
+        "basis": "다른 두 라벨 충돌."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "labels": null
+        },
+        "expected": "unknown",
+        "basis": "아직 분류 자료 없음."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "labels": []
+        },
+        "expected": "unclassified",
+        "basis": "자료를 확인했지만 허용 범주 없음."
+      }
+    ]
+  },
+  "recall-due-queue": {
+    "fixture": {
+      "today": 10,
+      "limit": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "due": 9,
+          "enabled": true
+        },
+        {
+          "id": "q2",
+          "due": 10,
+          "enabled": true
+        },
+        {
+          "id": "q3",
+          "due": 11,
+          "enabled": true
+        },
+        {
+          "id": "q4",
+          "due": 8,
+          "enabled": false
+        }
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": [
+          "q1",
+          "q2"
+        ],
+        "basis": "활성이고 due≤10인 두 질문."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "limit": 0
+        },
+        "expected": [],
+        "basis": "하루 한도0이면 선택 없음."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "questions": null
+        },
+        "expected": "unknown",
+        "basis": "예정표 없음."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "today": 9
+        },
+        "expected": [
+          "q1"
+        ],
+        "basis": "오늘10인 q2는 아직 제외."
+      }
+    ]
+  },
+  "misconception-feedback": {
+    "fixture": {
+      "tags": [
+        "unit-scale"
+      ],
+      "map": {
+        "unit-scale": "compare-units",
+        "order-swap": "trace-steps"
+      }
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": "compare-units",
+        "basis": "등록된 단일 오류."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "tags": []
+        },
+        "expected": "no_targeted_feedback",
+        "basis": "오류 근거 없으면 교정문 강제 제공하지 않음."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "tags": null
+        },
+        "expected": "unknown",
+        "basis": "시도 관측 없음."
+      },
+      {
+        "kind": "충돌",
+        "input": {
+          "tags": [
+            "unit-scale",
+            "order-swap"
+          ]
+        },
+        "expected": "needs_review",
+        "basis": "복수 교정 순서는 담당자 확인."
+      }
+    ]
+  },
+  "answer-evidence-coverage": {
+    "fixture": {
+      "claims": [
+        "f1",
+        "f2"
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "active": true,
+          "supports": [
+            "f1"
+          ],
+          "opposes": []
+        },
+        {
+          "id": "s2",
+          "active": true,
+          "supports": [
+            "f2"
+          ],
+          "opposes": []
+        }
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "status": "supported",
+          "unsupported": []
+        },
+        "basis": "두 주장 모두 활성 근거 존재."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "claims": []
+        },
+        "expected": {
+          "status": "empty",
+          "unsupported": []
+        },
+        "basis": "주장 없는 답변을 완전 지원됨으로 칭찬하지 않음."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "sources": null
+        },
+        "expected": "unknown",
+        "basis": "근거 표 없음."
+      },
+      {
+        "kind": "새 표본",
+        "input": {
+          "claims": [
+            "f1",
+            "f3"
+          ]
+        },
+        "expected": {
+          "status": "incomplete",
+          "unsupported": [
+            "f3"
+          ]
+        },
+        "basis": "f3는 어느 출처에도 없음."
+      },
+      {
+        "kind": "상반된 활성 근거",
+        "input": {
+          "sources": [
+            {
+              "id": "s1",
+              "active": true,
+              "supports": [
+                "f1",
+                "f2"
+              ],
+              "opposes": []
+            },
+            {
+              "id": "s3",
+              "active": true,
+              "supports": [],
+              "opposes": [
+                "f2"
+              ]
+            }
+          ]
+        },
+        "expected": {
+          "status": "conflict",
+          "unsupported": []
+        },
+        "basis": "두 주장이 지원되지만 활성 s3가 f2에 반대하므로 conflict."
+      },
+      {
+        "kind": "폐기된 반대 근거",
+        "input": {
+          "sources": [
+            {
+              "id": "s1",
+              "active": true,
+              "supports": [
+                "f1",
+                "f2"
+              ],
+              "opposes": []
+            },
+            {
+              "id": "s3",
+              "active": false,
+              "supports": [],
+              "opposes": [
+                "f2"
+              ]
+            }
+          ]
+        },
+        "expected": {
+          "status": "supported",
+          "unsupported": []
+        },
+        "basis": "같은 반대 주장이라도 폐기 출처는 현재 근거에 포함하지 않는다."
+      },
+      {
+        "kind": "폐기된 유일 지지 출처",
+        "input": {
+          "sources": [
+            {
+              "id": "s1",
+              "active": true,
+              "supports": [
+                "f1"
+              ],
+              "opposes": []
+            },
+            {
+              "id": "s2",
+              "active": false,
+              "supports": [
+                "f2"
+              ],
+              "opposes": []
+            }
+          ]
+        },
+        "expected": {
+          "status": "incomplete",
+          "unsupported": [
+            "f2"
+          ]
+        },
+        "basis": "s2 id가 존재해도 비활성 출처이므로 f2를 지지하는 현재 근거가 없다."
+      }
+    ]
+  },
+  "paired-transfer-gain": {
+    "fixture": {
+      "max_score": 10,
+      "rows": [
+        {
+          "id": "u1",
+          "before": 3,
+          "after": 5
+        },
+        {
+          "id": "u2",
+          "before": 4,
+          "after": 8
+        },
+        {
+          "id": "u3",
+          "before": 5,
+          "after": null
+        }
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "paired": 2,
+          "missing": 1,
+          "mean_change": 3.0
+        },
+        "basis": "변화2와4의 평균3;u3 제외 사유 기록."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "rows": [
+            {
+              "id": "u1",
+              "before": 5,
+              "after": 5
+            }
+          ]
+        },
+        "expected": {
+          "paired": 1,
+          "missing": 0,
+          "mean_change": 0.0
+        },
+        "basis": "변화0은 관측된 결과."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "rows": [
+            {
+              "id": "u1",
+              "before": 5,
+              "after": null
+            }
+          ]
+        },
+        "expected": "unknown",
+        "basis": "대응쌍 없음."
+      }
+    ]
+  },
+  "time-slope": {
+    "fixture": {
+      "rows": [
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          3,
+          16
+        ]
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": 2.0,
+        "basis": "모든 점이 value=10+2t 위에 있어2점/시간."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "rows": [
+            [
+              0,
+              10
+            ],
+            [
+              1,
+              10
+            ]
+          ]
+        },
+        "expected": 0.0,
+        "basis": "변화 없음."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "rows": [
+            [
+              0,
+              10
+            ],
+            [
+              1,
+              null
+            ]
+          ]
+        },
+        "expected": "unknown",
+        "basis": "관측 부족을0으로 대체하지 않음."
+      }
+    ]
+  },
+  "position-error-vector": {
+    "fixture": {
+      "target": [
+        0,
+        0
+      ],
+      "measured": [
+        3,
+        4
+      ],
+      "radius": 4
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "dx": 3,
+          "dy": 4,
+          "distance": 5.0,
+          "status": "outside"
+        },
+        "basis": "3²+4²=25,거리5>4."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "radius": 5
+        },
+        "expected": {
+          "dx": 3,
+          "dy": 4,
+          "distance": 5.0,
+          "status": "within"
+        },
+        "basis": "반경 경계 포함."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "measured": null
+        },
+        "expected": "unknown",
+        "basis": "미측정은 원점이 아님."
+      }
+    ]
+  },
+  "paired-instrument-bias": {
+    "fixture": {
+      "rows": [
+        {
+          "id": "s1",
+          "a": 10,
+          "b": 12
+        },
+        {
+          "id": "s2",
+          "a": 20,
+          "b": 21
+        },
+        {
+          "id": "s3",
+          "a": 30,
+          "b": 33
+        }
+      ],
+      "tolerance": 1.5
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "mean_bias": 2.0,
+          "max_abs_difference": 3,
+          "status": "outside"
+        },
+        "basis": "차이2,1,3 평균2>1.5."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "tolerance": 2
+        },
+        "expected": {
+          "mean_bias": 2.0,
+          "max_abs_difference": 3,
+          "status": "within"
+        },
+        "basis": "평균 기준 경계 포함;최대3은 별도."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "rows": [
+            {
+              "id": "s1",
+              "a": 10,
+              "b": null
+            }
+          ]
+        },
+        "expected": "unknown",
+        "basis": "대응 측정 없음."
+      }
+    ]
+  },
+  "one-sided-cusum": {
+    "fixture": {
+      "values": [
+        10,
+        11,
+        11,
+        11
+      ],
+      "baseline": 10,
+      "k": 0.5,
+      "h": 1
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "first_alarm_index": 3,
+          "max_cusum": 1.5
+        },
+        "basis": "누적0,0.5,1,1.5;엄격h초과는 index3."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "values": [
+            10,
+            11,
+            11
+          ]
+        },
+        "expected": {
+          "first_alarm_index": null,
+          "max_cusum": 1.0
+        },
+        "basis": "h와같으면경보아님."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "values": [
+            10,
+            null,
+            11
+          ]
+        },
+        "expected": "unknown",
+        "basis": "누락을 정상값으로 보간하지 않음."
+      }
+    ]
+  },
+  "maintenance-washout": {
+    "fixture": {
+      "rows": [
+        [
+          -3,
+          9
+        ],
+        [
+          -2,
+          10
+        ],
+        [
+          -1,
+          11
+        ],
+        [
+          0,
+          100
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "washout_days": 0
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "before_median": 10,
+          "after_median": 7,
+          "change": -3
+        },
+        "basis": "정비일100제외;중앙값10→7."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "washout_days": 2
+        },
+        "expected": {
+          "before_median": 10,
+          "after_median": 8,
+          "change": -2
+        },
+        "basis": "day2는제외하고day3만후구간."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "washout_days": 3
+        },
+        "expected": "unknown",
+        "basis": "남은후관측없음."
+      }
+    ]
+  },
+  "inspection-value-per-minute": {
+    "fixture": {
+      "checks": [
+        {
+          "id": "a",
+          "p": 0.6,
+          "minutes": 3
+        },
+        {
+          "id": "b",
+          "p": 0.2,
+          "minutes": 0.5
+        }
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": "b",
+        "basis": "a=0.2/분,b=0.4/분."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "checks": [
+            {
+              "id": "a",
+              "p": 0.2,
+              "minutes": 1
+            },
+            {
+              "id": "b",
+              "p": 0.4,
+              "minutes": 2
+            }
+          ]
+        },
+        "expected": "a",
+        "basis": "동률은id순."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "checks": [
+            {
+              "id": "a",
+              "p": null,
+              "minutes": 1
+            }
+          ]
+        },
+        "expected": "unknown",
+        "basis": "추정확률없음."
+      }
+    ]
+  },
+  "lot-pooled-defects": {
+    "fixture": {
+      "lots": [
+        {
+          "id": "l1",
+          "n": 10,
+          "bad": 0
+        },
+        {
+          "id": "l2",
+          "n": 90,
+          "bad": 18
+        }
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": 0.18,
+        "basis": "18/100=.18;비율평균.10과다름."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "lots": [
+            {
+              "id": "l1",
+              "n": 10,
+              "bad": 0
+            }
+          ]
+        },
+        "expected": 0.0,
+        "basis": "확인된0불량."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "lots": [
+            {
+              "id": "l1",
+              "n": null,
+              "bad": 0
+            }
+          ]
+        },
+        "expected": "unknown",
+        "basis": "검사분모없음."
+      }
+    ]
+  },
+  "repeatability-range": {
+    "fixture": {
+      "specimen": "s1",
+      "values": [
+        "10.0",
+        "10.1",
+        "10.3"
+      ],
+      "max_range": "0.2"
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "range": "0.3",
+          "status": "outside"
+        },
+        "basis": "10.3−10.0=.3>.2."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "values": [
+            "10.0",
+            "10.1",
+            "10.2"
+          ]
+        },
+        "expected": {
+          "range": "0.2",
+          "status": "within"
+        },
+        "basis": "범위.2경계포함."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "values": [
+            "10.0",
+            null
+          ]
+        },
+        "expected": "unknown",
+        "basis": "반복측정한개누락."
+      }
+    ]
+  },
+  "risk-pareto": {
+    "fixture": {
+      "rows": [
+        {
+          "id": "a",
+          "v": [
+            10,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "b",
+          "v": [
+            12,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "c",
+          "v": [
+            15,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": [
+          "a",
+          "c"
+        ],
+        "basis": "a는b보다모든축우수;c는비싸지만빠르고위험낮음."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "rows": [
+            {
+              "id": "a",
+              "v": [
+                10,
+                2,
+                3
+              ]
+            },
+            {
+              "id": "b",
+              "v": [
+                10,
+                2,
+                3
+              ]
+            }
+          ]
+        },
+        "expected": [
+          "a",
+          "b"
+        ],
+        "basis": "동일벡터는엄격지배아님."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "rows": [
+            {
+              "id": "a",
+              "v": [
+                10,
+                null,
+                3
+              ]
+            }
+          ]
+        },
+        "expected": "unknown",
+        "basis": "납기미확인."
+      }
+    ]
+  },
+  "test-matrix-coverage": {
+    "fixture": {
+      "version": "v1",
+      "required": [
+        [
+          "load",
+          "cold"
+        ],
+        [
+          "load",
+          "warm"
+        ],
+        [
+          "seal",
+          "cold"
+        ]
+      ],
+      "executed": [
+        [
+          "load",
+          "cold"
+        ],
+        [
+          "load",
+          "warm"
+        ],
+        [
+          "load",
+          "warm"
+        ]
+      ]
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": [
+          [
+            "seal",
+            "cold"
+          ]
+        ],
+        "basis": "중복load/warm은한번만;seal/cold누락."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "executed": [
+            [
+              "load",
+              "cold"
+            ],
+            [
+              "load",
+              "warm"
+            ],
+            [
+              "seal",
+              "cold"
+            ]
+          ]
+        },
+        "expected": [],
+        "basis": "필수조합모두실행;합격을뜻하지않음."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "required": null
+        },
+        "expected": "unknown",
+        "basis": "요구목록미확정."
+      }
+    ]
+  },
+  "rollout-stop-rule": {
+    "fixture": {
+      "observed": 100,
+      "defective": 2,
+      "critical": 0
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": "advance",
+        "basis": "관측100,불량2%,중대0."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "defective": 5
+        },
+        "expected": "advance",
+        "basis": "5%포함."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "defective": null
+        },
+        "expected": "unknown",
+        "basis": "불량집계미완료."
+      },
+      {
+        "kind": "불충분",
+        "input": {
+          "observed": 50
+        },
+        "expected": "hold",
+        "basis": "관측50<100."
+      },
+      {
+        "kind": "중대사건",
+        "input": {
+          "critical": 1
+        },
+        "expected": "rollback",
+        "basis": "평균율보다중대사건우선."
+      }
+    ]
+  },
+  "trial-exposure-cap": {
+    "fixture": {
+      "demand": 120,
+      "qualified_cap": 50,
+      "budget": 300,
+      "loss_per_unit": 8,
+      "pack": 10
+    },
+    "tests": [
+      {
+        "kind": "정상",
+        "input": {},
+        "expected": {
+          "trial": 30,
+          "existing": 90,
+          "exposure": 240
+        },
+        "basis": "min(120,50,300/8)=37.5;10개팩내림30."
+      },
+      {
+        "kind": "경계",
+        "input": {
+          "budget": 320
+        },
+        "expected": {
+          "trial": 40,
+          "existing": 80,
+          "exposure": 320
+        },
+        "basis": "예산경계에서40개."
+      },
+      {
+        "kind": "정보 부족",
+        "input": {
+          "qualified_cap": null
+        },
+        "expected": "unknown",
+        "basis": "승인된상한없음."
+      }
+    ]
+  }
+}
